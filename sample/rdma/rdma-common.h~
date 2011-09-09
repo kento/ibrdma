@@ -25,6 +25,6 @@ void * get_local_message_region(void *context);
 void on_connect(void *context);
 void send_mr(void *context);
 void set_mode(enum mode m);
-const char *event_type_str(enum rdma_cm_event_type event);
+const char *event_type_str(enum rdma_cm_event_type event)
 
 #endif
