@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 {
   struct addrinfo *addr;
   struct rdma_cm_event *event = NULL;
-  struct rdma_cm_id *cmid= NULL;
+  struct rdma_cm_id *conn= NULL;
   struct rdma_event_channel *ec = NULL;
 
   if (argc != 4)
@@ -29,8 +29,8 @@ int main(int argc, char **argv)
   TEST_NZ(getaddrinfo(argv[2], argv[3], NULL, &addr));
 
   TEST_Z(ec = rdma_create_event_channel());
-  TEST_NZ(rdma_create_id(ec, &cmid, NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_resolve_addr(cmid, NULL, addr->ai_addr, TIMEOUT_IN_MS));
+  TEST_NZ(rdma_create_id(ec, &conn, NULL, RDMA_PS_TCP));
+  TEST_NZ(rdma_resolve_addr(conn, NULL, addr->ai_addr, TIMEOUT_IN_MS));
 
   freeaddrinfo(addr);
 

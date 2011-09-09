@@ -180,23 +180,24 @@ char * get_peer_message_region(struct connection *conn)
 void on_completion(struct ibv_wc *wc)
 {
   struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
-  printf("== STATE: send=%d / recv=%d ==\n", conn->send_state, conn->recv_state);
+
   if (wc->status != IBV_WC_SUCCESS)
     die("on_completion: status is not IBV_WC_SUCCESS.");
 
   if (wc->opcode & IBV_WC_RECV) {
     conn->recv_state++;
-    printf("RECV: Recieved: TYPE=%d\n", conn->recv_msg->type);
+
     if (conn->recv_msg->type == MSG_MR) {
       memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
       post_receives(conn); /* only rearm for MSG_MR */
+
       if (conn->send_state == SS_INIT) /* received peer's MR before sending ours, so send ours back */
         send_mr(conn);
     }
 
   } else {
     conn->send_state++;
-    printf("SEND: Sent out: TYPE=%d\n", conn->send_msg->type);
+    printf("send completed successfully.\n");
   }
 
   if (conn->send_state == SS_MR_SENT && conn->recv_state == RS_MR_RECV) {
@@ -204,9 +205,9 @@ void on_completion(struct ibv_wc *wc)
     struct ibv_sge sge;
 
     if (s_mode == M_WRITE)
-      printf(" -> received MSG_MR. writing message to remote memory...\n");
+      printf("received MSG_MR. writing message to remote memory...\n");
     else
-      printf(" -> received MSG_MR. reading message from remote memory...\n");
+      printf("received MSG_MR. reading message from remote memory...\n");
 
     memset(&wr, 0, sizeof(wr));
 
@@ -223,13 +224,12 @@ void on_completion(struct ibv_wc *wc)
     sge.lkey = conn->rdma_local_mr->lkey;
 
     TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
-    printf("PSEND: Posted send request: MSG=%s\n", conn->rdma_local_region);
 
     conn->send_msg->type = MSG_DONE;
     send_message(conn);
 
   } else if (conn->send_state == SS_DONE_SENT && conn->recv_state == RS_DONE_RECV) {
-    printf(" -> remote buffer: %s\n", get_peer_message_region(conn));
+    printf("remote buffer: %s\n", get_peer_message_region(conn));
     rdma_disconnect(conn->id);
   }
 }
@@ -271,7 +271,6 @@ void post_receives(struct connection *conn)
   sge.lkey = conn->recv_mr->lkey;
 
   TEST_NZ(ibv_post_recv(conn->qp, &wr, &bad_wr));
-  printf("PRECV: Posted receive request\n");
 }
 
 void register_memory(struct connection *conn)
@@ -327,7 +326,6 @@ void send_message(struct connection *conn)
   while (!conn->connected);
 
   TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
-  printf("PSEND: Posted send request: TYPE=%d\n", conn->send_msg->type);
 }
 
 void send_mr(void *context)

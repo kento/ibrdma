@@ -1,22 +1,20 @@
 #include "rdma-common.h"
 
-const int TIMEOUT_IN_MS = 500; /* ms */
-
-static int on_addr_resolved(struct rdma_cm_id *id);
+static int on_connect_request(struct rdma_cm_id *id);
 static int on_connection(struct rdma_cm_id *id);
 static int on_disconnect(struct rdma_cm_id *id);
 static int on_event(struct rdma_cm_event *event);
-static int on_route_resolved(struct rdma_cm_id *id);
 static void usage(const char *argv0);
 
 int main(int argc, char **argv)
 {
-  struct addrinfo *addr;
+  struct sockaddr_in addr;
   struct rdma_cm_event *event = NULL;
-  struct rdma_cm_id *cmid= NULL;
+  struct rdma_cm_id *listener = NULL;
   struct rdma_event_channel *ec = NULL;
+  uint16_t port = 0;
 
-  if (argc != 4)
+  if (argc != 2)
     usage(argv[0]);
 
   if (strcmp(argv[1], "write") == 0)
@@ -26,13 +24,17 @@ int main(int argc, char **argv)
   else
     usage(argv[0]);
 
-  TEST_NZ(getaddrinfo(argv[2], argv[3], NULL, &addr));
+  memset(&addr, 0, sizeof(addr));
+  addr.sin_family = AF_INET;
 
   TEST_Z(ec = rdma_create_event_channel());
-  TEST_NZ(rdma_create_id(ec, &cmid, NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_resolve_addr(cmid, NULL, addr->ai_addr, TIMEOUT_IN_MS));
+  TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));
+  TEST_NZ(rdma_bind_addr(listener, (struct sockaddr *)&addr));
+  TEST_NZ(rdma_listen(listener, 10)); /* backlog=10 is arbitrary */
 
-  freeaddrinfo(addr);
+  port = ntohs(rdma_get_src_port(listener));
+
+  printf("listening on port %d.\n", port);
 
   while (rdma_get_cm_event(ec, &event) == 0) {
     struct rdma_cm_event event_copy;
@@ -44,18 +46,21 @@ int main(int argc, char **argv)
       break;
   }
 
+  rdma_destroy_id(listener);
   rdma_destroy_event_channel(ec);
 
   return 0;
 }
 
-int on_addr_resolved(struct rdma_cm_id *id)
+int on_connect_request(struct rdma_cm_id *id)
 {
-  printf("address resolved.\n");
+  struct rdma_conn_param cm_params;
 
+  printf("received connection request.\n");
   build_connection(id);
-  sprintf(get_local_message_region(id->context), "message from active/client side with pid %d", getpid());
-  TEST_NZ(rdma_resolve_route(id, TIMEOUT_IN_MS));
+  build_params(&cm_params);
+  sprintf(get_local_message_region(id->context), "message from passive/server side with pid %d", getpid());
+  TEST_NZ(rdma_accept(id, &cm_params));
 
   return 0;
 }
@@ -63,27 +68,24 @@ int on_addr_resolved(struct rdma_cm_id *id)
 int on_connection(struct rdma_cm_id *id)
 {
   on_connect(id->context);
-  send_mr(id->context);
 
   return 0;
 }
 
 int on_disconnect(struct rdma_cm_id *id)
 {
-  printf("disconnected.\n");
+  printf("peer disconnected.\n");
 
   destroy_connection(id->context);
-  return 1; /* exit event loop */
+  return 0;
 }
 
 int on_event(struct rdma_cm_event *event)
 {
   int r = 0;
 
-  if (event->event == RDMA_CM_EVENT_ADDR_RESOLVED)
-    r = on_addr_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ROUTE_RESOLVED)
-    r = on_route_resolved(event->id);
+  if (event->event == RDMA_CM_EVENT_CONNECT_REQUEST)
+    r = on_connect_request(event->id);
   else if (event->event == RDMA_CM_EVENT_ESTABLISHED)
     r = on_connection(event->id);
   else if (event->event == RDMA_CM_EVENT_DISCONNECTED)
@@ -94,19 +96,8 @@ int on_event(struct rdma_cm_event *event)
   return r;
 }
 
-int on_route_resolved(struct rdma_cm_id *id)
-{
-  struct rdma_conn_param cm_params;
-
-  printf("route resolved.\n");
-  build_params(&cm_params);
-  TEST_NZ(rdma_connect(id, &cm_params));
-
-  return 0;
-}
-
 void usage(const char *argv0)
 {
-  fprintf(stderr, "usage: %s <mode> <server-address> <server-port>\n  mode = \"read\", \"write\"\n", argv0);
+  fprintf(stderr, "usage: %s <mode>\n  mode = \"read\", \"write\"\n", argv0);
   exit(1);
 }

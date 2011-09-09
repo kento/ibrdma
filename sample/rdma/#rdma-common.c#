@@ -248,7 +248,7 @@ void * poll_cq(void *ctx)
     TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
     ibv_ack_cq_events(cq, 1);
     TEST_NZ(ibv_req_notify_cq(cq, 0));
-
+    
     while (ibv_poll_cq(cq, 1, &wc))
       on_completion(&wc);
   }
