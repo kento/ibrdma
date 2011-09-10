@@ -1,4 +1,4 @@
-#include "rdma-common.h"
+#include "rdma-common-client.h"
 #include "assert.h"
 #include "arpa/inet.h"
 #include "time.h"
@@ -160,6 +160,8 @@ static int run(int argc, char **argv)
   TEST_NZ(rdma_resolve_addr(cmid, NULL, addr->ai_addr, TIMEOUT_IN_MS));
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ADDR_RESOLVED));
   freeaddrinfo(addr);
+  build_connection(cmid);
+  sprintf(get_local_message_region(cmid->context), "message from active/client side with pid %d", getpid());
   /*--------------------*/
 
   /* int rdma_resolve_route (struct rdma_cm_id *id, int timeout_ms); 
@@ -179,7 +181,8 @@ static int run(int argc, char **argv)
   /* int rdma_connect (struct rdma_cm_id *id, struct rdma_conn_param *conn_param); 
        id            RDMA identifier
        conn_param    connection parameters
-     Description:
+
+       Description:
        For an rdma_cm_id of type RDMA_PS_TCP, this call initiates a connection 
        request to a remote destination. For an rdma_cm_id of type RDMA_PS_UDP, 
        it initiates a lookup of the remote QP providing the datagram service
@@ -187,12 +190,14 @@ static int run(int argc, char **argv)
   build_params(&cm_params);
   printf("Connecting ...\n");
   TEST_NZ(rdma_connect(cmid, &cm_params));
-  sleep(10);
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ESTABLISHED));
   printf("Connected !\n");
   /* --------------------- */
   
   /*TODO: do something */
+  on_connect(cmid->context);
+  send_mr(cmid->context);
+  /*--------------------*/
 
   rdma_disconnect(cmid);
   rdma_destroy_id(cmid);

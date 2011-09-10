@@ -1,40 +1,30 @@
-cc -Wall -Werror -g   -c -o rdma-common.o rdma-common.c
-rdma-common.c: In function 'event_type_str':
-rdma-common.c:3: error: storage class specified for parameter 'RDMA_BUFFER_SIZE'
-rdma-common.c:3: error: parameter 'RDMA_BUFFER_SIZE' is initialized
-cc1: warnings being treated as errors
-rdma-common.c:14: warning: empty declaration
-rdma-common.c:23: warning: empty declaration
-rdma-common.c:56: warning: empty declaration
-rdma-common.c:58: error: storage class specified for parameter 'build_context'
-rdma-common.c:59: error: storage class specified for parameter 'build_qp_attr'
-rdma-common.c:60: error: storage class specified for parameter 'get_peer_message_region'
-rdma-common.c:61: error: storage class specified for parameter 'on_completion'
-rdma-common.c:62: error: storage class specified for parameter 'poll_cq'
-rdma-common.c:63: error: storage class specified for parameter 'post_receives'
-rdma-common.c:64: error: storage class specified for parameter 'register_memory'
-rdma-common.c:65: error: storage class specified for parameter 'send_message'
-rdma-common.c:67: error: storage class specified for parameter 's_ctx'
-rdma-common.c:67: error: parameter 's_ctx' is initialized
-rdma-common.c:68: error: storage class specified for parameter 's_mode'
-rdma-common.c:68: error: parameter 's_mode' is initialized
-rdma-common.c:71: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:93: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:99: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:123: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:144: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:152: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:166: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:187: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:195: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:203: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:260: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:265: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:282: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:300: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:333: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:356: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:366: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common.c:368: error: old-style parameter declarations in prototyped function definition
-rdma-common.c:368: error: expected '{' at end of input
-make: *** [rdma-common.o] Error 1
+cc -Wall -Werror -g   -c -o rdma-common-client.o rdma-common-client.c
+rdma-common-client.c: In function 'build_params_client':
+rdma-common-client.c:71: error: storage class specified for parameter 's_ctx'
+rdma-common-client.c:71: error: parameter 's_ctx' is initialized
+rdma-common-client.c:72: error: storage class specified for parameter 's_mode'
+rdma-common-client.c:72: error: parameter 's_mode' is initialized
+rdma-common-client.c:75: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:99: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:120: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:127: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:143: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:164: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:170: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:194: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:215: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:223: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:237: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:258: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:266: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:274: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:331: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:336: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:353: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:371: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:404: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:427: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:437: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+rdma-common-client.c:439: error: old-style parameter declarations in prototyped function definition
+rdma-common-client.c:439: error: expected '{' at end of input
+make: *** [rdma-common-client.o] Error 1

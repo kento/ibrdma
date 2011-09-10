@@ -1,4 +1,4 @@
-#include "rdma-common.h"
+#include "rdma-common-client.h"
 #include "assert.h"
 #include "arpa/inet.h"
 #include "time.h"
@@ -161,6 +161,7 @@ static int run(int argc, char **argv)
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ADDR_RESOLVED));
   freeaddrinfo(addr);
   build_connection(cmid);
+  
   sprintf(get_local_message_region(cmid->context), "message from active/client side with pid %d", getpid());
   /*--------------------*/
 
