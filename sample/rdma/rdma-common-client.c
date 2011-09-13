@@ -2,6 +2,13 @@
 
 static const int RDMA_BUFFER_SIZE = 1024;
 
+struct transfer_file {
+  void* data;
+  void* addr;
+  uint64_t size;
+  uint64_t tsize;
+};
+
 struct message {
   enum {
     MSG_MR,
@@ -11,6 +18,24 @@ struct message {
   union {
     struct ibv_mr mr;
   } data;
+
+  int size;
+};
+
+struct mr_message {
+  enum {
+    MR_INIT,
+    MR_INIT_ACK,
+    MR_MSG,
+    MR_MSG_DONE,
+    MR_FIN,
+    MR_FIN_ACK
+  } type;
+
+  union {
+    struct ibv_mr mr;
+  } data;
+  uint64_t size;
 };
 
 struct context {
@@ -27,15 +52,15 @@ struct connection {
   struct ibv_qp *qp;
 
   int connected;
-
+      
   struct ibv_mr *recv_mr;
   struct ibv_mr *send_mr;
   struct ibv_mr *rdma_msg_mr;
 
   struct ibv_mr peer_mr;
 
-  struct message *recv_msg;
-  struct message *send_msg;
+  struct mr_message *recv_msg;
+  struct mr_message *send_msg;
 
   char *rdma_msg_region;
 
@@ -62,9 +87,13 @@ static void post_receives(struct connection *conn);
 static void register_memory(struct connection *conn);
 static void send_message(struct connection *conn);
 
+
+int build_send_msg(struct connection *conn, char* msg, int size); 
+void send_memr(void * conn, int type, struct ibv_mr data, uint64_t size );
+
 static struct context *s_ctx = NULL;
 static enum mode s_mode = M_WRITE;
-
+struct transfer_file tfile;
 
 const char *event_type_str(enum rdma_cm_event_type event)
 { 
@@ -114,8 +143,20 @@ void build_connection(struct rdma_cm_id *id)
   conn->connected = 0;
 
   register_memory(conn);
-  post_receives(conn);
+
 }
+
+int build_send_msg(struct connection *conn, char* addr, int size)
+{
+  conn->rdma_msg_region = addr;
+
+  TEST_Z(conn->rdma_msg_mr = ibv_reg_mr(
+                                        s_ctx->pd,
+                                        conn->rdma_msg_region,
+                                        size,
+                                        IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_READ));
+  return 0;
+} 
 
 void build_context(struct ibv_context *verbs)
 {
@@ -192,9 +233,52 @@ char * get_peer_message_region(struct connection *conn)
 void on_completion(struct ibv_wc *wc)
 {
   struct connection *conn = (struct connection *)(uintptr_t)wc->wr_id;
-  printf("== STATE: send=%d / recv=%d ==\n", conn->send_state, conn->recv_state);
+
   if (wc->status != IBV_WC_SUCCESS)
     die("on_completion: status is not IBV_WC_SUCCESS.");
+  
+  if (wc->opcode & IBV_WC_RECV) {
+    switch (conn->recv_msg->type)
+    {
+      int send_size = RDMA_BUFFER_SIZE;
+    case MR_INIT_ACK: 
+    case MR_MSG_DONE: 
+      if (tfile.tsize == tfile.size) {
+      /*sent all data*/
+	send_memr (conn, MR_FIN, tfile.data, tfile.size);
+      } else {
+      /*not sent all data yet*/
+	if (tfile.tsize + RDMA_BUFFER_SIZE > tfile.size) {
+	  send_size = tfile.size - tfile.tsize;
+	}
+	send_memr(conn, MR_MSG, tfile.addr, send_size);
+	tfile.addr += send_size;
+	tfile.tsize += send_siez;
+      }
+      break;
+    case MR_FIN_ACK: 
+      printf("RDMA transfer finished\n");
+      rdma_disconnect(conn->id);
+    default: 
+      printf("Unknown TYPE");
+    }
+    post_receives(conn);
+    return;
+  } else if (wc->opcode & IBV_WC_SEND) {
+     printf("SEND: Sent out: TYPE=%d\n", conn->send_msg->type);
+  } else {
+     die("unknow opecode.");
+  }
+
+  /*============end ==================*/
+
+
+
+  if (1) {
+    return;
+  } else {
+    return;
+  }
 
   if (wc->opcode & IBV_WC_RECV) {
     conn->recv_state++;
@@ -202,8 +286,10 @@ void on_completion(struct ibv_wc *wc)
     if (conn->recv_msg->type == MSG_MR) {
       memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
       post_receives(conn); /* only rearm for MSG_MR */
-      if (conn->send_state == SS_INIT) /* received peer's MR before sending ours, so send ours back */
-        send_mr(conn);
+      //      if (conn->send_state == SS_INIT) /* received peer's MR before sending ours, so send ours back */
+      //	/*TODO: make good consistent function send_mr
+      //	 for now, set 0 for size, this value is not used in serverside*/
+      //        send_mr(conn, 0);
     }
 
   } else {
@@ -212,6 +298,7 @@ void on_completion(struct ibv_wc *wc)
   }
 
   if (conn->send_state == SS_MR_SENT && conn->recv_state == RS_MR_RECV) {
+    /*
     struct ibv_send_wr wr, *bad_wr = NULL;
     struct ibv_sge sge;
 
@@ -236,6 +323,7 @@ void on_completion(struct ibv_wc *wc)
 
     TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
     printf("PSEND: Posted send request: MSG=%s\n", conn->rdma_local_region);
+    */
 
     conn->send_msg->type = MSG_DONE;
     send_message(conn);
@@ -244,6 +332,7 @@ void on_completion(struct ibv_wc *wc)
     printf(" -> remote buffer: %s\n", get_peer_message_region(conn));
     rdma_disconnect(conn->id);
   }
+  printf("== STATE: send=%d / recv=%d ==\n", conn->send_state, conn->recv_state);
 }
 
 void on_connect(void *context)
@@ -256,6 +345,7 @@ void * poll_cq(void *ctx)
   struct ibv_cq *cq;
   struct ibv_wc wc;
 
+
   while (1) {
     TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
     ibv_ack_cq_events(cq, 1);
@@ -267,6 +357,7 @@ void * poll_cq(void *ctx)
 
   return NULL;
 }
+
 
 void post_receives(struct connection *conn)
 {
@@ -288,35 +379,47 @@ void post_receives(struct connection *conn)
 
 void register_memory(struct connection *conn)
 {
-  conn->send_msg = malloc(sizeof(struct message));
-  conn->recv_msg = malloc(sizeof(struct message));
+  conn->send_msg = malloc(sizeof(struct mr_message));
+  conn->recv_msg = malloc(sizeof(struct mr_message));
 
-  conn->rdma_local_region = malloc(RDMA_BUFFER_SIZE);
-  conn->rdma_remote_region = malloc(RDMA_BUFFER_SIZE);
+  //  conn->rdma_local_region = malloc(RDMA_BUFFER_SIZE);
+  //  conn->rdma_remote_region = malloc(RDMA_BUFFER_SIZE);
+  //  conn->rdma_msg_region = malloc(RDMA_BUFFER_SIZE);
 
   TEST_Z(conn->send_mr = ibv_reg_mr(
     s_ctx->pd, 
     conn->send_msg, 
-    sizeof(struct message), 
+    sizeof(struct mr_message), 
     IBV_ACCESS_LOCAL_WRITE));
 
   TEST_Z(conn->recv_mr = ibv_reg_mr(
     s_ctx->pd, 
     conn->recv_msg, 
-    sizeof(struct message), 
-    IBV_ACCESS_LOCAL_WRITE | ((s_mode == M_WRITE) ? IBV_ACCESS_REMOTE_WRITE : IBV_ACCESS_REMOTE_READ)));
+    sizeof(struct mr_message), 
+    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_WRITE | IBV_ACCESS_REMOTE_READ));
 
-  TEST_Z(conn->rdma_local_mr = ibv_reg_mr(
+  //  TEST_Z(conn->rdma_msg_mr = ibv_reg_mr(
+  //    s_ctx->pd, 
+  //    conn->rdma_msg_region, 
+  //    RDMA_BUFFER_SIZE, 
+  //    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_READ));
+
+  //    IBV_ACCESS_LOCAL_WRITE | ((s_mode == M_WRITE) ? IBV_ACCESS_REMOTE_WRITE : IBV_ACCESS_REMOTE_READ)));
+
+  /*
+    TEST_Z(conn->rdma_local_mr = ibv_reg_mr(
     s_ctx->pd, 
     conn->rdma_local_region, 
     RDMA_BUFFER_SIZE, 
     IBV_ACCESS_LOCAL_WRITE));
+
 
   TEST_Z(conn->rdma_remote_mr = ibv_reg_mr(
     s_ctx->pd, 
     conn->rdma_remote_region, 
     RDMA_BUFFER_SIZE, 
     IBV_ACCESS_LOCAL_WRITE | ((s_mode == M_WRITE) ? IBV_ACCESS_REMOTE_WRITE : IBV_ACCESS_REMOTE_READ)));
+  */
 }
 
 void send_message(struct connection *conn)
@@ -342,12 +445,44 @@ void send_message(struct connection *conn)
   printf("PSEND: Posted send request: TYPE=%d\n", conn->send_msg->type);
 }
 
-void send_mr(void *context)
+void send_mr_msg (struct mr_message *mr_msg) {
+  
+}
+
+void send_memr (void * conn, int type, ibv_mr data, uint64_t size ) {
+    struct connection *conn = (struct connection *)context;
+    conn->send_msg->type = type;
+    memcpy(&conn->send_msg->data.mr, conn->rdma_msg_mr, sizeof(struct ibv_mr));
+    conn->send_msg->size = size;
+
+    struct ibv_send_wr wr, *bad_wr = NULL;
+    struct ibv_sge sge;
+
+    memset(&wr, 0, sizeof(wr));
+
+    wr.wr_id = (uintptr_t)conn;
+    wr.opcode = IBV_WR_SEND;
+    wr.sg_list = &sge;
+    wr.num_sge = 1;
+    wr.send_flags = IBV_SEND_SIGNALED;
+
+    sge.addr = (uintptr_t)conn->send_msg;
+    sge.length = sizeof(struct mr_message);
+    sge.lkey = conn->send_mr->lkey;
+  
+    while (!conn->connected);
+
+    TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
+    printf("PSEND: Posted send request: TYPE=%d\n", conn->send_msg->type);
+}
+
+void send_mr(void *context,int size)
 {
   struct connection *conn = (struct connection *)context;
 
   conn->send_msg->type = MSG_MR;
-  memcpy(&conn->send_msg->data.mr, conn->rdma_remote_mr, sizeof(struct ibv_mr));
+  memcpy(&conn->send_msg->data.mr, conn->rdma_msg_mr, sizeof(struct ibv_mr));
+  conn->send_msg->size = size;
 
   send_message(conn);
 }

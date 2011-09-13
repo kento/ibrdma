@@ -16,12 +16,42 @@ static void usage(const char *argv0);
 static int run(int ac, char **av);
 static void print_path_rec(struct rdma_cm_id *id);
 //static const char *event_type_str(enum rdma_cm_event_type event);
+//int build_send_msg(struct connection *conn, char* addr, int size);
 static char *sprint_gid(union ibv_gid *gid, char *str, size_t len);
-
+static int print_device_info(void) ;
+static int init_test_data(char *data, uint64_t size);
+int ibrdma_send(char* host, char* port, void* data, uint64_t size);
 
 int main(int argc, char **argv)
 {
-  return run(argc, argv);
+  char* host;
+  char* port;
+  char* data;
+  uint64_t size;
+
+  if (argc != 4)
+    usage(argv[0]);
+
+  host = argv[1];
+  port = argv[2];
+  size = atoi(argv[3]);
+  data = (char*)malloc(size);
+
+  init_test_data(data, size);
+  
+  ibrdma_send(host, port, data, size);
+  return 0;
+}
+
+static int init_test_data(char* data, uint64_t size) {
+  int i;
+
+  for (i=size-2; i >= 0; i--) {
+    data[i] = (char) (i % 26 + 'a');
+    printf("%c",data[i]);
+  }
+  data[size-1] += '\0';
+  return 0;
 }
 
 static char *sprint_gid(union ibv_gid *gid, char *str, size_t len)
@@ -96,6 +126,37 @@ static const char *event_type_str(enum rdma_cm_event_type event)
   }
 */
 
+static int print_device_info(void) {
+  struct ibv_device ** ibv_devs;
+  int i = 0;
+  /*TODO: get num_devs automatically*/
+  int num_devs = 1;
+  /*NULL => get all devices*/
+
+  ibv_devs = ibv_get_device_list(NULL);
+
+  for (i = 0; i < num_devs; i++) {
+    struct ibv_context *ibv_contxt;
+    struct ibv_device_attr device_attr;
+    char *dev_name;
+    uint64_t dev_guid;
+
+    ibv_contxt = ibv_open_device (ibv_devs[i]);
+
+    dev_name = ibv_get_device_name(ibv_devs[i]);
+    dev_guid = ibv_get_device_guid(ibv_devs[i]);
+    printf("%s (%d):\n", dev_name, dev_guid);
+    ibv_query_device (ibv_contxt, &device_attr);
+    printf("      Record           : %d\n", i);
+    printf("         max_mr_size   : %llu\n", device_attr.max_mr_size);
+    printf("         max_mr        : %llu\n", device_attr.max_mr);
+
+    ibv_close_device (ibv_contxt);
+  }
+
+  ibv_free_device_list(ibv_devs);
+  return 0;
+}
 
 /*************************************************************************
  * Wait for the rdma_cm event specified.
@@ -122,7 +183,13 @@ wait_for_event(struct rdma_event_channel *channel, enum rdma_cm_event_type reque
 }
 
 
-static int run(int argc, char **argv)
+
+
+
+
+
+//static int run(int argc, char **argv)
+int ibrdma_send(char* host, char* port, void* data, uint64_t size)
 {
   struct addrinfo *addr;
   //struct rdma_cm_event *event = NULL;
@@ -130,17 +197,12 @@ static int run(int argc, char **argv)
   struct rdma_event_channel *ec = NULL;
   struct rdma_conn_param cm_params;
 
-  if (argc != 4)
-    usage(argv[0]);
 
-  if (strcmp(argv[1], "write") == 0)
-    set_mode(M_WRITE);
-  else if (strcmp(argv[1], "read") == 0)
-    set_mode(M_READ);
-  else
-    usage(argv[0]);
+  //print_device_info();
 
-  TEST_NZ(getaddrinfo(argv[2], argv[3], NULL, &addr));
+
+
+  TEST_NZ(getaddrinfo(host, port, NULL, &addr));
 
   TEST_Z(ec = rdma_create_event_channel());
   /*create rdma socket*/
@@ -162,7 +224,7 @@ static int run(int argc, char **argv)
   freeaddrinfo(addr);
   build_connection(cmid);
   
-  sprintf(get_local_message_region(cmid->context), "message from active/client side with pid %d", getpid());
+
   /*--------------------*/
 
   /* int rdma_resolve_route (struct rdma_cm_id *id, int timeout_ms); 
@@ -177,7 +239,7 @@ static int run(int argc, char **argv)
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ROUTE_RESOLVED));
   /* -------------------- */
   
-  print_path_rec(cmid);
+  //  print_path_rec(cmid);
 
   /* int rdma_connect (struct rdma_cm_id *id, struct rdma_conn_param *conn_param); 
        id            RDMA identifier
@@ -197,97 +259,30 @@ static int run(int argc, char **argv)
   
   /*TODO: do something */
   on_connect(cmid->context);
-  send_mr(cmid->context);
+  //  char* msg = (char* ) malloc(size);
+  //  sprintf(msg,"sze=%d",size);
+  //  printf(msg);
+  tfile.data = data;
+  tfile.addr = data;
+  tfile.size = size;
+  //  build_send_msg(cmid->context, data, size);
+  //  send_mr(cmid->context, size);
+  send_memr (cmid->conn, MR_INIT, transfer_file.data, transfer_file.size);
+  post_receives(cmid->conn);
   /*--------------------*/
 
-  rdma_disconnect(cmid);
+  TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_DISCONNECTED));
   rdma_destroy_id(cmid);
   rdma_destroy_event_channel(ec);
 
   return 0;
-  /*=================*/
-  /*=================*/
-
-  /*
-  while (rdma_get_cm_event(ec, &event) == 0) {
-
-
-    memcpy(&event_copy, event, sizeof(*event));
-    rdma_ack_cm_event(event);
-
-    if (on_event(&event_copy))
-      break;
-  }
-  */
 }
 
-/*
-int on_addr_resolved(struct rdma_cm_id *id)
-{
-  printf("address resolved.\n");
-
-  build_connection(id);
-  sprintf(get_local_message_region(id->context), "message from active/client side with pid %d", getpid());
-  TEST_NZ(rdma_resolve_route(id, TIMEOUT_IN_MS));
-
-  return 0;
-  }*/
-
-/*
-int on_connection(struct rdma_cm_id *id)
-{
-  on_connect(id->context);
-  send_mr(id->context);
-
-  return 0;
-}
-*/
-
-/*
-int on_disconnect(struct rdma_cm_id *id)
-{
-  printf("disconnected.\n");
-
-  destroy_connection(id->context);
-  return 1; 
-}
-*/
-
-/*
-int on_event(struct rdma_cm_event *event)
-{
-  int r = 0;
-
-  if (event->event == RDMA_CM_EVENT_ADDR_RESOLVED)
-    r = on_addr_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ROUTE_RESOLVED)
-    r = on_route_resolved(event->id);
-  else if (event->event == RDMA_CM_EVENT_ESTABLISHED)
-    r = on_connection(event->id);
-  else if (event->event == RDMA_CM_EVENT_DISCONNECTED)
-    r = on_disconnect(event->id);
-  else
-    die("on_event: unknown event.");
-
-  return r;
-}
-*/
-
- /*
-int on_route_resolved(struct rdma_cm_id *id)
-{
-  struct rdma_conn_param cm_params;
-
-  printf("route resolved.\n");
-  build_params(&cm_params);
-  TEST_NZ(rdma_connect(id, &cm_params));
-
-  return 0;
-  }
-*/
 
 void usage(const char *argv0)
 {
-  fprintf(stderr, "usage: %s <mode> <server-address> <server-port>\n  mode = \"read\", \"write\"\n", argv0);
+  fprintf(stderr, "usage: %s <server-address> <server-port> <data size(bytes)>\n", argv0);
   exit(1);
 }
+
+

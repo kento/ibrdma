@@ -1,0 +1,154 @@
+cc -Wall -Werror -g   -c -o rdma-common-client.o rdma-common-client.c
+cc1: warnings being treated as errors
+rdma-common-client.c:4: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c:4: warning: its scope is only this definition or declaration, which is probably not what you want
+rdma-common-client.c:5: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c:6: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c: In function 'build_connection':
+rdma-common-client.c:24: warning: implicit declaration of function 'build_context'
+rdma-common-client.c:25: warning: implicit declaration of function 'build_qp_attr'
+rdma-common-client.c:27: error: dereferencing pointer to incomplete type
+rdma-common-client.c:29: error: invalid application of 'sizeof' to incomplete type 'struct connection' 
+rdma-common-client.c:31: error: dereferencing pointer to incomplete type
+rdma-common-client.c:32: error: dereferencing pointer to incomplete type
+rdma-common-client.c:34: error: dereferencing pointer to incomplete type
+rdma-common-client.c:34: error: 'SS_INIT' undeclared (first use in this function)
+rdma-common-client.c:34: error: (Each undeclared identifier is reported only once
+rdma-common-client.c:34: error: for each function it appears in.)
+rdma-common-client.c:35: error: dereferencing pointer to incomplete type
+rdma-common-client.c:35: error: 'RS_INIT' undeclared (first use in this function)
+rdma-common-client.c:37: error: dereferencing pointer to incomplete type
+rdma-common-client.c:39: warning: passing argument 1 of 'register_memory' from incompatible pointer type
+rdma-common-client.c:40: warning: passing argument 1 of 'post_receives' from incompatible pointer type
+rdma-common-client.c: At top level:
+rdma-common-client.c:44: warning: conflicting types for 'build_context'
+rdma-common-client.c:24: warning: previous implicit declaration of 'build_context' was here
+rdma-common-client.c: In function 'build_context':
+rdma-common-client.c:46: error: dereferencing pointer to incomplete type
+rdma-common-client.c:52: error: invalid application of 'sizeof' to incomplete type 'struct context' 
+rdma-common-client.c:54: error: dereferencing pointer to incomplete type
+rdma-common-client.c:56: error: dereferencing pointer to incomplete type
+rdma-common-client.c:56: error: dereferencing pointer to incomplete type
+rdma-common-client.c:57: error: dereferencing pointer to incomplete type
+rdma-common-client.c:57: error: dereferencing pointer to incomplete type
+rdma-common-client.c:58: error: dereferencing pointer to incomplete type
+rdma-common-client.c:58: error: dereferencing pointer to incomplete type
+rdma-common-client.c:58: error: dereferencing pointer to incomplete type
+rdma-common-client.c:59: error: dereferencing pointer to incomplete type
+rdma-common-client.c:61: error: dereferencing pointer to incomplete type
+rdma-common-client.c:61: error: 'poll_cq' undeclared (first use in this function)
+rdma-common-client.c: At top level:
+rdma-common-client.c:73: warning: conflicting types for 'build_qp_attr'
+rdma-common-client.c:25: warning: previous implicit declaration of 'build_qp_attr' was here
+rdma-common-client.c: In function 'build_qp_attr':
+rdma-common-client.c:76: error: dereferencing pointer to incomplete type
+rdma-common-client.c:77: error: dereferencing pointer to incomplete type
+rdma-common-client.c: In function 'destroy_connection':
+rdma-common-client.c:90: error: dereferencing pointer to incomplete type
+rdma-common-client.c:92: error: dereferencing pointer to incomplete type
+rdma-common-client.c:93: error: dereferencing pointer to incomplete type
+rdma-common-client.c:94: error: dereferencing pointer to incomplete type
+rdma-common-client.c:96: error: dereferencing pointer to incomplete type
+rdma-common-client.c:97: error: dereferencing pointer to incomplete type
+rdma-common-client.c:98: error: dereferencing pointer to incomplete type
+rdma-common-client.c:100: error: dereferencing pointer to incomplete type
+rdma-common-client.c: In function 'get_local_message_region':
+rdma-common-client.c:107: error: dereferencing pointer to incomplete type
+rdma-common-client.c:108: warning: control reaches end of non-void function
+rdma-common-client.c: At top level:
+rdma-common-client.c:110: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c: In function 'get_peer_message_region':
+rdma-common-client.c:112: error: dereferencing pointer to incomplete type
+rdma-common-client.c:113: warning: control reaches end of non-void function
+rdma-common-client.c: In function 'on_completion':
+rdma-common-client.c:118: error: dereferencing pointer to incomplete type
+rdma-common-client.c:118: error: dereferencing pointer to incomplete type
+rdma-common-client.c:123: error: dereferencing pointer to incomplete type
+rdma-common-client.c:124: error: dereferencing pointer to incomplete type
+rdma-common-client.c:125: error: dereferencing pointer to incomplete type
+rdma-common-client.c:125: error: 'MSG_MR' undeclared (first use in this function)
+rdma-common-client.c:126: error: dereferencing pointer to incomplete type
+rdma-common-client.c:126: error: dereferencing pointer to incomplete type
+rdma-common-client.c:126: error: dereferencing pointer to incomplete type
+rdma-common-client.c:127: warning: passing argument 1 of 'post_receives' from incompatible pointer type
+rdma-common-client.c:128: error: dereferencing pointer to incomplete type
+rdma-common-client.c:128: error: 'SS_INIT' undeclared (first use in this function)
+rdma-common-client.c:133: error: dereferencing pointer to incomplete type
+rdma-common-client.c:134: error: dereferencing pointer to incomplete type
+rdma-common-client.c:137: error: dereferencing pointer to incomplete type
+rdma-common-client.c:137: error: 'SS_MR_SENT' undeclared (first use in this function)
+rdma-common-client.c:137: error: dereferencing pointer to incomplete type
+rdma-common-client.c:137: error: 'RS_MR_RECV' undeclared (first use in this function)
+rdma-common-client.c:153: error: dereferencing pointer to incomplete type
+rdma-common-client.c:154: error: dereferencing pointer to incomplete type
+rdma-common-client.c:156: error: dereferencing pointer to incomplete type
+rdma-common-client.c:157: error: 'RDMA_BUFFER_SIZE' undeclared (first use in this function)
+rdma-common-client.c:158: error: dereferencing pointer to incomplete type
+rdma-common-client.c:160: error: dereferencing pointer to incomplete type
+rdma-common-client.c:161: error: dereferencing pointer to incomplete type
+rdma-common-client.c:163: error: dereferencing pointer to incomplete type
+rdma-common-client.c:163: error: 'MSG_DONE' undeclared (first use in this function)
+rdma-common-client.c:164: warning: passing argument 1 of 'send_message' from incompatible pointer type
+rdma-common-client.c:166: error: dereferencing pointer to incomplete type
+rdma-common-client.c:166: error: 'SS_DONE_SENT' undeclared (first use in this function)
+rdma-common-client.c:166: error: dereferencing pointer to incomplete type
+rdma-common-client.c:166: error: 'RS_DONE_RECV' undeclared (first use in this function)
+rdma-common-client.c:167: warning: passing argument 1 of 'get_peer_message_region' from incompatible pointer type
+rdma-common-client.c:168: error: dereferencing pointer to incomplete type
+rdma-common-client.c: In function 'on_connect':
+rdma-common-client.c:174: error: dereferencing pointer to incomplete type
+rdma-common-client.c: In function 'poll_cq':
+rdma-common-client.c:183: error: dereferencing pointer to incomplete type
+rdma-common-client.c: At top level:
+rdma-common-client.c:194: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c:195: error: conflicting types for 'post_receives'
+rdma-common-client.c:4: error: previous declaration of 'post_receives' was here
+rdma-common-client.c: In function 'post_receives':
+rdma-common-client.c:204: error: dereferencing pointer to incomplete type
+rdma-common-client.c:205: error: invalid application of 'sizeof' to incomplete type 'struct message' 
+rdma-common-client.c:206: error: dereferencing pointer to incomplete type
+rdma-common-client.c:208: error: dereferencing pointer to incomplete type
+rdma-common-client.c: At top level:
+rdma-common-client.c:212: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c:213: error: conflicting types for 'register_memory'
+rdma-common-client.c:5: error: previous declaration of 'register_memory' was here
+rdma-common-client.c: In function 'register_memory':
+rdma-common-client.c:214: error: dereferencing pointer to incomplete type
+rdma-common-client.c:214: error: invalid application of 'sizeof' to incomplete type 'struct message' 
+rdma-common-client.c:215: error: dereferencing pointer to incomplete type
+rdma-common-client.c:215: error: invalid application of 'sizeof' to incomplete type 'struct message' 
+rdma-common-client.c:217: error: dereferencing pointer to incomplete type
+rdma-common-client.c:217: error: 'RDMA_BUFFER_SIZE' undeclared (first use in this function)
+rdma-common-client.c:218: error: dereferencing pointer to incomplete type
+rdma-common-client.c:220: error: dereferencing pointer to incomplete type
+rdma-common-client.c:220: error: dereferencing pointer to incomplete type
+rdma-common-client.c:220: error: dereferencing pointer to incomplete type
+rdma-common-client.c:220: error: invalid application of 'sizeof' to incomplete type 'struct message' 
+rdma-common-client.c:226: error: dereferencing pointer to incomplete type
+rdma-common-client.c:226: error: dereferencing pointer to incomplete type
+rdma-common-client.c:226: error: dereferencing pointer to incomplete type
+rdma-common-client.c:226: error: invalid application of 'sizeof' to incomplete type 'struct message' 
+rdma-common-client.c:232: error: dereferencing pointer to incomplete type
+rdma-common-client.c:232: error: dereferencing pointer to incomplete type
+rdma-common-client.c:232: error: dereferencing pointer to incomplete type
+rdma-common-client.c:238: error: dereferencing pointer to incomplete type
+rdma-common-client.c:238: error: dereferencing pointer to incomplete type
+rdma-common-client.c:238: error: dereferencing pointer to incomplete type
+rdma-common-client.c: At top level:
+rdma-common-client.c:245: warning: 'struct connection' declared inside parameter list
+rdma-common-client.c:246: error: conflicting types for 'send_message'
+rdma-common-client.c:6: error: previous declaration of 'send_message' was here
+rdma-common-client.c: In function 'send_message':
+rdma-common-client.c:258: error: dereferencing pointer to incomplete type
+rdma-common-client.c:259: error: invalid application of 'sizeof' to incomplete type 'struct message' 
+rdma-common-client.c:260: error: dereferencing pointer to incomplete type
+rdma-common-client.c:262: error: dereferencing pointer to incomplete type
+rdma-common-client.c:264: error: dereferencing pointer to incomplete type
+rdma-common-client.c:265: error: dereferencing pointer to incomplete type
+rdma-common-client.c: In function 'send_mr':
+rdma-common-client.c:272: error: dereferencing pointer to incomplete type
+rdma-common-client.c:272: error: 'MSG_MR' undeclared (first use in this function)
+rdma-common-client.c:273: error: dereferencing pointer to incomplete type
+rdma-common-client.c:273: error: dereferencing pointer to incomplete type
+rdma-common-client.c:275: warning: passing argument 1 of 'send_message' from incompatible pointer type
+make: *** [rdma-common-client.o] Error 1

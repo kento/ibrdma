@@ -1,30 +1,16 @@
-cc -Wall -Werror -g   -c -o rdma-common-client.o rdma-common-client.c
-rdma-common-client.c: In function 'build_params_client':
-rdma-common-client.c:71: error: storage class specified for parameter 's_ctx'
-rdma-common-client.c:71: error: parameter 's_ctx' is initialized
-rdma-common-client.c:72: error: storage class specified for parameter 's_mode'
-rdma-common-client.c:72: error: parameter 's_mode' is initialized
-rdma-common-client.c:75: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:99: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:120: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:127: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:143: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:164: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:170: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:194: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:215: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:223: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:237: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:258: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:266: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:274: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:331: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:336: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:353: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:371: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:404: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:427: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:437: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
-rdma-common-client.c:439: error: old-style parameter declarations in prototyped function definition
-rdma-common-client.c:439: error: expected '{' at end of input
+cc -Wall -g   -c -o rdma-common-client.o rdma-common-client.c
+rdma-common-client.c: In function 'on_completion':
+rdma-common-client.c:248: error: incompatible type for argument 3 of 'send_memr'
+rdma-common-client.c:254: error: incompatible type for argument 3 of 'send_memr'
+rdma-common-client.c:256: error: 'send_siez' undeclared (first use in this function)
+rdma-common-client.c:256: error: (Each undeclared identifier is reported only once
+rdma-common-client.c:256: error: for each function it appears in.)
+rdma-common-client.c: At top level:
+rdma-common-client.c:452: error: expected declaration specifiers or '...' before 'ibv_mr'
+rdma-common-client.c:452: error: conflicting types for 'send_memr'
+rdma-common-client.c:92: error: previous declaration of 'send_memr' was here
+rdma-common-client.c: In function 'send_memr':
+rdma-common-client.c:453: error: 'conn' redeclared as different kind of symbol
+rdma-common-client.c:452: error: previous definition of 'conn' was here
+rdma-common-client.c:453: error: 'context' undeclared (first use in this function)
 make: *** [rdma-common-client.o] Error 1
