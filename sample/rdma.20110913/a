@@ -1,0 +1,20 @@
+cc -Wall -g   -c -o rdma-common-server.o rdma-common-server.c
+rdma-common-server.c: In function 'on_completion':
+rdma-common-server.c:246: error: 'tfile' undeclared (first use in this function)
+rdma-common-server.c:246: error: (Each undeclared identifier is reported only once
+rdma-common-server.c:246: error: for each function it appears in.)
+rdma-common-server.c:247: warning: implicit declaration of function 'send_memr'
+rdma-common-server.c:258: error: expected expression before '}' token
+rdma-common-server.c:258: warning: 'return' with a value, in function returning void
+rdma-common-server.c:266: error: redefinition of 'conn'
+rdma-common-server.c:236: error: previous definition of 'conn' was here
+rdma-common-server.c:280: warning: format '%d' expects type 'int', but argument 2 has type 'uint64_t'
+rdma-common-server.c: At top level:
+rdma-common-server.c:333: error: expected declaration specifiers or '...' before 'ibv_mr'
+rdma-common-server.c:333: warning: conflicting types for 'send_memr'
+rdma-common-server.c:247: warning: previous implicit declaration of 'send_memr' was here
+rdma-common-server.c: In function 'send_memr':
+rdma-common-server.c:334: error: 'conn' redeclared as different kind of symbol
+rdma-common-server.c:333: error: previous definition of 'conn' was here
+rdma-common-server.c:334: error: 'context' undeclared (first use in this function)
+make: *** [rdma-common-server.o] Error 1

@@ -1,0 +1,71 @@
+
+rdma-client.c,273
+const int TIMEOUT_IN_MS 6,87
+int main(25,885
+static int init_test_data(46,1195
+static char *sprint_gid(sprint_gid57,1404
+static void print_path_rec 72,1679
+static int print_device_info(130,4276
+wait_for_event(167,5341
+int ibrdma_send(193,5875
+void usage(281,8747
+
+rdma-common.c,1267
+static const int RDMA_BUFFER_SIZE 4,70
+struct transfer_file 6,116
+struct mr_message 14,217
+    MR_INIT,16,246
+    MR_INIT_ACK,17,259
+    MR_MSG,18,276
+    MR_MSG_DONE,19,288
+    MR_FIN,20,305
+    MR_FIN_ACK21,317
+struct context 30,406
+struct connection 39,568
+    SS_INIT,57,866
+    SS_MR_SENT,58,879
+    SS_RDMA_SENT,59,895
+    SS_DONE_SENT60,913
+    RS_INIT,64,956
+    RS_MR_RECV,65,969
+    RS_DONE_RECV66,985
+static struct context *s_ctx s_ctx86,1791
+static enum mode s_mode 87,1828
+struct transfer_file *tfile tfile88,1863
+const char *event_type_str(event_type_str90,1900
+void die(111,2802
+void init_tfile(117,2893
+void build_connection(125,3104
+void build_connection_s(150,3586
+void build_context_s(174,4064
+void send_memr(197,4673
+void set_mode(228,5495
+void build_context(234,5542
+void build_params(255,6145
+void build_qp_attr(264,6418
+void destroy_connection(280,6823
+void * get_local_message_region(299,7178
+char * get_peer_message_region(304,7288
+void on_completion(309,7381
+static void register_rdma_region(360,8788
+void on_completion_s(376,9197
+void send_init(470,12137
+void on_connect(475,12239
+void * poll_cq(480,12324
+void * poll_cq_s(500,12629
+void post_receives(518,12936
+void register_memory(537,13349
+
+rdma-server.c,111
+int main(14,346
+static int connections 116,3024
+static void accept_connection(117,3052
+void usage(212,5260
+
+rdma-common.h,126
+#define RDMA_COMMON_H2,22
+#define TEST_NZ(11,171
+#define TEST_Z(12,268
+enum mode 14,366
+  M_WRITE,15,378
+  M_READ16,389

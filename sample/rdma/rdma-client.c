@@ -1,4 +1,4 @@
-#include "rdma-common-client.h"
+#include "rdma-common.h"
 #include "assert.h"
 #include "arpa/inet.h"
 #include "time.h"
@@ -13,7 +13,7 @@ const int TIMEOUT_IN_MS = 500; /* ms */
 static void usage(const char *argv0);
 
 
-static int run(int ac, char **av);
+//static int run(int ac, char **av);
 static void print_path_rec(struct rdma_cm_id *id);
 //static const char *event_type_str(enum rdma_cm_event_type event);
 //int build_send_msg(struct connection *conn, char* addr, int size);
@@ -29,12 +29,12 @@ int main(int argc, char **argv)
   char* data;
   uint64_t size;
 
-  if (argc != 4)
+  if (argc != 3)
     usage(argv[0]);
 
   host = argv[1];
-  port = argv[2];
-  size = atoi(argv[3]);
+  port = "10150";
+  size = atoi(argv[2]);
   data = (char*)malloc(size);
 
   init_test_data(data, size);
@@ -48,7 +48,7 @@ static int init_test_data(char* data, uint64_t size) {
 
   for (i=size-2; i >= 0; i--) {
     data[i] = (char) (i % 26 + 'a');
-    printf("%c",data[i]);
+    //    printf("%c",data[i]);
   }
   data[size-1] += '\0';
   return 0;
@@ -104,6 +104,7 @@ static void print_path_rec (struct rdma_cm_id *id)
  * helper functions to print nice pretty strings...
  */
 /*
+
 static const char *event_type_str(enum rdma_cm_event_type event)
 {
   switch (event)
@@ -251,7 +252,6 @@ int ibrdma_send(char* host, char* port, void* data, uint64_t size)
        it initiates a lookup of the remote QP providing the datagram service
   */
   build_params(&cm_params);
-  printf("Connecting ...\n");
   TEST_NZ(rdma_connect(cmid, &cm_params));
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ESTABLISHED));
   printf("Connected !\n");
@@ -262,13 +262,12 @@ int ibrdma_send(char* host, char* port, void* data, uint64_t size)
   //  char* msg = (char* ) malloc(size);
   //  sprintf(msg,"sze=%d",size);
   //  printf(msg);
-  tfile.data = data;
-  tfile.addr = data;
-  tfile.size = size;
+
+  init_tfile(data,  size);
+
   //  build_send_msg(cmid->context, data, size);
   //  send_mr(cmid->context, size);
-  send_memr (cmid->conn, MR_INIT, transfer_file.data, transfer_file.size);
-  post_receives(cmid->conn);
+  send_init(cmid->context);
   /*--------------------*/
 
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_DISCONNECTED));

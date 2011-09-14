@@ -9,10 +9,10 @@ APPS    := rdma-client rdma-server
 
 all: ${APPS}
 
-rdma-client: rdma-common-client.o rdma-client.o
+rdma-client: rdma-common.o rdma-client.o
 	${LD} -o $@ $^ ${LDFLAGS}
 
-rdma-server: rdma-common-server.o rdma-server.o
+rdma-server: rdma-common.o rdma-server.o
 	${LD} -o $@ $^ ${LDFLAGS}
 
 clean:

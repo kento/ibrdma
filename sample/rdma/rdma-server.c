@@ -1,4 +1,4 @@
-#include "rdma-common-server.h"
+#include "rdma-common.h"
 #include <time.h>
 
 /*
@@ -19,18 +19,14 @@ int main(int argc, char **argv)
   struct rdma_event_channel *ec = NULL;
   uint16_t port = 0;
 
-  if (argc != 2)
-    usage(argv[0]);
 
-  if (strcmp(argv[1], "write") == 0)
-    set_mode(M_WRITE);
-  else if (strcmp(argv[1], "read") == 0)
-    set_mode(M_READ);
-  else
-    usage(argv[0]);
+
+  set_mode(M_READ);
+
 
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
+  addr.sin_port   = htons(10150);
 
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));
@@ -40,7 +36,6 @@ int main(int argc, char **argv)
   port = ntohs(rdma_get_src_port(listener));
 
   printf("listening on port %d.\n", port);
-  
 
   while (1) {
     //    pthread_t          thread_id;
@@ -145,7 +140,7 @@ static void accept_connection(struct rdma_cm_id *id)
   printf("Accepting connection on id == %p (total connections %d)\n",
 	 id, ++connections);
 
-  build_connection(id);
+  build_connection_s(id);
 
   //  memset(&conn_param, 0, sizeof(conn_param));
   //  conn_param.responder_resources = 1;

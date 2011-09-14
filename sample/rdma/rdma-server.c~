@@ -1,4 +1,4 @@
-#include "rdma-common-server.h"
+#include "rdma-common.h"
 #include <time.h>
 
 /*
@@ -40,7 +40,6 @@ int main(int argc, char **argv)
   port = ntohs(rdma_get_src_port(listener));
 
   printf("listening on port %d.\n", port);
-  
 
   while (1) {
     //    pthread_t          thread_id;
@@ -145,14 +144,14 @@ static void accept_connection(struct rdma_cm_id *id)
   printf("Accepting connection on id == %p (total connections %d)\n",
 	 id, ++connections);
 
-  build_connection(id);
+  build_connection_s(id);
 
   //  memset(&conn_param, 0, sizeof(conn_param));
   //  conn_param.responder_resources = 1;
   //  conn_param.initiator_depth = 1;
   build_params(&conn_param);
 
-  sprintf(get_local_message_region(id->context), "message from passive/server side with pid %d", getpid());
+  //  sprintf(get_local_message_region(id->context), "message from passive/server side with pid %d", getpid());
   //  rdma_accept(context->id, &conn_param);
   TEST_NZ(rdma_accept(id, &conn_param));
 

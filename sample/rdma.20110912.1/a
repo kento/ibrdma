@@ -1,0 +1,16 @@
+cc -Wall -g   -c -o rdma-common-client.o rdma-common-client.c
+rdma-common-client.c: In function 'on_completion':
+rdma-common-client.c:248: error: incompatible type for argument 3 of 'send_memr'
+rdma-common-client.c:254: error: incompatible type for argument 3 of 'send_memr'
+rdma-common-client.c:256: error: 'send_siez' undeclared (first use in this function)
+rdma-common-client.c:256: error: (Each undeclared identifier is reported only once
+rdma-common-client.c:256: error: for each function it appears in.)
+rdma-common-client.c: At top level:
+rdma-common-client.c:452: error: expected declaration specifiers or '...' before 'ibv_mr'
+rdma-common-client.c:452: error: conflicting types for 'send_memr'
+rdma-common-client.c:92: error: previous declaration of 'send_memr' was here
+rdma-common-client.c: In function 'send_memr':
+rdma-common-client.c:453: error: 'conn' redeclared as different kind of symbol
+rdma-common-client.c:452: error: previous definition of 'conn' was here
+rdma-common-client.c:453: error: 'context' undeclared (first use in this function)
+make: *** [rdma-common-client.o] Error 1
