@@ -1,7 +1,7 @@
 #include "rdma-common.h"
 
 //static const int RDMA_BUFFER_SIZE = 1024;
-static const int RDMA_BUFFER_SIZE = 256;
+static const int RDMA_BUFFER_SIZE = 7000000;
 
 struct transfer_file {
   void* data;
@@ -340,6 +340,8 @@ void on_completion(struct ibv_wc *wc)
     case MR_FIN_ACK: 
       printf("Recived: Type=%d\n",  conn->recv_msg->type);
       rdma_disconnect(conn->id);
+      /*TODO: remove exit();*/
+      exit(0);
       return;
     default: 
       printf("Unknown TYPE");
@@ -401,6 +403,14 @@ void on_completion_s(struct ibv_wc *wc)
 	/*======= RDMA (read from remote memory region in client side)=======*/
 
 	memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
+	
+	free(tfile);
+	tfile = (struct transfer_file*)malloc(sizeof(struct transfer_file));
+	conn-> rdma_msg_region = tfile->data = malloc(conn->recv_msg->size);
+	tfile->send_base_addr = tfile->data;
+	tfile->tsize = 0;
+	tfile->size = conn->recv_msg->size;
+	
 
 	register_rdma_region(conn, tfile->send_base_addr, conn->recv_msg->size);
 
@@ -420,7 +430,14 @@ void on_completion_s(struct ibv_wc *wc)
 	sge.length = conn->recv_msg->size;
 	sge.lkey = conn->rdma_msg_mr->lkey;
 	
+	/*
+	int a;
+	if((a = ibv_post_send(conn->qp, &wr, &bad_wr)) != 0) {
+	  printf("%d: by post_send\n", a);
+	}
+	*/
 	TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
+    
 	printf("Post send: RDMA: id=%d\n", wr.wr_id);
 
 	tfile->send_base_addr += conn->recv_msg->size;
@@ -431,7 +448,8 @@ void on_completion_s(struct ibv_wc *wc)
 	break;
       case MR_FIN:
 	printf("Recived: MR_FIN: Type=%d, size=%d\n", conn->recv_msg->type, conn->recv_msg->size);
-	printf("DATA:\n%s\n", tfile->data);
+	//	printf("DATA:\n%s\n", tfile->data);
+	ibv_dereg_mr(conn->rdma_msg_mr);
         send_memr(conn, MR_FIN_ACK, NULL, NULL);
 	break;
       default:
