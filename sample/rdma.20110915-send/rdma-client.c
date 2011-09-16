@@ -25,7 +25,7 @@ int ibrdma_send(char* host, char* port, void* data, uint64_t size);
 int main(int argc, char **argv)
 {
   char* host;
-  char port[128];
+  char* port;
   char* data;
   uint64_t size;
 
@@ -33,12 +33,12 @@ int main(int argc, char **argv)
     usage(argv[0]);
 
   host = argv[1];
-  sprintf(port,"%d",TRANSFER_PORT);
+  port = "10150";
   size = atoi(argv[2]);
   data = (char*)malloc(size);
-  
-  init_test_data(data, size);
 
+  init_test_data(data, size);
+  
   ibrdma_send(host, port, data, size);
   return 0;
 }
@@ -188,44 +188,25 @@ int ibrdma_transfer(struct transfer_info *tfi, int num_tfi) {
   struct rdma_cm_id *cmid= NULL;
   struct rdma_event_channel *ec = NULL;
   struct rdma_conn_param cm_params;
-  int i,j;
+  TEST_NZ(getaddrinfo(host, port, NULL, &addr));
+  TEST_Z(ec = rdma_create_event_channel());
+  TEST_NZ(rdma_create_id(ec, &cmid, NULL, RDMA_PS_TCP));
+  TEST_NZ(rdma_resolve_addr(cmid, NULL, addr->ai_addr, TIMEOUT_IN_MS));
+  TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ADDR_RESOLVED));
+  freeaddrinfo(addr);
+  build_connection(cmid);
+  TEST_NZ(rdma_resolve_route(cmid, TIMEOUT_IN_MS));
+  TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ROUTE_RESOLVED));
+  build_params(&cm_params);
+  TEST_NZ(rdma_connect(cmid, &cm_params));
+  TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ESTABLISHED));
+  on_connect(cmid->context);
+  
 
-  /*Allocation buffer space for reading from local fs to memory*/
-  for (i = 0; i < NUM_FILE_BUF_C; i++) {
-    tfi->fbufs[i] = (char *)malloc(FILE_BUF_SIZE_C);
-  }
-  for (i = 0; i < num_tfi; i++) {
-    struct flush_file *ffile = tfi->ffiles;
-    int nf = tfi->ffiles;
-    char* host = tfi->ib_host;
-    char* port; sprintf(port,"%d",tfi->ib_port);
 
-    TEST_NZ(getaddrinfo(host, port, NULL, &addr));
-    TEST_Z(ec = rdma_create_event_channel());
-    TEST_NZ(rdma_create_id(ec, &cmid, NULL, RDMA_PS_TCP));
-    TEST_NZ(rdma_resolve_addr(cmid, NULL, addr->ai_addr, TIMEOUT_IN_MS));
-    TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ADDR_RESOLVED));
-    freeaddrinfo(addr);
-    build_connection(cmid);
-    TEST_NZ(rdma_resolve_route(cmid, TIMEOUT_IN_MS));
-    TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ROUTE_RESOLVED));
-    build_params(&cm_params);
-    TEST_NZ(rdma_connect(cmid, &cm_params));
-    TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_ESTABLISHED));
-    on_connect(cmid->context);
-    
-    for (j = 0; j < nf; j++) {
-      
-      //      init_tfile(data,  size);
-      send_init(cmid->context);
-    }
-
-    
-    TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_DISCONNECTED));
-    rdma_destroy_id(&cmid);
-    rdma_destroy_event_channel(&ec);
-  }
-
+  TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_DISCONNECTED));
+  rdma_destroy_id(&cmid);
+  rdma_destroy_event_channel(&ec);
 
   return 0;
 }
@@ -261,8 +242,8 @@ int ibrdma_send(char* host, char* port, void* data, uint64_t size)
   /*----------------------------*/
 
   TEST_NZ(wait_for_event(ec, RDMA_CM_EVENT_DISCONNECTED));
-  rdma_destroy_id(cmid);
-  rdma_destroy_event_channel(ec);
+  rdma_destroy_id(&cmid);
+  rdma_destroy_event_channel(&ec);
 
   return 0;
 }

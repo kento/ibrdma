@@ -19,14 +19,18 @@ int main(int argc, char **argv)
   struct rdma_event_channel *ec = NULL;
   uint16_t port = 0;
 
+  if (argc != 2)
+    usage(argv[0]);
 
-
-  set_mode(M_READ);
-
+  if (strcmp(argv[1], "write") == 0)
+    set_mode(M_WRITE);
+  else if (strcmp(argv[1], "read") == 0)
+    set_mode(M_READ);
+  else
+    usage(argv[0]);
 
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
-  addr.sin_port   = htons(TRANSFER_PORT);
 
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));

@@ -1,0 +1,17 @@
+cc -Wall -g   -c -o rdma-client.o rdma-client.c
+rdma-client.c: In function 'print_device_info':
+rdma-client.c:147: warning: assignment discards qualifiers from pointer target type
+rdma-client.c:149: warning: format '%d' expects type 'int', but argument 3 has type 'uint64_t'
+rdma-client.c:152: warning: format '%llu' expects type 'long long unsigned int', but argument 2 has type 'uint64_t'
+rdma-client.c:153: warning: format '%llu' expects type 'long long unsigned int', but argument 2 has type 'int'
+rdma-client.c: In function 'ibrdma_transfer':
+rdma-client.c:191: error: 'host' undeclared (first use in this function)
+rdma-client.c:191: error: (Each undeclared identifier is reported only once
+rdma-client.c:191: error: for each function it appears in.)
+rdma-client.c:191: error: 'port' undeclared (first use in this function)
+rdma-client.c:208: warning: passing argument 1 of 'rdma_destroy_id' from incompatible pointer type
+rdma-client.c:209: warning: passing argument 1 of 'rdma_destroy_event_channel' from incompatible pointer type
+rdma-client.c: In function 'ibrdma_send':
+rdma-client.c:245: warning: passing argument 1 of 'rdma_destroy_id' from incompatible pointer type
+rdma-client.c:246: warning: passing argument 1 of 'rdma_destroy_event_channel' from incompatible pointer type
+make: *** [rdma-client.o] Error 1

@@ -1,32 +1,28 @@
 #ifndef RDMA_COMMON_H
 #define RDMA_COMMON_H
 
-#ifndef TRANSFER_PORT
-#define TRANSFER_PORT (10150)
+#ifndef NUM_FILE_BUF
+#define NUM_FILE_BUF (2)
 #endif
 
-#ifndef NUM_FILE_BUF_C
-#define NUM_FILE_BUF_C (2)
+#ifndef FILE_BUF_SIZE
+#define FILE_BUF_SIZE (4*1000*1000)
 #endif
 
-#ifndef FILE_BUF_SIZE_C
-#define FILE_BUF_SIZE_C (4*1000*1000)
+#ifndef CLIENT_NUM_MR
+#define CLIENT_NUM_MR (2)
 #endif
 
-#ifndef NUM_MR_C
-#define NUM_MR_C (2)
+#ifndef CLIENT_MR_SIZE
+#define CLIENT_MR_SIZE (256*1000)
 #endif
 
-#ifndef MR_SIZE_C
-#define MR_SIZE_C (256*1000)
+#ifndef SERVER_NUM_MR
+#define SERVER_NUM_MR (2)
 #endif
 
-#ifndef NUM_MR_S
-#define NUM_MR_S (2)
-#endif
-
-#ifndef MR_SIZE_S
-#define MR_SIZE_S (256*1000)
+#ifndef SERVER_MR_SIZE
+#define SERVER_MR_SIZE (256*1000)
 #endif
 
 
@@ -41,29 +37,19 @@
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
 
-
-
 enum mode {
   M_WRITE,
   M_READ
-};
-
-struct transfer_info {
-  struct flush_file *ffiles;
-  int num_ffile;
-  char *ib_host; /*IP address in IPoIB*/
-  int   ib_port;
-  //  struct file_buf fbufs[NUM_FILE_BUF_C];
-  struct file_buf fbufs[2];
 };
 
 struct flush_file {
   char *path;
 };
 
-struct file_buf{
-  char *fbuf;
-  int size[2];/*size of data to transfer. 0 means buffer is free*/
+struct transfer_info {
+  struct flush_file *ffiles;
+  char *ib_host; /*IP address in IPoIB*/
+  int   ib_port;
 };
 
 void die(const char *reason);

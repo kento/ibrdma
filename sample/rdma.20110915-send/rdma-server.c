@@ -26,7 +26,7 @@ int main(int argc, char **argv)
 
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
-  addr.sin_port   = htons(TRANSFER_PORT);
+  addr.sin_port   = htons(10150);
 
   TEST_Z(ec = rdma_create_event_channel());
   TEST_NZ(rdma_create_id(ec, &listener, NULL, RDMA_PS_TCP));

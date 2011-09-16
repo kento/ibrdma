@@ -1,31 +1,9 @@
 #include "rdma-common.h"
 
 //static const int RDMA_BUFFER_SIZE = 1024;
-static const int RDMA_BUFFER_SIZE = 7000000;
-
-struct transfer_file {
-  void* data;
-  void* send_base_addr;
-  uint64_t size;
-  uint64_t tsize;
-};
+static const int RDMA_BUFFER_SIZE = 1000000;
 
 
-struct mr_message {
-  enum {
-    MR_INIT,
-    MR_INIT_ACK,
-    MR_MSG,
-    MR_MSG_DONE,
-    MR_FIN,
-    MR_FIN_ACK
-  } type;
-
-  union {
-    struct ibv_mr mr;
-  } data;
-  uint64_t size;
-};
 
 struct context {
   struct ibv_context *ctx;
@@ -86,6 +64,7 @@ static void register_rdma_region(struct connection *conn, void* addr, uint64_t s
 static struct context *s_ctx = NULL;
 static enum mode s_mode = M_WRITE;
 struct transfer_file *tfile = NULL;
+struct transfer_info *tinfo = NULL;
 
 const char *event_type_str(enum rdma_cm_event_type event)
 { 
@@ -121,6 +100,7 @@ void init_tfile(void* data, int size) {
   tfile->tsize = 0;
   tfile->size = size;
 }
+
 
 void build_connection(struct rdma_cm_id *id)
 {
@@ -195,12 +175,13 @@ void build_context_s(struct ibv_context *verbs)
 
 
 void send_memr(void * context, int type, struct ibv_mr *data, uint64_t size ) {
-    struct connection *conn = (struct connection *)context;
 
+    struct connection *conn = (struct connection *)context;
     conn->send_msg->type = type;
     if (data != NULL) {
       memcpy(&conn->send_msg->data.mr, data, sizeof(struct ibv_mr));
     }
+
     conn->send_msg->size = size;
     struct ibv_send_wr wr, *bad_wr = NULL;
     struct ibv_sge sge;
@@ -318,7 +299,7 @@ void on_completion(struct ibv_wc *wc)
     {
       int send_size=0;
     case MR_INIT_ACK: 
-    case MR_MSG_DONE: 
+    case MR_CHUNK_ACK: 
       printf("Recived: Type=%d\n",  conn->recv_msg->type);
       if (tfile->tsize == tfile->size) {
       /*sent all data*/
@@ -332,7 +313,7 @@ void on_completion(struct ibv_wc *wc)
 	}
 	printf("Send size=%d\n", send_size);
 	register_rdma_region(conn, tfile->send_base_addr, send_size);
-	send_memr(conn, MR_MSG, conn->rdma_msg_mr, send_size);
+	send_memr(conn, MR_CHUNK, conn->rdma_msg_mr, send_size);
 	tfile->send_base_addr += send_size;
 	tfile->tsize += send_size;
       }
@@ -362,7 +343,7 @@ static void register_rdma_region(struct connection *conn, void* addr, uint64_t s
   if (conn->rdma_msg_mr != NULL) {
     ibv_dereg_mr(conn->rdma_msg_mr);
   }
-  printf("Regist size=%d\n", size);
+  //  printf("Regist size=%d\n", size);
   TEST_Z(conn->rdma_msg_mr = ibv_reg_mr(
 				    s_ctx->pd, 
 				    addr, 
@@ -397,19 +378,21 @@ void on_completion_s(struct ibv_wc *wc)
 	/* ============================================= ==========*/
         send_memr (conn, MR_INIT_ACK, NULL, NULL);
 	break;
-      case MR_MSG:
+      case MR_CHUNK:
 
-	printf("Recived: MR_MSG: Type=%d, size=%d\n", conn->recv_msg->type, conn->recv_msg->size);
+	printf("Recived: MR_CHUNK: Type=%d, size=%d\n", conn->recv_msg->type, conn->recv_msg->size);
 	/*======= RDMA (read from remote memory region in client side)=======*/
 
 	memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
 	
-	free(tfile);
-	tfile = (struct transfer_file*)malloc(sizeof(struct transfer_file));
-	conn-> rdma_msg_region = tfile->data = malloc(conn->recv_msg->size);
-	tfile->send_base_addr = tfile->data;
-	tfile->tsize = 0;
-	tfile->size = conn->recv_msg->size;
+	/*Remove below 6 lines*/
+		free(tfile);
+		tfile = (struct transfer_file*)malloc(sizeof(struct transfer_file));
+		conn-> rdma_msg_region = tfile->data = malloc(conn->recv_msg->size);
+		tfile->send_base_addr = tfile->data;
+		tfile->tsize = 0;
+		tfile->size = conn->recv_msg->size;
+	/*Remove above 6 lines*/
 	
 
 	register_rdma_region(conn, tfile->send_base_addr, conn->recv_msg->size);
@@ -444,7 +427,7 @@ void on_completion_s(struct ibv_wc *wc)
 	tfile->tsize += conn->recv_msg->size;
 
 	/* ==================================================================*/
-        send_memr (conn, MR_MSG_DONE, NULL, NULL);
+        send_memr (conn, MR_CHUNK_ACK, NULL, NULL);
 	break;
       case MR_FIN:
 	printf("Recived: MR_FIN: Type=%d, size=%d\n", conn->recv_msg->type, conn->recv_msg->size);
@@ -468,7 +451,8 @@ void on_completion_s(struct ibv_wc *wc)
 }
 
 void send_init(void *conn) {
-  send_memr(conn, MR_INIT, NULL, tfile->size);
+  
+  send_memr(conn, MR_INIT, NULL, NULL);
   post_receives(conn);
 }
 
@@ -502,11 +486,13 @@ void * poll_cq_s(void *ctx)
   struct ibv_cq *cq;
   struct ibv_wc wc;
 
+  
 
   while (1) {
     TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
     ibv_ack_cq_events(cq, 1);
     TEST_NZ(ibv_req_notify_cq(cq, 0));
+    printf("SIZE=====%d\n", sizeof(struct mr_message));
 
     while (ibv_poll_cq(cq, 1, &wc))
       on_completion_s(&wc);
