@@ -16,6 +16,10 @@
 #define RDMA_BUF_SIZE_C (5*1000*1000)
 #endif
 
+#ifndef HASH_TABLE_LEN
+#define HASH_TABLE_LEN (1000)
+#endif
+
 
 struct control_msg {
   enum {
@@ -42,7 +46,7 @@ struct RDMA_message {
   char* buff;
   uint64_t size;
   int tag;
-  int* flag;
+
 };
 
 struct RDMA_communicator {

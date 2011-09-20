@@ -1,7 +1,11 @@
 
+#define uint64_t unsigned long
 
 
-int create_hashtable(int num_entry, int size);
-int append (uint64_t id, void * node);
-int get (uint64_t id, void* node);
+int create_hashtable(int length);
+int append (uint64_t id, void* data);
+void* get (uint64_t id);
+void* get_current (void);
+int free_hashtable(void);
+int get_size (uint64_t id);
 

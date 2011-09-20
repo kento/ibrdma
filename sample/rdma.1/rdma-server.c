@@ -1,4 +1,5 @@
 #include "rdma-common.h"
+#include "hashtable.h"
 #include <time.h>
 
 /*
@@ -33,6 +34,7 @@ int main(int argc, char **argv) {
 
 int RDMA_Irecv(char* buff, int* size, int* tag, struct RDMA_communicator *comm)
 {
+  
   return 0;
 }
 
@@ -44,7 +46,7 @@ int RDMA_Passive_Init(struct RDMA_communicator *comm) {
   //  struct rdma_event_channel *ec = NULL;
   uint16_t port = 0;
 
-
+  create_hashtable(HASH_TABLE_LEN);
 
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
@@ -76,7 +78,7 @@ int RDMA_Passive_Init(struct RDMA_communicator *comm) {
       break;
     case RDMA_CM_EVENT_ESTABLISHED:
       printf("Establish: host_id=%lu\n", (uintptr_t)event->id);
-
+      
       //  on_connect(event->id->context);
       //      pthread_attr_init(&thread_attr);
       //      pthread_create(&thread_id,
@@ -228,7 +230,8 @@ static void * poll_cq(void *ctx)
 
 static void append_rdma_msg(uint64_t conn_id, struct RDMA_message *msg)
 {
-  
+  append(conn_id, msg);
+  return;
 }
 
 static void register_rdma_region(struct connection *conn,  void* addr, uint64_t size)
