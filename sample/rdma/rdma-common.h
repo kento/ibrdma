@@ -8,11 +8,12 @@
 #endif
 
 #ifndef NUM_FILE_BUF_C
-#define NUM_FILE_BUF_C (2)
+#define NUM_FILE_BUF_C (4)
 #endif
 
 #ifndef FILE_BUF_SIZE_C
-#define FILE_BUF_SIZE_C (4*1000*1000)
+#define FILE_BUF_SIZE_C (400*1000)
+//#define FILE_BUF_SIZE_C (4*1000*1000)
 #endif
 
 #ifndef NUM_MR_C
@@ -32,7 +33,7 @@
 #endif
 
 
-
+#include <fcntl.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -72,12 +73,14 @@ struct mr_message {
   } data;
   char path[MAX_PATH_LEN];
   uint64_t size;
+  unit64_t length;
+  unit64_t offset;
 };
 
 
 struct transfer_info {
   struct transfer_file *tfiles;
-  int num_ffile;
+  int num_tfile;
   char *ib_host; /*IP address in IPoIB*/
   int   ib_port;
   //  struct file_buf fbufs[NUM_FILE_BUF_C];
@@ -85,14 +88,13 @@ struct transfer_info {
 };
 
 struct transfer_file {
-  char* path;
+  char* path_src;
+  char* path_dst;
   void* data;
   void* send_base_addr;
   uint64_t size;
   uint64_t tsize;
 };
-
-
 
 struct file_buf{
   char *fbuf;
@@ -110,8 +112,9 @@ void send_mr(void *context, int size);
 void set_mode(enum mode m);
 const char *event_type_str(enum rdma_cm_event_type event);
 void send_memr(void * conn, int type, struct ibv_mr *data, uint64_t size );
-void send_init(void *conn);
+void send_init(void *conn, struct file_buf *buf);
 void init_tfile(void* data, int size);
 
+void start_thread(struct file_buf *buf);
 
 #endif
