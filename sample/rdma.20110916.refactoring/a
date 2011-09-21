@@ -1,0 +1,47 @@
+cc -Wall -g   -c -o rdma-common.o rdma-common.c
+rdma-common.c: In function 'build_context_s':
+rdma-common.c:173: warning: passing argument 3 of 'pthread_create' from incompatible pointer type
+rdma-common.c: In function 'on_completion_s':
+rdma-common.c:323: warning: format '%d' expects type 'int', but argument 3 has type 'uint64_t'
+rdma-common.c:331: warning: passing argument 4 of 'send_memr' makes integer from pointer without a cast
+rdma-common.c:335: warning: format '%d' expects type 'int', but argument 3 has type 'uint64_t'
+rdma-common.c:377: warning: format '%d' expects type 'int', but argument 2 has type 'uint64_t'
+rdma-common.c:382: warning: passing argument 4 of 'send_memr' makes integer from pointer without a cast
+rdma-common.c:385: warning: format '%d' expects type 'int', but argument 3 has type 'uint64_t'
+rdma-common.c:388: warning: passing argument 4 of 'send_memr' makes integer from pointer without a cast
+rdma-common.c: In function 'start_thread':
+rdma-common.c:406: warning: passing argument 3 of 'pthread_create' from incompatible pointer type
+rdma-common.c: In function 'poll_cq':
+rdma-common.c:467: warning: 'return' with no value, in function returning non-void
+rdma-common.c: In function 'poll_cq_s':
+rdma-common.c:496: warning: format '%d' expects type 'int', but argument 2 has type 'long unsigned int'
+rdma-common.c: In function 'post_receives':
+rdma-common.c:520: warning: format '%d' expects type 'int', but argument 2 has type 'uint64_t'
+rdma-common.c: At top level:
+rdma-common.c:288: warning: 'get_peer_message_region' defined but not used
+rdma-common.c:51: warning: 'on_completion' declared 'static' but never defined
+rdma-common.c:56: warning: 'send_message' declared 'static' but never defined
+cc -Wall -g   -c -o rdma-client.o rdma-client.c
+rdma-client.c: In function 'print_device_info':
+rdma-client.c:166: warning: assignment discards qualifiers from pointer target type
+rdma-client.c:168: warning: format '%d' expects type 'int', but argument 3 has type 'uint64_t'
+rdma-client.c:171: warning: format '%llu' expects type 'long long unsigned int', but argument 2 has type 'uint64_t'
+rdma-client.c:172: warning: format '%llu' expects type 'long long unsigned int', but argument 2 has type 'int'
+rdma-client.c: In function 'ibrdma_transfer':
+rdma-client.c:244: warning: format '%d' expects type 'int', but argument 3 has type 'uint64_t'
+rdma-client.c:255: warning: format '%d' expects type 'int', but argument 2 has type 'uint64_t'
+rdma-client.c:270: warning: passing argument 1 of 'rdma_destroy_id' from incompatible pointer type
+rdma-client.c:271: warning: passing argument 1 of 'rdma_destroy_event_channel' from incompatible pointer type
+rdma-client.c: In function 'file_read':
+rdma-client.c:314: warning: format '%x' expects type 'unsigned int', but argument 3 has type 'char *'
+rdma-client.c:319: warning: format '%x' expects type 'unsigned int', but argument 3 has type 'char *'
+rdma-client.c: At top level:
+rdma-client.c:92: warning: 'print_path_rec' defined but not used
+rdma-client.c:149: warning: 'print_device_info' defined but not used
+gcc -o rdma-client rdma-common.o rdma-client.o  -lrdmacm
+cc -Wall -g   -c -o rdma-server.o rdma-server.c
+rdma-server.c: In function 'accept_connection':
+rdma-server.c:143: warning: implicit declaration of function 'build_connection_s'
+rdma-server.c: At top level:
+rdma-server.c:209: warning: 'usage' defined but not used
+gcc -o rdma-server rdma-common.o rdma-server.o  -lrdmacm
