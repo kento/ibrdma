@@ -6,15 +6,15 @@ LD      := gcc
 LDFLAGS := ${LDFLAGS} -lrdmacm 
 
 #APPS    := rdma-client rdma-server buffer_table_test rdma-client-test rdma-server-test
-APPS    := clean  rdma-client-test rdma-server-test
+APPS    := clean  scr_rdma_transfer  scr_rdma_transfer_proxy
 
 all: ${APPS}
 
-rdma-client-test:rdma-common.o rdma-client.o rdma-client-test.o
-	${LD} -o $@ $< ${LDFLAGS}
+scr_rdma_transfer:rdma-common.o rdma-client.o scr_rdma_transfer.o
+	${LD} -o $@ $^ ${LDFLAGS}
 
-rdma-server-test:rdma-common.o buffer_table.o rdma-server.o rdma-server-test.o
-	${LD} -o $@ $< ${LDFLAGS}
+scr_rdma_transfer_proxy:rdma-common.o buffer_table.o rdma-server.o scr_rdma_transfer_proxy.o
+	${LD} -o $@ $^ ${LDFLAGS}
 
 
 

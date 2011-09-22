@@ -13,15 +13,15 @@
 
 
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (2*1000*1000)
+#define RDMA_BUF_SIZE_C (1*1000*1000)
 #endif
 
 #ifndef RDMA_BUF_NUM_C
-#define RDMA_BUF_NUM_C (2)
+#define RDMA_BUF_NUM_C (1)
 #endif
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN (10)
+#define HASH_TABLE_LEN (1000)
 //#define HASH_TABLE_LEN (1000)
 #endif
 
