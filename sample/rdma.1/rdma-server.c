@@ -19,6 +19,8 @@ static void build_qp_attr(struct ibv_qp_init_attr *qp_attr);
 static void register_memory(struct connection *conn);
 static void register_rdma_region(struct connection *conn,  void* addr, uint64_t size);
 static void append_rdma_msg(uint64_t conn_id, struct RDMA_message *msg);
+static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/) ;
+
 
 //int RDMA_Passive_Init(struct RDMA_communicator *comm);
 //int RDMA_Irecv(char* buff, int* size, int* tag, struct RDMA_communicator *comm);
@@ -26,6 +28,7 @@ static void append_rdma_msg(uint64_t conn_id, struct RDMA_message *msg);
 
 static struct context *s_ctx = NULL;
 static int connections = 0;
+pthread_t listen_thread;
 
 /*
 int main(int argc, char **argv) {
@@ -35,31 +38,45 @@ int main(int argc, char **argv) {
 }
 */
 
-int RDMA_Irecv(char* buff, int* size, int* tag, struct RDMA_communicator *comm)
+int RDMA_Irecvr(char** buff, uint64_t* size, int* tag, struct RDMA_communicator *comm)
 {
-  //  struct RDMA_message *rdma_msg;
-  
+  struct RDMA_message *rdma_msg;
+  rdma_msg = get_current();
+  *buff = rdma_msg->buff;
+  *size = rdma_msg->size;
+  *tag = rdma_msg->tag;
+  return 0;
   return 0;
 }
 
-int RDMA_Recvr(char* buff, int* size, int* tag, struct RDMA_communicator *comm)
+int RDMA_Recvr(char** buff, uint64_t* size, int* tag, struct RDMA_communicator *comm)
 {
   struct RDMA_message *rdma_msg;
   while ((rdma_msg = get_current()) == NULL);
-  buff = rdma_msg->buff;
+  *buff = rdma_msg->buff;
   *size = rdma_msg->size;
   *tag = rdma_msg->tag;
   return 0;
 }
 
 
-int RDMA_Passive_Init(struct RDMA_communicator *comm) {
+int RDMA_Passive_Init(struct RDMA_communicator *comm) 
+{
+  TEST_NZ(pthread_create(&listen_thread, NULL, (void *) passive_init, comm));
+  return 0;
+}
+
+
+static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)  
+{
+  struct RDMA_communicator *comm;
   struct sockaddr_in addr;
     struct rdma_cm_event *event = NULL;
   //  struct rdma_cm_id *listener = NULL;
   //  struct rdma_event_channel *ec = NULL;
   uint16_t port = 0;
-
+  
+  comm = (struct RDMA_communicator *) arg;
   create_hashtable(HASH_TABLE_LEN);
 
   memset(&addr, 0, sizeof(addr));
@@ -245,9 +262,13 @@ static void * poll_cq(void *ctx)
 static void append_rdma_msg(uint64_t conn_id, struct RDMA_message *msg)
 {
   append(conn_id, msg);
-  show();
   return;
 }
+
+void RDMA_show_buffer(void)
+ {
+  show();
+};
 
 static void register_rdma_region(struct connection *conn,  void* addr, uint64_t size)
 {

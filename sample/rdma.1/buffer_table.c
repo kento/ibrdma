@@ -22,7 +22,8 @@ struct node {
 };
 
 
-struct tuple *tuples;
+struct tuple *tuples = NULL;
+static int tuple_ready = 0;
 static int len;
 static int current_idx = 0;
 
@@ -98,6 +99,7 @@ int create_hashtable(int length) {
     tuples[i].append_count = 0;
     tuples[i].get_count = 0;
   }
+  tuple_ready=1;
   return 0;
 }
 
@@ -172,7 +174,7 @@ static int get_index(uint64_t id)
     index = (index + 1) % len;
     i++;
   }
-  printf("Hashtable: Enough size of hashtable needed");
+  printf("Error:Hashtable: Enough size of hashtable needed\n");
   exit(0);
 }
 
@@ -217,7 +219,11 @@ void* get_current(void)
   //  struct tuple *tp;
   void* data;
   int count;
-
+  
+  if (!tuple_ready) {
+    /*If RDMA_*Recv* is called before 'tuples' is created, return NULL; */
+    return NULL;
+  }
   count = 0;
   while (tuples[current_idx].head == tuples[current_idx].tail) {
     current_idx = (current_idx + 1) % len; 

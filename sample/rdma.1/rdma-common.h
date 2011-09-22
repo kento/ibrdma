@@ -11,8 +11,13 @@
 #define RDMA_PORT 10150
 #endif
 
+
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (1*1000*1000)
+#define RDMA_BUF_SIZE_C (2*1000*1000)
+#endif
+
+#ifndef RDMA_BUF_NUM_C
+#define RDMA_BUF_NUM_C (2)
 #endif
 
 #ifndef HASH_TABLE_LEN
@@ -21,7 +26,7 @@
 #endif
 
 #ifndef DEBUG_LEVEL
-#define DEBUG_LEVEL (2)
+#define DEBUG_LEVEL (1)
 #endif
 
 #ifndef DEBUG_RDMA

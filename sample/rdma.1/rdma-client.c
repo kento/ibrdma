@@ -22,67 +22,14 @@ static void register_memory(struct connection *conn);
 static void register_rdma_region(struct connection *conn,  void* addr, uint64_t size);
 
 
-//int RDMA_Active_Init(struct RDMA_communicator *comm, struct RDMA_param *param);
-//int RDMA_Isendr(char *buff, int size, int tag,  int *flag, struct RDMA_communicator *comm);
-//int RDMA_Wait(int *flag);
-//int RDMA_Active_Finalize(struct RDMA_communicator *comm);
-
-
 static struct context *s_ctx = NULL;
 
-
-/*
-int main(int argc, char **argv)
-{
-  char* host;
-  char* data;
-  uint64_t size;
-  int flag1, flag2;
-
-  host = argv[1];
-  size = atoi(argv[2]);
-  
-  struct  RDMA_communicator comm;
-  struct  RDMA_param param;
-  param.host = host;
-
-
-  RDMA_Active_Init(&comm, &param);
-
-  data = (char*)malloc(size);
-  int i;
-  flag1 = 0;
-  for (i=size-2; i >= 0; i--) {
-    data[i] = (char) (i % 26 + 'a');
-  }
-  data[size-1] += '\0';
-  //  printf("%s\n",data);
-  RDMA_Isendr(data, size, 1015, &flag1, &comm);
-
-  data = (char*)malloc(size);
-  flag2 = 0;
-  for (i=size-2; i >= 0; i--) {
-    data[i] = (char) (i % 26 + 'a');
-  }
-  data[size-1] += '\0';
-  RDMA_Isendr(data, size, 1015, &flag2, &comm);
-
-  RDMA_Wait (&flag1) ;
-  RDMA_Wait (&flag2) ;
-
-  return 0;
-  //  RDMA_Active_Finalize(&comm);
-
-}
-*/
-
-
 int RDMA_Wait (int *flag) {
-  while (*flag == 0) ;
+  while (*flag == 0) {  };
   return 0;
 }
 
-int RDMA_Isendr(char *buff, int size, int tag, int *flag, struct RDMA_communicator *comm)
+int RDMA_Isendr(char *buff, uint64_t size, int tag, int *flag, struct RDMA_communicator *comm)
 {
   struct poll_cq_args *args = (struct poll_cq_args*)malloc(sizeof(struct poll_cq_args));
   struct RDMA_message *msg = (struct RDMA_message*)malloc(sizeof(struct RDMA_message));
@@ -153,6 +100,7 @@ static void* poll_cq(struct poll_cq_args* args)
   char* send_base_addr;
 
   int* flag = args->flag;
+  int i;
 
   comm= args->comm;
   buff= args->msg->buff;
@@ -205,6 +153,7 @@ static void* poll_cq(struct poll_cq_args* args)
 	      memcpy(&cmsg.data.mr, conn->rdma_msg_mr, sizeof(struct ibv_mr));
 	      //	      cmsg.data.mr = conn->rdma_msg_mr;
 	    }
+	    send_control_msg(conn, &cmsg);
             break;
           case MR_FIN_ACK:
             debug(printf("Recived: Type=%d\n",  conn->recv_msg->type),1);
@@ -212,12 +161,13 @@ static void* poll_cq(struct poll_cq_args* args)
 	    // rdma_disconnect(comm->cm_id);
 	    // rdma_disconnect(conn->id);
 	    //exit(0);
+	    send_control_msg(conn, &cmsg);
 	    return NULL;
           default:
             debug(printf("Unknown TYPE"), 1);
 	    return NULL;
           }
-	send_control_msg(conn, &cmsg);
+
         post_receives(conn);
       } else if (wc.opcode == IBV_WC_SEND) {
 	  debug(printf("Sent: TYPE=%d\n", conn->send_msg->type),1);
@@ -228,6 +178,8 @@ static void* poll_cq(struct poll_cq_args* args)
   }
   return NULL;
 }
+
+
 
 static void register_rdma_region(struct connection *conn,  void* addr, uint64_t size)
 { 
