@@ -1,5 +1,4 @@
 #include "scr_rdma_transfer.h"
-#include "hashtable.h"
 #include "rdma-server.h"
 
 void RDMA_transfer_recv(void);

@@ -16,8 +16,8 @@ struct file_buffer {
 int main(int argc, char **argv)
 {
   char* host;
-  char* src, dst;
-  uint64_t size;
+  char* src, *dst;
+  //  uint64_t size;
   //  int flag1, flag2;
   double s,e;
 
@@ -49,6 +49,7 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   int fd;
   int read_size;
   int tag;
+  int ctl_msg_size;
   struct file_buffer *fbufs;
   int fbuf_index = 0;
   int *flags;
@@ -62,10 +63,10 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   }
 
   /*send init*/
-  int tag=15;
+  tag=15;
   sprintf(ctl_msg, "%s&%d", dst, tag);
-  int ctl_msg_size =  strlen(ctl_msg);
-  RDMA_Sendr(dst, ctl_msg_size, MSG_INIT, comm);
+  ctl_msg_size =  strlen(ctl_msg);
+  RDMA_Sendr(dst, ctl_msg_size, TRANSFER_INIT, comm);
   /*---------*/
 
   /*send file*/
@@ -88,10 +89,10 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   /*---------*/
 
   /*send fin*/
-  int tag=15;
+  tag=15;
   sprintf(ctl_msg, "%s&%d", dst, tag);
-  int ctl_msg_size =  strlen(ctl_msg);
-  RDMA_Sendr(dst, ctl_msg_size, MSG_FIN, comm);
+  ctl_msg_size =  strlen(ctl_msg);
+  RDMA_Sendr(dst, ctl_msg_size, TRANSFER_FIN, comm);
   /*---------*/
   
 

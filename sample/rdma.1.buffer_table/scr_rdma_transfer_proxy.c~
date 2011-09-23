@@ -1,17 +1,7 @@
-#include "scr_rdma_transfer.h"
-#include "hashtable.h"
 #include "rdma-server.h"
 
-void RDMA_transfer_recv(void);
 
 int main(int argc, char **argv) {
-  RDMA_transfer_recv();
-  return 0;
-}
-
-
-void RDMA_transfer_recv(void)
-{
   struct RDMA_communicator comm;
   char * data;
   uint64_t size;
@@ -22,7 +12,7 @@ void RDMA_transfer_recv(void)
   RDMA_Passive_Init(&comm);
 
   while (1) {
-    RDMA_Recvr(&data, &size, &tag, &comm);
+    //    RDMA_Recvr(&data, &size, &tag, &comm);
     if (data != NULL) {
       printf("%d: size=%lu\n", tag, size);
       //      free(data);
@@ -30,6 +20,8 @@ void RDMA_transfer_recv(void)
     }
     //    RDMA_show_buffer();
   }
-  //  RDMA_show_buffer();
-  return ;
+
+  exit(0);
+  RDMA_show_buffer();
+  return 0;
 }

@@ -6,7 +6,8 @@ int create_hashtable(int length);
 int append (uint64_t id, void* data);
 void* get (uint64_t id);
 void* get_current (void);
-int free_hashtable(void);
+int free_hashtab
+le(void);
 void show(void);
 int get_size (uint64_t id);
 

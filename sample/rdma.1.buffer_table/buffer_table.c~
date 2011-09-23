@@ -18,24 +18,20 @@ struct tuple {
 struct node {
   struct node *next;
   void* data;
-  int flag;
 };
 
 
-struct tuple *tuples = NULL;
-static int tuple_ready = 0;
+struct tuple *tuples;
 static int len;
 static int current_idx = 0;
 
 static int hash(uint64_t id);
 static int get_index(uint64_t id);
+static void show(void);
+static void * prod (void *);
+static void * cons (void *);
 
-//static void * prod (void *);
-//static void * cons (void *);
 
-static int flg=0;
-
-/*
 int main() {
   int *c;
   int i,j;
@@ -77,7 +73,6 @@ static void * cons (void* arg)
     usleep(10);
   }
 }
-*/
 
 
 int create_hashtable(int length) {
@@ -90,7 +85,6 @@ int create_hashtable(int length) {
     nd = (struct node*)malloc(sizeof(struct node));
     nd->next = NULL;
     nd->data = NULL;
-    nd->flag = -1;
 
     tuples[i].id = -1;
     tuples[i].flag = 0;
@@ -99,7 +93,6 @@ int create_hashtable(int length) {
     tuples[i].append_count = 0;
     tuples[i].get_count = 0;
   }
-  tuple_ready=1;
   return 0;
 }
 
@@ -111,7 +104,6 @@ int append (uint64_t id, void * data)
   nd = (struct node*)malloc(sizeof(struct node));
   nd->data = data;
   nd->next = NULL;
-  nd->flag = flg++;
 
   index = get_index(id);
 
@@ -124,16 +116,24 @@ int append (uint64_t id, void * data)
   return 0;
 }
 
-void show(void) {
+static void show(void) {
   int i;
   int *v;
-  //  struct node *hn, *tn;
+  struct node *hn, *tn;
   int hd, td;
   struct node *nd;
   for (i = 0; i < len; i++) {
-    hd= tuples[i].head->flag;;
-    td= tuples[i].tail->flag;;
-    printf("%d: (id:%ld, hd:%d, td:%d, ap:%lu, gc:%ld)",
+    hd=-1;
+    td=-1;
+    hn = tuples[i].head;
+    if (hn->data != NULL) {
+      hd = * (int *)hn->data;;
+    }
+    tn = tuples[i].tail;
+    if (tn->data != NULL) {
+      td = *(int *)tn->data;
+    } 
+    printf("%d:(id:%d, hd:%d, td:%d, ap:%lu, gc:%lu)",
 	   i, tuples[i].id, hd, td, 
 	   tuples[i].append_count, 
 	   tuples[i].get_count);
@@ -142,7 +142,7 @@ void show(void) {
     while (1) {
       nd = nd->next;
       if (nd == NULL) break;
-      v = &(nd->flag);
+      v = (int *)(nd->data);
       printf("->[%d]", *v);
 
     }
@@ -174,7 +174,7 @@ static int get_index(uint64_t id)
     index = (index + 1) % len;
     i++;
   }
-  printf("Error:Hashtable: Enough size of hashtable needed\n");
+  printf("Hashtable: Enough size of hashtable needed");
   exit(0);
 }
 
@@ -214,23 +214,13 @@ void* get (uint64_t id)
 
 void* get_current(void) 
 {
-  //  int index;
+  int index;
   struct node *nd;
   //  struct tuple *tp;
   void* data;
-  int count;
-  
-  if (!tuple_ready) {
-    /*If RDMA_*Recv* is called before 'tuples' is created, return NULL; */
-    return NULL;
-  }
-  count = 0;
+
   while (tuples[current_idx].head == tuples[current_idx].tail) {
     current_idx = (current_idx + 1) % len; 
-    count++;
-    if (count > len) {
-      return NULL;
-    }
   }
 
 

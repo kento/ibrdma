@@ -1,5 +1,6 @@
 #include "scr_rdma_transfer.h"
 #include "rdma-client.h"
+#include <string.h>
 #include <sys/time.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -15,8 +16,8 @@ struct file_buffer {
 int main(int argc, char **argv)
 {
   char* host;
-  char* src, dst;
-  uint64_t size;
+  char* src, *dst;
+  //  uint64_t size;
   //  int flag1, flag2;
   double s,e;
 
@@ -48,9 +49,11 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   int fd;
   int read_size;
   int tag;
+  int ctl_msg_size;
   struct file_buffer *fbufs;
   int fbuf_index = 0;
   int *flags;
+  char ctl_msg[1536];
 
   fbufs = (struct file_buffer *)malloc(sizeof(struct file_buffer) * count);
   flags = (int *)malloc(sizeof(int) * count);
@@ -60,8 +63,11 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   }
 
   /*send init*/
-  RDMA_Isendr(fbufs[fbuf_index].buf, read_size, tag, &flags[fbuf_index], comm);
-  tag = 0;
+  tag=15;
+  sprintf(ctl_msg, "%d\t%s", tag, dst);
+  printf(ctl_msg);
+  ctl_msg_size =  strlen(ctl_msg);
+  RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_INIT, comm);
   /*---------*/
 
   /*send file*/
@@ -83,7 +89,11 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   } while (read_size > 0);
   /*---------*/
 
-  /*send fine*/
+  /*send fin*/
+  tag=15;
+  sprintf(ctl_msg, "%d\t%s", tag, dst);
+  ctl_msg_size =  strlen(ctl_msg);
+  RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_FIN, comm);
   /*---------*/
   
 

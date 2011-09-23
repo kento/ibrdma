@@ -91,7 +91,7 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
 
 
   //  debug(printf("listening on port %d.\n", port), 1);
-  debug(printf("listening on port %d ...\n", port), 1);
+  debug(printf("listening on port %d. %d DEBUG_LEVEL\n", port), 1);
 
   while (1) {
     //    pthread_t          thread_id;
