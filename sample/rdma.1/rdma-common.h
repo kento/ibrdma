@@ -13,12 +13,17 @@
 
 
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (1*1000*1000)
+#define RDMA_BUF_SIZE_C (1*100*1000)
 #endif
 
 #ifndef RDMA_BUF_NUM_C
 #define RDMA_BUF_NUM_C (1)
 #endif
+
+#ifndef RDMA_CLIENT_NUM_S
+#define RDMA_THREAD_NUM_S (10)
+#endif
+
 
 #ifndef HASH_TABLE_LEN
 #define HASH_TABLE_LEN (1000)
@@ -37,10 +42,9 @@
 #define DEBUG_TRANS (2)
 #endif
 
-
-
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
+//#define debug(p,x)  if ((x) >= DEBUG_LEVEL){ printf("%d:", get_pid());p; }
 #define debug(p,x)  if ((x) >= DEBUG_LEVEL){ p; }
 
 
@@ -53,7 +57,6 @@ struct control_msg {
     MR_FIN,
     MR_FIN_ACK
   } type;
-
   union {
     struct ibv_mr mr;
   } data;
@@ -62,14 +65,12 @@ struct control_msg {
     uint64_t mr_size;
     int tag;
   } data1 ;
-   
 };
 
 struct RDMA_message {
   char* buff;
   uint64_t size;
   int tag;
-
 };
 
 struct RDMA_communicator {

@@ -1,4 +1,4 @@
-
+#include "common.h"
 #include "rdma-client.h"
 #include "assert.h"
 #include "arpa/inet.h"
@@ -299,14 +299,12 @@ int RDMA_Active_Finalize(struct RDMA_communicator *comm)
 }
 
 
-
-
 static void build_context(struct ibv_context *verbs)
 {
   if (s_ctx) {
-    if (s_ctx->ctx != verbs)
+    if (s_ctx->ctx != verbs) {
       die("cannot handle events in more than one context.");
-
+    }
     return;
   }
 

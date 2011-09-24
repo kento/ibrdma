@@ -3,25 +3,16 @@
 
 int main(int argc, char **argv) {
   struct RDMA_communicator comm;
-  char * data;
+  char *data;
   uint64_t size;
-  int tag;
-
-  data=NULL;
+  int ctl_tag;
 
   RDMA_Passive_Init(&comm);
-
   while (1) {
-    RDMA_Recvr(&data, &size, &tag, &comm);
-    if (data != NULL) {
-      printf("%d: size=%lu\n", tag, size);
-      free(data);
-      data=NULL;
-    }
-    //    RDMA_show_buffer();
+    RDMA_Recvr(&data, &size, &ctl_tag, &comm);
+    //printf("%d: size=%lu: %s\n", ctl_tag, size, data);
+    printf("%d: size=%lu: \n", ctl_tag, size);
   }
-
-  exit(0);
-  RDMA_show_buffer();
+  //  RDMA_show_buffer();  
   return 0;
 }

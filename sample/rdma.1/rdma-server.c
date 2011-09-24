@@ -30,6 +30,13 @@ static struct context *s_ctx = NULL;
 static int connections = 0;
 pthread_t listen_thread;
 
+pthread_t poll_thread[RDMA_THREAD_NUM_S];
+int poll_thread_count = 0;
+
+struct poll_cq_args{
+  int thread_id;
+};
+
 /*
 int main(int argc, char **argv) {
   struct RDMA_communicator comm;
@@ -89,15 +96,10 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
   TEST_NZ(rdma_listen(comm->cm_id, 10)); /* backlog=10 is arbitrary */
   port = ntohs(rdma_get_src_port(comm->cm_id));
 
-
-  //  debug(printf("listening on port %d.\n", port), 1);
   debug(printf("listening on port %d ...\n", port), 1);
 
   while (1) {
-    //    pthread_t          thread_id;
-    //    pthread_attr_t     thread_attr;
-    //    simple_context_t  *context = NULL;
-    //    struct rdma_cm_id *id = NULL;
+
     int rc =0;
     debug(printf("Waiting for cm_event... "),1);
     if ((rc = rdma_get_cm_event(comm->ec, &event))){
@@ -107,49 +109,24 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
     debug(printf("\"%s\"\n", event_type_str(event->event)), 1);
     switch (event->event){
     case RDMA_CM_EVENT_CONNECT_REQUEST:
+      printf("%lu/%lu/%lu\n",(uintptr_t) event->id, (uintptr_t) comm->cm_id, (uintptr_t)comm->cm_id->verbs);
       accept_connection(event->id);
       break;
     case RDMA_CM_EVENT_ESTABLISHED:
       debug(printf("Establish: host_id=%lu\n", (uintptr_t)event->id), 1);
-      
-      //  on_connect(event->id->context);
-      //      pthread_attr_init(&thread_attr);
-      //      pthread_create(&thread_id,
-      //                       &thread_attr,
-      //                       handle_server_cq,
-      //                       (void *)(event->id->context));
       break;
     case RDMA_CM_EVENT_DISCONNECTED:
       debug(printf("Disconnect from id : %p \n", event->id), 1);
-      //      rdma_disconnect(comm->cm_id);
-      //      rdma_destroy_qp(comm->cm_id);
-      //      rdma_destroy_id(comm->cm_id);
-      //        fprintf(stderr, "Disconnect from id : %p (total connections %d)\n",
-      //         event->id, connections);
-      //      context = (simple_context_t *)(event->id->context);
-      //      id = event->id;
       break;
     default:
       break;
     }
     rdma_ack_cm_event(event);
-    //    if (context){
-    //    context->quit_cq_thread = 1;
-    //    pthread_join(thread_id, NULL);
-    //    rdma_destroy_id(id);
-    //    free_connection(context);
-    //    context = NULL;
-    //    }
   }
-
-  //  rdma_destroy_id(listener);
-  //  rdma_destroy_event_channel(ec);
-
-
   return 0;
 }
 
-static void * poll_cq(void *ctx)
+static void * poll_cq(void *ctx /*ctx == NULL*/)
 {  
 
   struct ibv_cq *cq;
@@ -161,7 +138,7 @@ static void * poll_cq(void *ctx)
   struct control_msg cmsg;
   struct RDMA_message *rdma_msg;
 
-  char* buff;
+  char* buff = NULL;
   uint64_t buff_size;
   int tag;
 
@@ -174,10 +151,11 @@ static void * poll_cq(void *ctx)
     TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
     ibv_ack_cq_events(cq, 1);
     TEST_NZ(ibv_req_notify_cq(cq, 0));
-
+    
     while (ibv_poll_cq(cq, 1, &wc)) {
       conn = (struct connection *)(uintptr_t)wc.wr_id;
-      debug(printf("Control MSG from: %lu\n", (uintptr_t)conn->id), 1);
+
+
       if (wc.status != IBV_WC_SUCCESS) {
 	die("on_completion: status is not IBV_WC_SUCCESS.");
       }
@@ -185,25 +163,30 @@ static void * poll_cq(void *ctx)
 	switch (conn->recv_msg->type)
 	  {
 	  case MR_INIT:
-	    debug(printf("Recieved: MR_INT: Type=%u, buff size=%lu\n", conn->recv_msg->type, conn->recv_msg->data1.buff_size), 1);
+	    debug(printf("Recieved: MR_INT: %lu: Type=%u, buff size=%lu\n", (uintptr_t)conn->id, conn->recv_msg->type, conn->recv_msg->data1.buff_size), 2);
 	    /*Allocat buffer for the client msg*/ 
 	    buff_size =conn->recv_msg->data1.buff_size;
+	    //	    debug(printf("conn_id= %lu\n", (uintptr_t)conn->id), 2);
 	    conn-> rdma_msg_region = buff = (char *)malloc(conn->recv_msg->data1.buff_size);
 	    recv_base_addr = buff;
 	    recv_size  = 0;
 	    mr_size= 0;
 	    conn = (struct connection *)(uintptr_t)wc.wr_id;
 	    conn_id = (uint64_t)conn->id;
+
 	    /**/
 	    cmsg.type=MR_INIT_ACK;
 	    send_control_msg(conn, &cmsg);
 	    break;
 	  case MR_CHUNK:
-	    debug(printf("Recived: MR_CHUNK: Type=%d, mr size=%lu\n", conn->recv_msg->type, conn->recv_msg->data1.mr_size), 1);
+	    debug(printf("Recived: MR_CHUNK: %lu: Type=%d, mr size=%lu\n", (uintptr_t)conn->id, conn->recv_msg->type, conn->recv_msg->data1.mr_size), 2);
 	    mr_size= conn->recv_msg->data1.mr_size;
 	    memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
+	    debug(printf("Registering memory region\n"), 1);
 	    register_rdma_region(conn, recv_base_addr, conn->recv_msg->data1.mr_size);
+	    debug(printf("Registering memory region: Done\n"), 1);
 
+	    debug(printf("Preparing RDMA transfer\n"), 1);
 	    /* !! memset must be called !!*/
 	    memset(&wr, 0, sizeof(wr));
 
@@ -220,6 +203,7 @@ static void * poll_cq(void *ctx)
 	    sge.addr = (uintptr_t)recv_base_addr;
 	    sge.length = mr_size;
 	    sge.lkey = conn->rdma_msg_mr->lkey;
+	    debug(printf("Preparing RDMA transfer: Done\n"), 1);
 
 	    TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
 	    debug(printf("Post send: RDMA: id=%lu\n", wr.wr_id), 1);
@@ -316,23 +300,27 @@ void build_connection(struct rdma_cm_id *id)
 
 static void build_context(struct ibv_context *verbs)
 {
+  printf("verbs=%lu\n",(uintptr_t)verbs);
   if (s_ctx) {
-    if (s_ctx->ctx != verbs)
+    if (s_ctx->ctx != verbs) {
       die("cannot handle events in more than one context.");
-
+    }
     return;
   }
 
   s_ctx = (struct context *)malloc(sizeof(struct context));
+  
 
   s_ctx->ctx = verbs;
 
+  
   TEST_Z(s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
   TEST_Z(s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx));
-  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
+  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 100, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
   TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
 
-  TEST_NZ(pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL));
+  TEST_NZ(pthread_create(&poll_thread[poll_thread_count], NULL, poll_cq, NULL));
+  poll_thread_count++;
 }
 
 static void build_params(struct rdma_conn_param *params)
@@ -405,50 +393,11 @@ void register_memory(struct connection *conn)
 static void accept_connection(struct rdma_cm_id *id)
 {
   struct rdma_conn_param   conn_param;
-  /*
-  simple_context_t        *context = malloc(sizeof(*context));
-  if (!context)
-    {
-       perror("failed to malloc context for connection\n");
-        rdma_reject(id, NULL, 0);
-        return;
-      }
-
-  // associate this context with this id. 
-  context->id = id;
-  id->context = context;
-
-  context->quit_cq_thread = 0;
-
-  if (allocate_server_resources(context))
-    {
-      fprintf(stderr, "failed to allocate resources\n");
-      rdma_reject(id, NULL, 0);
-      return;
-    }
-
-  post_server_rec_work_req(context);
-  */
   debug(printf("Accepting connection on id == %p (total connections %d)\n", id, ++connections), 1);
-
-
   build_connection(id);
-
-  //  memset(&conn_param, 0, sizeof(conn_param));
-  //  conn_param.responder_resources = 1;
-  //  conn_param.initiator_depth = 1;
   build_params(&conn_param);
-
-  //  sprintf(get_local_message_region(id->context), "message from passive/server side with pid %d", getpid());
-  //  rdma_accept(context->id, &conn_param);
   TEST_NZ(rdma_accept(id, &conn_param));
-
-
   post_receives(id->context);
-  //if (query_qp_on_alloc)
-  //    {
-  //      debug_print_qp(context);
-  //    }
 }
 
 
