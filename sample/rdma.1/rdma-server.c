@@ -30,8 +30,8 @@ static struct context *s_ctx = NULL;
 static int connections = 0;
 pthread_t listen_thread;
 
-pthread_t poll_thread[RDMA_THREAD_NUM_S];
-int poll_thread_count = 0;
+//pthread_t poll_thread[RDMA_THREAD_NUM_S];
+//int poll_thread_count = 0;
 
 struct poll_cq_args{
   int thread_id;
@@ -177,9 +177,10 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
 
 
       //      post_receives(id->context);
+
+
       accept_connection(event->id);
       //	    if (1 > 0) break;
-
       break;
     case RDMA_CM_EVENT_ESTABLISHED:
       debug(printf("Establish: host_id=%lu\n", (uintptr_t)event->id), 1);
@@ -218,8 +219,9 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 
   struct hashtable ht;
   struct RDMA_buff *rdma_buff;
-  //  create_ht(&ht, RDMA_CLIENT_NUM_S);
-  create_ht(&ht, 1000);
+  create_ht(&ht, RDMA_CLIENT_NUM_S);
+
+  //create_ht(&ht, 1000);
   
   while (1) {
     TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
@@ -232,6 +234,7 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	die("on_completion: status is not IBV_WC_SUCCESS.");
       }
       if (wc.opcode == IBV_WC_RECV) {
+
 	switch (conn->recv_msg->type)
 	  {
 	  case MR_INIT:
@@ -247,7 +250,7 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    /*TODO: What is the best value for the id?*/
 	    //	    conn = (struct connection *)(uintptr_t)wc.wr_id;
 	    //	    conn_id = (uint64_t)conn->id;
-	    add_ht(&ht, (uintptr_t)wc.wr_id, rdma_buff);
+	    add_ht(&ht, (uintptr_t)wc.slid, rdma_buff);
 	    /**/
 	    cmsg.type=MR_INIT_ACK;
 	    send_control_msg(conn, &cmsg);
@@ -255,15 +258,20 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    break;
 	  case MR_CHUNK:
 	    //	    printf("a\n");
-	    rdma_buff = get_ht(&ht, (uintptr_t)wc.wr_id);
+	    rdma_buff = get_ht(&ht, (uintptr_t)wc.slid);
 	    debug(printf("Recived: MR_CHUNK: %lu: Type=%d, mr size=%lu\n", (uintptr_t)conn->id, conn->recv_msg->type, conn->recv_msg->data1.mr_size), 1);
 	    mr_size= conn->recv_msg->data1.mr_size;
+	    debug(fprintf(stderr,"memcpy\n"), 1);
 	    memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
+	    debug(fprintf(stderr,"memcpy done\n"), 1);
 	    //	    printf("b\n");
 	    //	    register_rdma_region(conn, recv_base_addr, conn->recv_msg->data1.mr_size);
+	    debug(fprintf(stderr,"rdma_buff:%p \n", rdma_buff), 1);
 	    if (rdma_buff->mr != NULL) {
+	      debug(fprintf(stderr,"Deregistering RDMA MR\n"), 1);
 	      ibv_dereg_mr(rdma_buff->mr);
 	    }  
+	    debug(fprintf(stderr, "Registering RDMA MR\n"), 1);
 	    TEST_Z(rdma_buff->mr = ibv_reg_mr(
 					 s_ctx->pd,
 					 rdma_buff->recv_base_addr,
@@ -271,7 +279,7 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 					 IBV_ACCESS_LOCAL_WRITE
 					 | IBV_ACCESS_REMOTE_READ
 					 | IBV_ACCESS_REMOTE_WRITE));
-	    debug(printf("Preparing RDMA transfer\n"), 1);
+	    debug(fprintf(stderr,"Preparing RDMA transfer\n"), 1);
 	    /* !! memset must be called !!*/
 	    memset(&wr, 0, sizeof(wr));
 	    //	    printf("c\n");
@@ -307,13 +315,13 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    cmsg.type=MR_FIN_ACK;
 	    send_control_msg(conn, &cmsg);
 	    /*Post reveived data*/
-	    rdma_buff = get_ht(&ht, (uintptr_t)wc.wr_id);
+	    rdma_buff = get_ht(&ht, (uintptr_t)wc.slid);
 	    rdma_msg = (struct RDMA_message*) malloc(sizeof(struct RDMA_message));
 	    rdma_msg->buff = rdma_buff->buff;
 	    rdma_msg->size = rdma_buff->buff_size;
 	    rdma_msg->tag = tag;
-	    append_rdma_msg(conn_id, rdma_msg);
-	    //	    del_ht(&ht, (uintptr_t)wc.wr_id);
+	    append_rdma_msg(wc.slid, rdma_msg);
+	    //	    del_ht(&ht, (uintptr_t)wc.slid);
 	    //	    show_ht(&ht);
 	    //	    printf("%s\n", rdma_msg->buff);
 	    //	    rdma_disconnect(conn->id);
@@ -337,9 +345,9 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 }
 
 
-static void append_rdma_msg(uint64_t conn_id, struct RDMA_message *msg)
+static void append_rdma_msg(uint64_t slid, struct RDMA_message *msg)
 {
-  append(conn_id, msg);
+  append(slid, msg);
   return;
 }
 
@@ -372,7 +380,7 @@ void build_connection(struct rdma_cm_id *id)
 
   printf("event->id->verbs: %lu\n", (uintptr_t)id->verbs);
   build_context(id->verbs);
-  
+
 
   build_qp_attr(&qp_attr);
 
@@ -389,7 +397,7 @@ void build_connection(struct rdma_cm_id *id)
   conn->connected = 0;
 
   register_memory(conn);
-
+  return;
 }
 
 
@@ -413,8 +421,9 @@ static void build_context(struct ibv_context *verbs)
   TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 100, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
   TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
 
-  TEST_NZ(pthread_create(&poll_thread[poll_thread_count], NULL, poll_cq, NULL));
-  poll_thread_count++;
+  //  TEST_NZ(pthread_create(&poll_thread[poll_thread_count], NULL, poll_cq, NULL));
+  //  poll_thread_count++;
+  TEST_NZ(pthread_create(&listen_thread, NULL, poll_cq, NULL));
 }
 
 static void build_params(struct rdma_conn_param *params)
@@ -493,6 +502,7 @@ static void accept_connection(struct rdma_cm_id *id)
   build_params(&conn_param);
   TEST_NZ(rdma_accept(id, &conn_param));
   post_receives(id->context);
+  return;
 }
 
 

@@ -174,7 +174,7 @@ static int get_index(uint64_t id)
     index = (index + 1) % len;
     i++;
   }
-  printf("Error:Hashtable: Enough size of hashtable needed\n");
+  printf("Error: Hashtable: Enough size of hashtable needed\n");
   exit(0);
 }
 

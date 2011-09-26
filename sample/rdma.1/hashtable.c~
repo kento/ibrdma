@@ -116,7 +116,7 @@ void show_ht(struct hashtable *ht)
   int i ;
   printf("Hashtable (size=%d):\n", ht->len);
   for (i = 0; i < ht->len; i++) {
-    printf("  ht[%d]=(%d|%p)\n", i, ht->t[i].id, ht->t[i].v);
+    printf("  ht[%d]=(%lu|%p)\n", i, ht->t[i].id, ht->t[i].v);
   }
 }
 

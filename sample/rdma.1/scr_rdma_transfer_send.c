@@ -30,6 +30,7 @@ int main(int argc, char **argv)
   //  uint64_t size;
   //  int flag1, flag2;
   double s,e;
+  int i;
 
   host = argv[1];
   src = argv[2];
@@ -43,11 +44,13 @@ int main(int argc, char **argv)
   RDMA_Active_Init(&comm, &param);
   e = get_dtime();
   printf("%f\n", e - s);
-
-  s = get_dtime();
-  RDMA_transfer(src, dst, 200000000, 1, &comm);
-  e = get_dtime();
-  printf("%f\n", e - s);
+  
+  for (i = 0; i < 10; i++){
+    s = get_dtime();
+    RDMA_transfer(src, dst, 200000000, 1, &comm);
+    e = get_dtime();
+    printf("%f\n", e - s);
+  }
 
   //  RDMA_Active_Finalize(&comm);
   return 0;

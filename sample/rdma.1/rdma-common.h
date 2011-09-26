@@ -21,17 +21,17 @@
 #endif
 
 #ifndef RDMA_CLIENT_NUM_S
-#define RDMA_THREAD_NUM_S (10)
+#define RDMA_CLIENT_NUM_S (10)
 #endif
 
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN (1000)
+#define HASH_TABLE_LEN RDMA_CLIENT_NUM_S
 //#define HASH_TABLE_LEN (1000)
 #endif
 
 #ifndef DEBUG_LEVEL
-#define DEBUG_LEVEL (2)
+#define DEBUG_LEVEL (1)
 #endif
 
 #ifndef DEBUG_RDMA

@@ -81,6 +81,7 @@ void RDMA_transfer_recv(void)
       write(fp[id].fd, data, size);
       printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
       free(data);
+      free(data);
     }
   }
   //  RDMA_show_buffer();

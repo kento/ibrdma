@@ -8,6 +8,8 @@
 #include <sys/time.h>
 
 
+
+
 #ifndef TABLE_LEN
 #define TABLE_LEN (1000)
 #endif
@@ -64,7 +66,7 @@ void RDMA_transfer_recv(void)
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
       fp[id].tag = file_tag;
-      fp[id].fd = open(strtok(NULL, "\t"), O_WRONLY | O_CREAT);
+      fp[id].fd = open(strtok(NULL, "\t"), O_WRONLY | O_CREAT, 0660);
       fp[id].flag = 1;
     } else if (ctl_tag == TRANSFER_FIN) {
       //printf("%d: size=%lu: %s\n", ctl_tag, size, data);
@@ -80,7 +82,6 @@ void RDMA_transfer_recv(void)
       printf("%d:id %d: fd %d: size=%lu\n", ctl_tag, id, (int)fp[id].fd, size);
       write(fp[id].fd, data, size);
       printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
-      free(data);
       free(data);
     }
   }
