@@ -13,14 +13,14 @@
 
 
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (1*100*1000)
+#define RDMA_BUF_SIZE_C (1*1*200)
 #endif
 
 #ifndef RDMA_BUF_NUM_C
 #define RDMA_BUF_NUM_C (1)
 #endif
 
-#ifndef RDMA_THREAD_NUM_S
+#ifndef RDMA_CLIENT_NUM_S
 #define RDMA_THREAD_NUM_S (10)
 #endif
 
@@ -31,7 +31,7 @@
 #endif
 
 #ifndef DEBUG_LEVEL
-#define DEBUG_LEVEL (1)
+#define DEBUG_LEVEL (2)
 #endif
 
 #ifndef DEBUG_RDMA
@@ -41,8 +41,6 @@
 #ifndef DEBUG_TRANS
 #define DEBUG_TRANS (2)
 #endif
-
-
 
 #define TEST_NZ(x) do { if ( (x)) die("error: " #x " failed (returned non-zero)." ); } while (0)
 #define TEST_Z(x)  do { if (!(x)) die("error: " #x " failed (returned zero/null)."); } while (0)
@@ -59,7 +57,6 @@ struct control_msg {
     MR_FIN,
     MR_FIN_ACK
   } type;
-
   union {
     struct ibv_mr mr;
   } data;
@@ -68,14 +65,12 @@ struct control_msg {
     uint64_t mr_size;
     int tag;
   } data1 ;
-   
 };
 
 struct RDMA_message {
   char* buff;
   uint64_t size;
   int tag;
-
 };
 
 struct RDMA_communicator {
@@ -114,6 +109,8 @@ struct connection {
 
   char *rdma_msg_region;
 };
+
+
 
 void die(const char *reason);
 const char *event_type_str(enum rdma_cm_event_type event);

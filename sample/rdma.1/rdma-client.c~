@@ -1,4 +1,4 @@
-
+#include "common.h"
 #include "rdma-client.h"
 #include "assert.h"
 #include "arpa/inet.h"
@@ -76,7 +76,9 @@ int RDMA_Active_Init(struct RDMA_communicator *comm, struct RDMA_param *param)
   TEST_NZ(rdma_create_id(comm->ec, &(comm->cm_id), NULL, RDMA_PS_TCP));
   TEST_NZ(rdma_resolve_addr(comm->cm_id, NULL, addr->ai_addr, TIMEOUT_IN_MS));
   TEST_NZ(wait_for_event(comm->ec, RDMA_CM_EVENT_ADDR_RESOLVED));
-  freeaddrinfo(addr);
+  freeaddrinfo(ad
+
+dr);
 
   build_connection(comm->cm_id);
   TEST_NZ(rdma_resolve_route(comm->cm_id, TIMEOUT_IN_MS));
@@ -299,14 +301,12 @@ int RDMA_Active_Finalize(struct RDMA_communicator *comm)
 }
 
 
-
-
 static void build_context(struct ibv_context *verbs)
 {
   if (s_ctx) {
-    if (s_ctx->ctx != verbs)
+    if (s_ctx->ctx != verbs) {
       die("cannot handle events in more than one context.");
-
+    }
     return;
   }
 

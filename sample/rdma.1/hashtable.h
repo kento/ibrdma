@@ -1,12 +1,16 @@
+struct hashtable {
+  struct tuple *t;
+  int len;
+};
 
-#define uint64_t unsigned long
+struct tuple {
+  long id;
+  void * v;
+};
 
 
-int create_hashtable(int length);
-int append (uint64_t id, void* data);
-void* get (uint64_t id);
-void* get_current (void);
-int free_hashtable(void);
-void show(void);
-int get_size (uint64_t id);
-
+void create_ht(struct hashtable *ht,  int count) ;
+void add_ht(struct hashtable *ht, unsigned int id, void* value);
+void* get_ht(struct hashtable *ht, unsigned int id);
+void del_ht(struct hashtable *ht, unsigned int id);
+void show_ht(struct hashtable *ht);

@@ -46,6 +46,8 @@ int send_control_msg (struct connection *conn, struct control_msg *cmsg)
   memset(&wr, 0, sizeof(wr));
 
   wr.wr_id = (uintptr_t)conn;
+  //printf("wr.wr_id=%lu\n", wr.wr_id);
+  //wr.wr_id = (uintptr_t)1;
   wr.opcode = IBV_WR_SEND;
   wr.sg_list = &sge;
   wr.num_sge = 1;

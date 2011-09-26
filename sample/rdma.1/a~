@@ -1,0 +1,7 @@
+ssh t2a006160.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/60" &
+ssh t2a006161.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/61" &
+ssh t2a006162.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/62" &
+#ssh t2a006163.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/63" &
+#ssh t2a006164.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/64" &
+#ssh t2a006165.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/65" &
+

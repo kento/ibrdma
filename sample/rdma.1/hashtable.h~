@@ -1,7 +1,15 @@
+struct hashtable {
+  struct tuple *t;
+  int len;
+};
+
+struct tuple {
+  long id;
+  void * v;
+};
 
 
-
-int create_hashtable(int num_entry, int size);
-int append (uint64_t id, void * node);
-int get (uint64_t id, void* node);
-
+void create_ht(struct hashtable *ht,  int count) ;
+void add_ht(struct hashtable *ht, unsigned int id, void* value);
+void* get_ht(struct hashtable *ht, unsigned int id);
+void show_ht(struct hashtable *ht);

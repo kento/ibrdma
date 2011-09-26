@@ -13,7 +13,7 @@
 
 
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (1*100*1000)
+#define RDMA_BUF_SIZE_C (1*10*1000)
 #endif
 
 #ifndef RDMA_BUF_NUM_C
@@ -109,6 +109,8 @@ struct connection {
 
   char *rdma_msg_region;
 };
+
+
 
 void die(const char *reason);
 const char *event_type_str(enum rdma_cm_event_type event);

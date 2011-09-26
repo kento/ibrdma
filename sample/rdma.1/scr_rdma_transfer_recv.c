@@ -57,19 +57,17 @@ void RDMA_transfer_recv(void)
   }
 
   while (1) {
-
-
     RDMA_Recvr(&data, &size, &ctl_tag, &comm);
     if (ctl_tag == TRANSFER_INIT) {
       s = get_dtime();
-      printf("%d: size=%lu: %s\n", ctl_tag, size, data);
+      //printf("%d: size=%lu: %s\n", ctl_tag, size, data);
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
       fp[id].tag = file_tag;
       fp[id].fd = open(strtok(NULL, "\t"), O_WRONLY | O_CREAT);
       fp[id].flag = 1;
     } else if (ctl_tag == TRANSFER_FIN) {
-      printf("%d: size=%lu: %s\n", ctl_tag, size, data);
+      //printf("%d: size=%lu: %s\n", ctl_tag, size, data);
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
       fp[id].tag = -1;
@@ -78,9 +76,11 @@ void RDMA_transfer_recv(void)
       e = get_dtime();
       printf("time: %f\n", e - s);
     } else {
-      printf("%d: size=%lu\n", ctl_tag, size);
-      id = get_index(file_tag);
+      id = get_index(ctl_tag);
+      printf("%d:id %d: fd %d: size=%lu\n", ctl_tag, id, (int)fp[id].fd, size);
       write(fp[id].fd, data, size);
+      printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
+      free(data);
       free(data);
     }
   }

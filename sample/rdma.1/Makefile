@@ -13,13 +13,13 @@ all: ${APPS}
 scr_rdma_transfer_send:rdma-common.o rdma-client.o scr_rdma_transfer_send.o common.o
 	${LD} -o $@ $^ ${LDFLAGS}
 
-scr_rdma_transfer_recv:rdma-common.o buffer_table.o rdma-server.o scr_rdma_transfer_recv.o  common.o
+scr_rdma_transfer_recv:rdma-common.o buffer_table.o rdma-server.o scr_rdma_transfer_recv.o hashtable.o common.o
 	${LD} -o $@ $^ ${LDFLAGS}
 
 rdma-client-test:rdma-common.o rdma-client.o rdma-client-test.o  common.o
 	${LD} -o $@ $^ ${LDFLAGS}
 
-rdma-server-test:rdma-common.o buffer_table.o rdma-server.o rdma-server-test.o  common.o
+rdma-server-test:rdma-common.o buffer_table.o rdma-server.o rdma-server-test.o hashtable.o common.o
 	${LD} -o $@ $^ ${LDFLAGS}
 
 
