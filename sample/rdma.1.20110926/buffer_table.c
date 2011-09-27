@@ -240,9 +240,6 @@ void* get_current(void)
   tuples[current_idx].head = nd;
   tuples[current_idx].get_count++;
 
-  /*To write ckpt files in parallel, we try to get different file's chunk*/
-  current_idx = (current_idx + 1) % len; 
-
   return data;
 }
 

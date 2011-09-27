@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/time.h>
-#include <pthread.h>
+
 
 
 
@@ -24,17 +24,8 @@ struct file_path {
   int fd;
 };
 
-struct thread_arg {
-  int fd;
-  char *data;
-  uint64_t size;
-  int id;
-};
-
 struct file_path fp[TABLE_LEN];
-int fp_flag[TABLE_LEN];
-pthread_t writer_thread[TABLE_LEN];
-struct thread_arg writer_args[TABLE_LEN];
+
 
 static int get_index(uint64_t id);
 static int hash(uint64_t id);
@@ -42,7 +33,6 @@ static int hash(uint64_t id);
 
 
 void RDMA_transfer_recv(void);
-void *writer(void *args);
 
 
 int main(int argc, char **argv) {
@@ -61,13 +51,13 @@ void RDMA_transfer_recv(void)
   int file_tag;
   int id;
   int i;
+  double ws, we;
 
 
   RDMA_Passive_Init(&comm);
 
   for (i = 0; i < TABLE_LEN; i++) {
     fp[i].flag = 0;
-    fp_flag[i] = 0;
   }
 
   while (1) {
@@ -81,7 +71,6 @@ void RDMA_transfer_recv(void)
       fp[id].flag = 1;
     } else if (ctl_tag == TRANSFER_FIN) {
       //printf("%d: size=%lu: %s\n", ctl_tag, size, data);
-      while (fp_flag[id] != 0);
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
       fp[id].tag = -1;
@@ -89,51 +78,17 @@ void RDMA_transfer_recv(void)
       fp[id].flag = 0;
     } else {
       id = get_index(ctl_tag);
-      while (fp_flag[id] != 0);
-
-      fp_flag[id] = 1;
-      writer_args[id].id = id;
-      writer_args[id].fd = fp[id].fd;
-      writer_args[id].data = data;
-      writer_args[id].size = size;
-      pthread_create(&writer_thread[id], NULL, writer, &writer_args[id]);
-
-      //      id = get_index(ctl_tag);
-      //      ws = get_dtime();
-      //      write(fp[id].fd, data, size);
-      //      we = get_dtime();
-      //      printf("ACT lib: write time=%fsecs, write size=%d MB, throughput=%f MB/s\n", we - ws, size/1000000, size/(we - ws)/1000000.0);
+      //      printf("%d:id %d: fd %d: size=%lu\n", ctl_tag, id, (int)fp[id].fd, size);
+      ws = get_dtime();
+      write(fp[id].fd, data, size);
+      we = get_dtime();
+      printf("ACT lib: write time=%fsecs, write size=%d MB, throughput=%f MB/s\n", we - ws, size/1000000, size/(we - ws)/1000000.0);
       //      printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
-      //      free(data);
+      free(data);
     }
   }
   //  RDMA_show_buffer();
   return ;
-}
-
-void *writer(void *args)
-{
-  struct thread_arg *wargs;
-  int fd;
-  int id;
-  char* data;
-  uint64_t size;
-  double ws, we;
-
-  wargs = (struct thread_arg *)args;
-  id = wargs->id;
-  fd = wargs->fd;
-  data = wargs->data;
-  size = wargs->size;
-  printf("ACT lib: %d : start", fd);
-  ws = get_dtime();
-  write(fd, data, size);
-  we = get_dtime();
-  printf("ACT lib: %d : write time=%fsecs, write size=%lu MB, throughput=%f MB/s\n", fd, we - ws, size/1000000, size/(we - ws)/1000000.0);
-  //  printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
-  fp_flag[id] = 0;
-  free(data);
-  return;
 }
 
 
