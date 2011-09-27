@@ -1,5 +1,6 @@
 #include "scr_rdma_transfer.h"
 #include "rdma-client.h"
+#include "common.h"
 #include <string.h>
 #include <sys/time.h>
 #include <stdio.h>
@@ -14,7 +15,7 @@
 #include <arpa/inet.h>
 
 
-double get_dtime(void);
+
 int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_communicator *comm) ;
 ssize_t scr_read(int fd, void* buf, size_t size);
 int get_tag(void);
@@ -26,7 +27,8 @@ struct file_buffer {
 int main(int argc, char **argv)
 {
   char* host;
-  char* src, *dst;
+  char* src;
+  char *dst;
   //  uint64_t size;
   //  int flag1, flag2;
   double s,e;
@@ -35,6 +37,7 @@ int main(int argc, char **argv)
   host = argv[1];
   src = argv[2];
   dst = argv[3];
+
   
   struct  RDMA_communicator comm;
   struct  RDMA_param param;
@@ -44,10 +47,11 @@ int main(int argc, char **argv)
   RDMA_Active_Init(&comm, &param);
   e = get_dtime();
   printf("%f\n", e - s);
-  
-  for (i = 0; i < 10; i++){
+  for (i = 0; i < 4; i++){
+    char path[1024];
     s = get_dtime();
-    RDMA_transfer(src, dst, 200000000, 1, &comm);
+    sprintf(path, "%s.%d", dst, i);
+    RDMA_transfer(src, path, 200000000, 2, &comm);
     e = get_dtime();
     printf("%f\n", e - s);
   }
@@ -80,6 +84,7 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   int fbuf_index = 0;
   int *flags;
   char ctl_msg[1536];
+  double e,s;
 
   fbufs = (struct file_buffer *)malloc(sizeof(struct file_buffer) * count);
   flags = (int *)malloc(sizeof(int) * count);
@@ -103,15 +108,21 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
 
   do {
     printf("sent fbuf_index=%d\n", fbuf_index);
-    flags[fbuf_index] = 0;
+
     RDMA_Isendr(fbufs[fbuf_index].buf, read_size, tag, &flags[fbuf_index], comm);
+    //flags[fbuf_index] = 1;
     printf("... sent done\n");
+    printf("read fbuf_index=%d\n", fbuf_index);
+    s = get_dtime();
+    read_size = scr_read(fd, fbufs[(fbuf_index + 1) % count].buf, buf_size);
+    e = get_dtime();
+    printf("ACT lib: read time=%fsecs, read size=%d MB, throughput=%f MB/s\n", e - s, read_size/1000000, read_size/(e - s)/1000000.0);
+    RDMA_Wait (&flags[fbuf_index]);
+
     fbuf_index = (fbuf_index + 1) % count;
 
-    RDMA_Wait (&flags[fbuf_index]);
-    printf("read fbuf_index=%d\n", fbuf_index);
-    read_size = scr_read(fd, fbufs[fbuf_index].buf, buf_size);
-    printf("... read done\n");
+
+
   } while (read_size > 0);
   /*---------*/
 
@@ -182,12 +193,5 @@ ssize_t scr_read(int fd, void* buf, size_t size)
 
 
 
-
-double get_dtime(void)
-{
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  return ((double)(tv.tv_sec) + (double)(tv.tv_usec) * 0.001 * 0.001);
-}
 
 

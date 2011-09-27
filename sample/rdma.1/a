@@ -1,7 +1,82 @@
-ssh t2a006160.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/60" &
-ssh t2a006161.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/61" &
-ssh t2a006162.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/62" &
-ssh t2a006163.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/63" &
-#ssh t2a006164.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/64" &
-#ssh t2a006165.g.gsic.titech.ac.jp "/home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma.1/scr_rdma_transfer_send 10.1.6.178 /home/usr2/11D37048/kento-ibrdma-7aea0a0/sample/rdma/tmp/b.1000000000 /work0/t2g-ppc-internal/11D37048/data/65" &
-
+srun: Warning: can't run 1 processes on 10 nodes, setting nnodes to 1
+0.001469
+192.168.112.230
+168112230	/p/lscratchc/sato5/testfile.sierra229.0RDMA lib: send time=0.000109secs, send size=0 MB, throughput=0.449717 MB/s
+read fbuf_index=0
+sent fbuf_index=0
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.105256secs, read size=200 MB, throughput=1900.127753 MB/s
+sent fbuf_index=1
+RDMA lib: send time=0.127784secs, send size=200 MB, throughput=1565.141007 MB/s
+... sent done
+read fbuf_index=1
+ACT lib: read time=0.043385secs, read size=150 MB, throughput=3466.916584 MB/s
+sent fbuf_index=0
+RDMA lib: send time=0.811363secs, send size=200 MB, throughput=246.498798 MB/s
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.142489secs, send size=150 MB, throughput=1055.606552 MB/s
+1.185639
+RDMA lib: send time=0.001122secs, send size=0 MB, throughput=0.043672 MB/s
+192.168.112.230
+168112230	/p/lscratchc/sato5/testfile.sierra229.1RDMA lib: send time=0.000097secs, send size=0 MB, throughput=0.504965 MB/s
+read fbuf_index=0
+sent fbuf_index=0
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.099993secs, read size=200 MB, throughput=2000.140200 MB/s
+sent fbuf_index=1
+RDMA lib: send time=0.189233secs, send size=200 MB, throughput=1056.897749 MB/s
+... sent done
+read fbuf_index=1
+ACT lib: read time=0.043523secs, read size=150 MB, throughput=3455.920388 MB/s
+sent fbuf_index=0
+RDMA lib: send time=0.173868secs, send size=200 MB, throughput=1150.298318 MB/s
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.142317secs, send size=150 MB, throughput=1056.881582 MB/s
+RDMA lib: send time=0.000134secs, send size=0 MB, throughput=0.365696 MB/s
+0.606980
+192.168.112.230
+168112230	/p/lscratchc/sato5/testfile.sierra229.2RDMA lib: send time=0.000217secs, send size=0 MB, throughput=0.225847 MB/s
+read fbuf_index=0
+sent fbuf_index=0
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.100074secs, read size=200 MB, throughput=1998.520040 MB/s
+sent fbuf_index=1
+RDMA lib: send time=0.174078secs, send size=200 MB, throughput=1148.910340 MB/s
+... sent done
+read fbuf_index=1
+ACT lib: read time=0.043561secs, read size=150 MB, throughput=3452.912904 MB/s
+sent fbuf_index=0
+RDMA lib: send time=0.154127secs, send size=200 MB, throughput=1297.630156 MB/s
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.135878secs, send size=150 MB, throughput=1106.964930 MB/s
+0.562869
+RDMA lib: send time=0.000108secs, send size=0 MB, throughput=0.453689 MB/s
+192.168.112.230
+168112230	/p/lscratchc/sato5/testfile.sierra229.3RDMA lib: send time=0.000079secs, send size=0 MB, throughput=0.620909 MB/s
+read fbuf_index=0
+sent fbuf_index=0
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.099130secs, read size=200 MB, throughput=2017.549581 MB/s
+sent fbuf_index=1
+RDMA lib: send time=0.170557secs, send size=200 MB, throughput=1172.628354 MB/s
+... sent done
+read fbuf_index=1
+ACT lib: read time=0.043500secs, read size=150 MB, throughput=3457.757716 MB/s
+sent fbuf_index=0
+RDMA lib: send time=0.166173secs, send size=200 MB, throughput=1203.565095 MB/s
+... sent done
+read fbuf_index=0
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.112331secs, send size=150 MB, throughput=1339.007687 MB/s
+0.548066
+RDMA lib: send time=0.000123secs, send size=0 MB, throughput=0.398296 MB/s

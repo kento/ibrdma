@@ -43,6 +43,8 @@ int RDMA_Isendr(char *buff, uint64_t size, int tag, int *flag, struct RDMA_commu
   struct poll_cq_args *args = (struct poll_cq_args*)malloc(sizeof(struct poll_cq_args));
   struct RDMA_message *msg = (struct RDMA_message*)malloc(sizeof(struct RDMA_message));
 
+  *flag = 0;
+
   args->comm = comm;
   args->msg = msg;
   args->flag = flag;
@@ -100,6 +102,7 @@ static void* poll_cq(struct poll_cq_args* args)
   struct connection *conn;
   struct RDMA_communicator *comm;
   //  struct RDMA_message *msg;
+  double s, e;
 
   struct control_msg cmsg;
   void* ctx;
@@ -126,7 +129,7 @@ static void* poll_cq(struct poll_cq_args* args)
   cmsg.data1.buff_size=buff_size;
   send_control_msg(comm->cm_id->context, &cmsg);
   post_receives(comm->cm_id->context);
-  
+  s = get_dtime();
   while (1) {
     TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
     ibv_ack_cq_events(cq, 1);
@@ -212,6 +215,8 @@ static void* poll_cq(struct poll_cq_args* args)
 	    // rdma_disconnect(comm->cm_id);
 	    // rdma_disconnect(conn->id);
 	    //exit(0);
+	    e = get_dtime();
+	    printf("RDMA lib: send time=%fsecs, send size=%d MB, throughput=%f MB/s\n", e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
 	    return NULL;
           default:
             debug(printf("Unknown TYPE"), 1);

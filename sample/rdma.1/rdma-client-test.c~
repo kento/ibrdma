@@ -2,7 +2,17 @@
 #include <sys/time.h>
 #include <stdio.h>
 
+#include <unistd.h> /* for close */
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/ioctl.h>
+#include <netinet/in.h>
+#include <net/if.h>
+#include <arpa/inet.h>
+
 double get_dtime(void);
+int get_tag(void);
+char* get_ip_addr (char* interface);
 
 int main(int argc, char **argv)
 {
@@ -34,7 +44,7 @@ int main(int argc, char **argv)
   printf("%f\n",e - s);
   
   s = get_dtime();
-  RDMA_Isendr(data, size, 1015, &flag1, &comm);
+  RDMA_Isendr(data, size, get_tag(), &flag1, &comm);
   /*=======*/
   //  data = (char*)malloc(size);
   //  flag2 = 0;
@@ -71,7 +81,8 @@ int get_tag(void)
   return tag;
 }
 
-char* get_ip_addr (char* interface) {
+char* get_ip_addr (char* interface)
+{
   char *ip;
   int fd;
   struct ifreq ifr;

@@ -24,4 +24,8 @@ int get_pid(void)
   return (int)getpid();
 }
 
+int get_rand(void) {
+  return rand();
+}
+
 

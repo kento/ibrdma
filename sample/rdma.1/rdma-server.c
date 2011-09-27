@@ -321,7 +321,7 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    rdma_msg->size = rdma_buff->buff_size;
 	    rdma_msg->tag = tag;
 	    append_rdma_msg(wc.slid, rdma_msg);
-	    //	    del_ht(&ht, (uintptr_t)wc.slid);
+	    //	   del_ht(&ht, (uintptr_t)wc.slid);
 	    //	    show_ht(&ht);
 	    //	    printf("%s\n", rdma_msg->buff);
 	    //	    rdma_disconnect(conn->id);

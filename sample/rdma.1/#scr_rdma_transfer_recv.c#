@@ -26,6 +26,7 @@ struct file_path {
 
 struct file_path fp[TABLE_LEN];
 
+
 static int get_index(uint64_t id);
 static int hash(uint64_t id);
 

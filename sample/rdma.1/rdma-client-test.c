@@ -1,4 +1,5 @@
 #include "rdma-client.h"
+#include "common.h"
 #include <sys/time.h>
 #include <stdio.h>
 
@@ -10,7 +11,7 @@
 #include <net/if.h>
 #include <arpa/inet.h>
 
-double get_dtime(void);
+
 int get_tag(void);
 char* get_ip_addr (char* interface);
 
@@ -95,11 +96,6 @@ char* get_ip_addr (char* interface)
   return ip;
 }
 
-double get_dtime(void)
-{
-  struct timeval tv;
-  gettimeofday(&tv, NULL);
-  return ((double)(tv.tv_sec) + (double)(tv.tv_usec) * 0.001 * 0.001);
-}
+
 
 
