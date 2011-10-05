@@ -12,16 +12,17 @@
 #endif
 
 
-#ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (1*1000*1000)
-#endif
 
 #ifndef RDMA_BUF_NUM_C
 #define RDMA_BUF_NUM_C (1)
 #endif
 
 #ifndef RDMA_CLIENT_NUM_S
-#define RDMA_CLIENT_NUM_S (10)
+#define RDMA_CLIENT_NUM_S (12)
+#endif
+
+#ifndef RDMA_BUF_SIZE_C
+#define RDMA_BUF_SIZE_C ((6*1000*1000)/RDMA_CLIENT_NUM_S)
 #endif
 
 

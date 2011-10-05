@@ -26,7 +26,7 @@ static struct context *s_ctx = NULL;
 struct ibv_mr *rdma_msg_mr[RDMA_BUF_NUM_C];
 
 int RDMA_Wait (int *flag) {
-  while (*flag == 0) {  };
+  while (*flag == 0) {sleep(1); };
   return 0;
 }
 
@@ -119,8 +119,8 @@ static void* poll_cq(struct poll_cq_args* args)
 
   //for (i = 0; i < RDMA_BUF_NUM_C; i++){ rdma_msg_mr[i] = NULL;}
   
-  comm= args->comm;
-  buff= args->msg->buff;
+  comm = args->comm;
+  buff = args->msg->buff;
   send_base_addr = args->msg->buff;;
   buff_size= args->msg->size;
   tag= args->msg->tag;
@@ -216,7 +216,9 @@ static void* poll_cq(struct poll_cq_args* args)
 	    // rdma_disconnect(conn->id);
 	    //exit(0);
 	    e = get_dtime();
-	    printf("RDMA lib: send time=%fsecs, send size=%d MB, throughput=%f MB/s\n", e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
+	    free(args->msg);
+	    free(args);
+	    printf("RDMA lib: send time= %f secs, send size= %d MB, throughput = %f MB/s\n", e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
 	    return NULL;
           default:
             debug(printf("Unknown TYPE"), 1);

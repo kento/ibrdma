@@ -1,5 +1,6 @@
 #include "common.h"
-#include "scr_rdma_transfer.h"
+#include "scr_rdma_transfer_common.h"
+#include "scr_rdma_transfer_send.h"
 #include "rdma-server.h"
 #include <string.h>
 #include <fcntl.h>
@@ -69,9 +70,15 @@ void RDMA_transfer_recv(void)
     fp[i].flag = 0;
     fp_flag[i] = 0;
   }
-
+  
+  int a = 0;
+  double s, e, ws, we;
   while (1) {
     RDMA_Recvr(&data, &size, &ctl_tag, &comm);
+    if (a == 0) {
+      s = get_dtime();
+      a = 1;
+    }
     if (ctl_tag == TRANSFER_INIT) {
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
@@ -87,6 +94,7 @@ void RDMA_transfer_recv(void)
       fp[id].tag = -1;
       close(fp[id].fd);
       fp[id].flag = 0;
+      printf("ACT lib: Total write time= %f\n",  get_dtime() - s);
     } else {
       id = get_index(ctl_tag);
       while (fp_flag[id] != 0);
@@ -97,14 +105,15 @@ void RDMA_transfer_recv(void)
       writer_args[id].data = data;
       writer_args[id].size = size;
       pthread_create(&writer_thread[id], NULL, writer, &writer_args[id]);
+      
 
-      //      id = get_index(ctl_tag);
-      //      ws = get_dtime();
-      //      write(fp[id].fd, data, size);
-      //      we = get_dtime();
-      //      printf("ACT lib: write time=%fsecs, write size=%d MB, throughput=%f MB/s\n", we - ws, size/1000000, size/(we - ws)/1000000.0);
-      //      printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
-      //      free(data);
+      //id = get_index(ctl_tag);
+      //            ws = get_dtime();
+      //	    write(fp[id].fd, data, size);
+      //    we = get_dtime();
+      //	    printf("ACT lib: write time=%fsecs, write size=%d MB, throughput=%f MB/s\n", we - ws, size/1000000, size/(we - ws)/1000000.0);
+      //	    //            printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
+      //
     }
   }
   //  RDMA_show_buffer();
@@ -125,11 +134,11 @@ void *writer(void *args)
   fd = wargs->fd;
   data = wargs->data;
   size = wargs->size;
-  printf("ACT lib: %d : start", fd);
+  //  printf("ACT lib: %d : start\n", fd);
   ws = get_dtime();
   write(fd, data, size);
   we = get_dtime();
-  printf("ACT lib: %d : write time=%fsecs, write size=%lu MB, throughput=%f MB/s\n", fd, we - ws, size/1000000, size/(we - ws)/1000000.0);
+  printf("ACT lib: %d : write time = %f secs, write size= %lu MB , throughput= %f MB/s\n", fd, we - ws, size/1000000, size/(we - ws)/1000000.0);
   //  printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
   fp_flag[id] = 0;
   free(data);

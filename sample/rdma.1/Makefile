@@ -6,7 +6,7 @@ LD      := gcc
 LDFLAGS := ${LDFLAGS} -lrdmacm 
 
 #APPS    := rdma-client rdma-server buffer_table_test rdma-client-test rdma-server-test
-APPS    := clean  scr_rdma_transfer_send  scr_rdma_transfer_recv rdma-client-test rdma-server-test
+APPS    := clean scr_rdma_transfer_recv rdma-client-test rdma-server-test
 
 all: ${APPS}
 

@@ -12,22 +12,22 @@
 #endif
 
 
-#ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C (1*10*1000)
-#endif
 
 #ifndef RDMA_BUF_NUM_C
 #define RDMA_BUF_NUM_C (1)
 #endif
 
 #ifndef RDMA_CLIENT_NUM_S
-#define RDMA_THREAD_NUM_S (10)
+#define RDMA_CLIENT_NUM_S (12)
+#endif
+
+#ifndef RDMA_BUF_SIZE_C
+#define RDMA_BUF_SIZE_C ((6*1000*1000)/RDMA_CLIENT_NUM_S)
 #endif
 
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN (1000)
-//#define HASH_TABLE_LEN (1000)
+#define HASH_TABLE_LEN RDMA_CLIENT_NUM_S
 #endif
 
 #ifndef DEBUG_LEVEL
@@ -81,7 +81,6 @@ struct RDMA_communicator {
 struct RDMA_param {
   char* host;
 };
-
 
 struct context {
   struct ibv_context *ctx;

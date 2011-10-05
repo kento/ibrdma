@@ -1,4 +1,4 @@
-#include "scr_rdma_transfer.h"
+#include "scr_rdma_transfer_common.h"
 #include "rdma-client.h"
 #include "common.h"
 #include <string.h>
@@ -17,13 +17,17 @@
 
 
 int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_communicator *comm) ;
-ssize_t scr_read(int fd, void* buf, size_t size);
+ssize_t buf_read(int fd, void* buf, size_t size);
 int get_tag(void);
 
 struct file_buffer {
   char *buf;
 };
 
+struct RDMA_communicator rdma_comm;
+struct RDMA_param rdma_param = {"192.168.116.120"};
+
+/*
 int main(int argc, char **argv)
 {
   char* host;
@@ -31,7 +35,7 @@ int main(int argc, char **argv)
   char *dst;
   //  uint64_t size;
   //  int flag1, flag2;
-  double s,e;
+  double st, et;
   int i;
 
   host = argv[1];
@@ -39,23 +43,107 @@ int main(int argc, char **argv)
   dst = argv[3];
 
   
-  struct  RDMA_communicator comm;
-  struct  RDMA_param param;
-  param.host = host;
+  TEST_RDMA_transfer (host, src, dst);
+  return 0;
+}
+*/
 
-  s = get_dtime();
-  RDMA_Active_Init(&comm, &param);
-  e = get_dtime();
-  printf("%f\n", e - s);
-  for (i = 0; i < 4; i++){
-    char path[1024];
-    s = get_dtime();
-    sprintf(path, "%s.%d", dst, i);
-    RDMA_transfer(src, path, 200000000, 2, &comm);
-    e = get_dtime();
-    printf("%f\n", e - s);
+int RDMA_transfer_init(void) 
+{
+  RDMA_Active_Init(&rdma_comm, &rdma_param);
+  return 0;
+}
+
+int RDMA_file_transfer(char* src, char* dst, int buf_size, int count) 
+{
+  int i;
+  int fd;
+  int read_size;
+  int tag;
+  int ctl_msg_size;
+  struct file_buffer *fbufs;
+  int fbuf_index = 0;
+  int *flags;
+  char ctl_msg[1536];
+  double e,s;
+
+  fbufs = (struct file_buffer *)malloc(sizeof(struct file_buffer) * count);
+  flags = (int *)malloc(sizeof(int) * count);
+  for (i = 0; i < count; i++) {
+    fbufs[i % count].buf =  (char *)malloc(buf_size);
+    flags[i % count] = 1;
   }
 
+  /*send init*/
+  tag=get_tag();
+  sprintf(ctl_msg, "%d\t%s", tag, dst);
+  //printf(ctl_msg);
+  ctl_msg_size =  strlen(ctl_msg);
+  RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_INIT, &rdma_comm);
+  /*---------*/
+
+  /*send file*/
+  fd = open(src, O_RDONLY);
+  //  printf("read fbuf_index=%d\n", fbuf_index);
+  read_size = buf_read(fd, fbufs[fbuf_index].buf, buf_size);
+
+  do {
+    //    printf("sent fbuf_index=%d\n", fbuf_index);
+
+    RDMA_Isendr(fbufs[fbuf_index].buf, read_size, tag, &flags[fbuf_index], &rdma_comm);
+    //flags[fbuf_index] = 1;
+    //    printf("... sent done\n");
+    //    printf("read fbuf_index=%d\n", fbuf_index);
+    s = get_dtime();
+    read_size = buf_read(fd, fbufs[(fbuf_index + 1) % count].buf, buf_size);
+    e = get_dtime();
+    printf("ACT lib: read time = %fsecs, read size = %d MB, throughput = %f MB/s\n", e - s, read_size/1000000, read_size/(e - s)/1000000.0);
+    RDMA_Wait (&flags[fbuf_index]);
+
+    fbuf_index = (fbuf_index + 1) % count;
+
+
+
+  } while (read_size > 0);
+  /*---------*/
+
+  /*send fin*/
+  sprintf(ctl_msg, "%d\t%s", tag, dst);
+  ctl_msg_size =  strlen(ctl_msg);
+  RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_FIN, &rdma_comm);
+  /*---------*/
+  close(fd);
+  for (i = 0; i < count; i++) {
+    free(fbufs[i % count].buf);
+  }
+  free(flags);
+  free(fbufs);
+
+  return 0;
+}
+
+
+int TEST_RDMA_transfer (char* host, char* src, char* dst) 
+{
+  //  uint64_t size;
+  //  int flag1, flag2;
+  struct  RDMA_communicator comm;
+  struct  RDMA_param param;
+
+  double st, et;
+  int i;
+
+  param.host = host;
+
+  RDMA_Active_Init(&comm, &param);
+  st = get_dtime();
+  for (i = 0; i < 12; i++){
+    char path[1024];
+    sprintf(path, "%s.%d", dst, i);
+    RDMA_transfer(src, path, 200000000, 2, &comm);
+  }
+  et = get_dtime();
+  printf("ACT: Total time= %f\n", et - st);
   //  RDMA_Active_Finalize(&comm);
   return 0;
 }
@@ -96,27 +184,27 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
   /*send init*/
   tag=get_tag();
   sprintf(ctl_msg, "%d\t%s", tag, dst);
-  printf(ctl_msg);
+  //printf(ctl_msg);
   ctl_msg_size =  strlen(ctl_msg);
   RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_INIT, comm);
   /*---------*/
 
   /*send file*/
   fd = open(src, O_RDONLY);
-  printf("read fbuf_index=%d\n", fbuf_index);
-  read_size = scr_read(fd, fbufs[fbuf_index].buf, buf_size);
+  //  printf("read fbuf_index=%d\n", fbuf_index);
+  read_size = buf_read(fd, fbufs[fbuf_index].buf, buf_size);
 
   do {
-    printf("sent fbuf_index=%d\n", fbuf_index);
+    //    printf("sent fbuf_index=%d\n", fbuf_index);
 
     RDMA_Isendr(fbufs[fbuf_index].buf, read_size, tag, &flags[fbuf_index], comm);
     //flags[fbuf_index] = 1;
-    printf("... sent done\n");
-    printf("read fbuf_index=%d\n", fbuf_index);
+    //    printf("... sent done\n");
+    //    printf("read fbuf_index=%d\n", fbuf_index);
     s = get_dtime();
-    read_size = scr_read(fd, fbufs[(fbuf_index + 1) % count].buf, buf_size);
+    read_size = buf_read(fd, fbufs[(fbuf_index + 1) % count].buf, buf_size);
     e = get_dtime();
-    printf("ACT lib: read time=%fsecs, read size=%d MB, throughput=%f MB/s\n", e - s, read_size/1000000, read_size/(e - s)/1000000.0);
+    printf("ACT lib: read time = %fsecs, read size = %d MB, throughput = %f MB/s\n", e - s, read_size/1000000, read_size/(e - s)/1000000.0);
     RDMA_Wait (&flags[fbuf_index]);
 
     fbuf_index = (fbuf_index + 1) % count;
@@ -154,7 +242,7 @@ int get_tag(void)
   return tag;
 }
 
-ssize_t scr_read(int fd, void* buf, size_t size)
+ssize_t buf_read(int fd, void* buf, size_t size)
 {
   ssize_t n = 0;
   int retries = 10;

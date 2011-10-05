@@ -1,0 +1,3 @@
+
+int TRANSFER_INIT = -1;
+int TRANSFER_FIN = -2;

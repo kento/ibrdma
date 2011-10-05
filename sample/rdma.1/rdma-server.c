@@ -183,7 +183,7 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
       //	    if (1 > 0) break;
       break;
     case RDMA_CM_EVENT_ESTABLISHED:
-      debug(printf("Establish: host_id=%lu\n", (uintptr_t)event->id), 1);
+      debug(printf("Establish: host_id=%lu\n", (uintptr_t)event->id), 2);
       break;
     case RDMA_CM_EVENT_DISCONNECTED:
       debug(printf("Disconnect from id : %p \n", event->id), 1);
@@ -261,9 +261,9 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    rdma_buff = get_ht(&ht, (uintptr_t)wc.slid);
 	    debug(printf("Recived: MR_CHUNK: %lu: Type=%d, mr size=%lu\n", (uintptr_t)conn->id, conn->recv_msg->type, conn->recv_msg->data1.mr_size), 1);
 	    mr_size= conn->recv_msg->data1.mr_size;
-	    debug(fprintf(stderr,"memcpy\n"), 1);
+	    debug(fprintf(stderr,"copy remote memory region\n"), 1);
 	    memcpy(&conn->peer_mr, &conn->recv_msg->data.mr, sizeof(conn->peer_mr));
-	    debug(fprintf(stderr,"memcpy done\n"), 1);
+	    debug(fprintf(stderr," done\n"), 1);
 	    //	    printf("b\n");
 	    //	    register_rdma_region(conn, recv_base_addr, conn->recv_msg->data1.mr_size);
 	    debug(fprintf(stderr,"rdma_buff:%p \n", rdma_buff), 1);
@@ -378,7 +378,7 @@ void build_connection(struct rdma_cm_id *id)
   struct connection *conn;
   struct ibv_qp_init_attr qp_attr;
 
-  printf("event->id->verbs: %lu\n", (uintptr_t)id->verbs);
+  //  printf("event->id->verbs: %lu\n", (uintptr_t)id->verbs);
   build_context(id->verbs);
 
 

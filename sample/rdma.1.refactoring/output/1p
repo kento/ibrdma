@@ -1,0 +1,85 @@
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.0RDMA lib: send time=0.000239secs, send size=0 MB, throughput=0.192361 MB/s
+ACT lib: read time=0.059058secs, read size=120 MB, throughput=2031.902530 MB/s
+RDMA lib: send time=0.164490secs, send size=200 MB, throughput=1215.879499 MB/s
+ACT lib: read time=0.000002secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.110259secs, send size=120 MB, throughput=1088.345976 MB/s
+RDMA lib: send time=0.000106secs, send size=0 MB, throughput=0.433569 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.1RDMA lib: send time=0.000084secs, send size=0 MB, throughput=0.548119 MB/s
+ACT lib: read time=0.057944secs, read size=120 MB, throughput=2070.971469 MB/s
+RDMA lib: send time=0.189550secs, send size=200 MB, throughput=1055.129674 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.128004secs, send size=120 MB, throughput=937.470161 MB/s
+RDMA lib: send time=0.000105secs, send size=0 MB, throughput=0.438495 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.2RDMA lib: send time=0.000078secs, send size=0 MB, throughput=0.590024 MB/s
+ACT lib: read time=0.057320secs, read size=120 MB, throughput=2093.514519 MB/s
+RDMA lib: send time=0.180326secs, send size=200 MB, throughput=1109.102496 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.110274secs, send size=120 MB, throughput=1088.197733 MB/s
+RDMA lib: send time=0.000094secs, send size=0 MB, throughput=0.489690 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.3RDMA lib: send time=0.000085secs, send size=0 MB, throughput=0.541961 MB/s
+ACT lib: read time=0.055374secs, read size=120 MB, throughput=2167.085660 MB/s
+RDMA lib: send time=0.885397secs, send size=200 MB, throughput=225.887381 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.778136secs, send size=120 MB, throughput=154.214684 MB/s
+RDMA lib: send time=0.000126secs, send size=0 MB, throughput=0.364722 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.4RDMA lib: send time=0.000098secs, send size=0 MB, throughput=0.469435 MB/s
+ACT lib: read time=0.056631secs, read size=120 MB, throughput=2118.977468 MB/s
+RDMA lib: send time=0.228382secs, send size=200 MB, throughput=875.725334 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.120166secs, send size=120 MB, throughput=998.618052 MB/s
+RDMA lib: send time=0.000097secs, send size=0 MB, throughput=0.474049 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.5RDMA lib: send time=0.000107secs, send size=0 MB, throughput=0.430665 MB/s
+ACT lib: read time=0.056187secs, read size=120 MB, throughput=2135.719535 MB/s
+RDMA lib: send time=0.224907secs, send size=200 MB, throughput=889.256759 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.122508secs, send size=120 MB, throughput=979.527476 MB/s
+RDMA lib: send time=0.000109secs, send size=0 MB, throughput=0.422184 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.6RDMA lib: send time=0.000092secs, send size=0 MB, throughput=0.499839 MB/s
+ACT lib: read time=0.057557secs, read size=120 MB, throughput=2084.894557 MB/s
+RDMA lib: send time=0.191222secs, send size=200 MB, throughput=1045.903716 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.127678secs, send size=120 MB, throughput=939.864954 MB/s
+RDMA lib: send time=0.000179secs, send size=0 MB, throughput=0.256908 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.7RDMA lib: send time=0.000141secs, send size=0 MB, throughput=0.326460 MB/s
+ACT lib: read time=0.056775secs, read size=120 MB, throughput=2113.602876 MB/s
+RDMA lib: send time=0.205784secs, send size=200 MB, throughput=971.893595 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.114017secs, send size=120 MB, throughput=1052.474541 MB/s
+RDMA lib: send time=0.007708secs, send size=0 MB, throughput=0.005968 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.8RDMA lib: send time=0.000111secs, send size=0 MB, throughput=0.414920 MB/s
+ACT lib: read time=0.056689secs, read size=120 MB, throughput=2116.811890 MB/s
+RDMA lib: send time=0.198609secs, send size=200 MB, throughput=1007.004343 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.119236secs, send size=120 MB, throughput=1006.407525 MB/s
+RDMA lib: send time=0.000095secs, send size=0 MB, throughput=0.484769 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.9RDMA lib: send time=0.000090secs, send size=0 MB, throughput=0.510418 MB/s
+ACT lib: read time=0.055538secs, read size=120 MB, throughput=2160.675871 MB/s
+RDMA lib: send time=0.213776secs, send size=200 MB, throughput=935.559271 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.113735secs, send size=120 MB, throughput=1055.084553 MB/s
+RDMA lib: send time=0.000113secs, send size=0 MB, throughput=0.407042 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.10RDMA lib: send time=0.000112secs, send size=0 MB, throughput=0.419430 MB/s
+ACT lib: read time=0.055471secs, read size=120 MB, throughput=2163.285439 MB/s
+RDMA lib: send time=0.197802secs, send size=200 MB, throughput=1011.112999 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.773245secs, send size=120 MB, throughput=155.190169 MB/s
+RDMA lib: send time=0.000170secs, send size=0 MB, throughput=0.276483 MB/s
+192.168.113.4
+168113004	/p/lscratchc/sato5/320mb.sierra253.11RDMA lib: send time=0.000119secs, send size=0 MB, throughput=0.395055 MB/s
+ACT lib: read time=0.055213secs, read size=120 MB, throughput=2173.402194 MB/s
+RDMA lib: send time=0.215419secs, send size=200 MB, throughput=928.422980 MB/s
+ACT lib: read time=0.000001secs, read size=0 MB, throughput=0.000000 MB/s
+RDMA lib: send time=0.138175secs, send size=120 MB, throughput=868.463837 MB/s
+RDMA lib: send time=0.000123secs, send size=0 MB, throughput=0.382039 MB/s
+ACT: Total time= 6.911308

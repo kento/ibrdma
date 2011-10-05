@@ -128,6 +128,7 @@ static int get_index(struct hashtable *ht, unsigned int id)
   int offset = 0;
   index = hash(ht, id + offset);
   i = 0;
+
   while (i < ht->len) {
     if (ht->t[index].v == NULL) {
       return index;
