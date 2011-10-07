@@ -78,7 +78,7 @@ static void * cons (void* arg)
 void create_ht(struct hashtable *ht,  int count) 
 {
   int i;
-  ht->t = (struct tuple *)malloc(sizeof(struct tuple *) * count);
+  ht->t = (struct tuple *)malloc(sizeof(struct tuple) * count);
   ht->len = count;
   for (i = 0; i < count; i++) {
     ht->t[i].id = -1;
@@ -128,6 +128,7 @@ static int get_index(struct hashtable *ht, unsigned int id)
   int offset = 0;
   index = hash(ht, id + offset);
   i = 0;
+
   while (i < ht->len) {
     if (ht->t[index].v == NULL) {
       return index;

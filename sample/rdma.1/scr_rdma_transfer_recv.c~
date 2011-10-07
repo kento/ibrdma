@@ -1,5 +1,6 @@
 #include "common.h"
-#include "scr_rdma_transfer.h"
+#include "scr_rdma_transfer_common.h"
+#include "scr_rdma_transfer_send.h"
 #include "rdma-server.h"
 #include <string.h>
 #include <fcntl.h>
@@ -32,9 +33,12 @@ struct thread_arg {
 };
 
 struct file_path fp[TABLE_LEN];
+char cpath[TABLE_LEN][1024];
 int fp_flag[TABLE_LEN];
 pthread_t writer_thread[TABLE_LEN];
 struct thread_arg writer_args[TABLE_LEN];
+double start[TABLE_LEN];
+double end[TABLE_LEN];
 
 static int get_index(uint64_t id);
 static int hash(uint64_t id);
@@ -71,7 +75,7 @@ void RDMA_transfer_recv(void)
   }
   
   int a = 0;
-  double s, e, ws, we;
+  double s;
   while (1) {
     RDMA_Recvr(&data, &size, &ctl_tag, &comm);
     if (a == 0) {
@@ -83,8 +87,10 @@ void RDMA_transfer_recv(void)
       id = get_index(file_tag);
       fp[id].tag = file_tag;
       path = strtok(NULL, "\t");
+      sprintf(cpath[id],"%s",path);
       fp[id].fd = open(path, O_WRONLY | O_CREAT, 0660);
       fp[id].flag = 1;
+      start[id] = get_dtime();
     } else if (ctl_tag == TRANSFER_FIN) {
       //printf("%d: size=%lu: %s\n", ctl_tag, size, data);
       while (fp_flag[id] != 0);
@@ -93,7 +99,13 @@ void RDMA_transfer_recv(void)
       fp[id].tag = -1;
       close(fp[id].fd);
       fp[id].flag = 0;
-      printf("ACT lib: Total write time= %f\n",  get_dtime() - s);
+      end[id] = get_dtime();
+      char log[1024];
+      sprintf(log, "ACT lib: Recv: FIN: %s: Elapse_time=%f \n", cpath[id], end[id] - start[id]);
+      write_log(log);
+      printf(log);
+      printf("ACT lib: Recv: FIN: Time stamp= %f\n",  get_dtime() - s);
+      RDMA_show_buffer();
     } else {
       id = get_index(ctl_tag);
       while (fp_flag[id] != 0);
@@ -137,11 +149,11 @@ void *writer(void *args)
   ws = get_dtime();
   write(fd, data, size);
   we = get_dtime();
-  printf("ACT lib: %d : write time = %f secs, write size= %lu MB , throughput= %f MB/s\n", fd, we - ws, size/1000000, size/(we - ws)/1000000.0);
+  printf("ACT lib: %d : write time = %f secs, write size= %f MB , throughput= %f MB/s\n", fd, we - ws, size/1000000.0, size/(we - ws)/1000000.0);
   //  printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
   fp_flag[id] = 0;
   free(data);
-  return;
+  return NULL;
 }
 
 

@@ -25,7 +25,7 @@ struct file_buffer {
 };
 
 struct RDMA_communicator rdma_comm;
-struct RDMA_param rdma_param = {"192.168.116.120"};
+struct RDMA_param rdma_param = {"192.168.117.44"};
 
 /*
 int main(int argc, char **argv)
@@ -50,6 +50,19 @@ int main(int argc, char **argv)
 
 int RDMA_transfer_init(void) 
 {
+  char *ip;
+  char *prefix;
+  char tfnfile[1024];
+  int fd;
+  char tfn[16];
+  /*TODO: remove hard cored arg*/
+  ip = get_ip_addr("ib0");
+  prefix = getenv("SCR_PREFIX");
+  sprintf(tfnfile,"%s/transfer/%s", prefix, ip);
+  fd = open(tfnfile, O_RDONLY);
+  read(fd, tfn, 16);
+  close(fd);
+  rdma_param.host = tfn;
   RDMA_Active_Init(&rdma_comm, &rdma_param);
   return 0;
 }
@@ -74,9 +87,10 @@ int RDMA_file_transfer(char* src, char* dst, int buf_size, int count)
     flags[i % count] = 1;
   }
 
+  fprintf(stderr, "ACT lib: SEND: src=%s dst=%s \n", src, dst);
   /*send init*/
   tag=get_tag();
-  sprintf(ctl_msg, "%d\t%s", tag, dst);
+  sprintf(ctl_msg, "%d\t%s\0\t", tag, dst);
   //printf(ctl_msg);
   ctl_msg_size =  strlen(ctl_msg);
   RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_INIT, &rdma_comm);
@@ -148,18 +162,6 @@ int TEST_RDMA_transfer (char* host, char* src, char* dst)
   return 0;
 }
 
-char* get_ip_addr (char* interface) {
-  char *ip;
-  int fd;
-  struct ifreq ifr;
-  fd = socket(AF_INET, SOCK_STREAM, 0);
-  ifr.ifr_addr.sa_family = AF_INET;
-  strncpy(ifr.ifr_name, interface, IFNAMSIZ-1);
-  ioctl(fd, SIOCGIFADDR, &ifr);
-  printf("%s\n", inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
-  ip = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
-  return ip;
-}
 
 int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_communicator *comm) 
 {
@@ -208,9 +210,6 @@ int RDMA_transfer(char* src, char* dst, int buf_size, int count, struct RDMA_com
     RDMA_Wait (&flags[fbuf_index]);
 
     fbuf_index = (fbuf_index + 1) % count;
-
-
-
   } while (read_size > 0);
   /*---------*/
 
@@ -229,6 +228,7 @@ int get_tag(void)
   char *ip;
   int tag = 0;
   int i;
+  /*TODO: Remove hard cored arg*/
   ip = get_ip_addr("ib0");
   /*use last three ip octet for the message tag.
     Fisrt octet is passed.

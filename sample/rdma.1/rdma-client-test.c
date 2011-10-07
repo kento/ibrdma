@@ -13,7 +13,7 @@
 
 
 int get_tag(void);
-char* get_ip_addr (char* interface);
+//char* get_ip_addr (char* interface);
 
 int main(int argc, char **argv)
 {
@@ -82,6 +82,7 @@ int get_tag(void)
   return tag;
 }
 
+/*
 char* get_ip_addr (char* interface)
 {
   char *ip;
@@ -94,7 +95,7 @@ char* get_ip_addr (char* interface)
   printf("%s\n", inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
   ip = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
   return ip;
-}
+  }*/
 
 
 

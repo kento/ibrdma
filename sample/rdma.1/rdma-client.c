@@ -218,7 +218,7 @@ static void* poll_cq(struct poll_cq_args* args)
 	    e = get_dtime();
 	    free(args->msg);
 	    free(args);
-	    printf("RDMA lib: send time= %f secs, send size= %d MB, throughput = %f MB/s\n", e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
+	    printf("RDMA lib: send time= %f secs, send size= %lu MB, throughput = %f MB/s\n", e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
 	    return NULL;
           default:
             debug(printf("Unknown TYPE"), 1);

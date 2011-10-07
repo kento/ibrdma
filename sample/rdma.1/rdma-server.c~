@@ -1,3 +1,4 @@
+#include "common.h"
 #include "rdma-server.h"
 #include "buffer_table.h"
 #include "hashtable.h"
@@ -29,6 +30,7 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/) ;
 static struct context *s_ctx = NULL;
 static int connections = 0;
 pthread_t listen_thread;
+static int allocated_mr_size = 0;
 
 //pthread_t poll_thread[RDMA_THREAD_NUM_S];
 //int poll_thread_count = 0;
@@ -42,7 +44,7 @@ struct RDMA_buff {
   uint64_t buff_size;
   char *recv_base_addr;
   struct ibv_mr *mr;
-  //  uint64_t mr_size;
+  uint64_t mr_size;
   uint64_t recv_size;
 };
 
@@ -99,18 +101,34 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
   addr.sin_family = AF_INET;
   addr.sin_port   = htons(RDMA_PORT);
 
-  TEST_Z(comm->ec = rdma_create_event_channel());
-  TEST_NZ(rdma_create_id(comm->ec, &(comm->cm_id), NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_bind_addr(comm->cm_id, (struct sockaddr *)&addr));
-  TEST_NZ(rdma_listen(comm->cm_id, 10)); /* backlog=10 is arbitrary */
-  port = ntohs(rdma_get_src_port(comm->cm_id));
+  if (!(comm->ec = rdma_create_event_channel())) {
+    fprintf(stderr, "RDMA lib: ERROR: RDMA event channel creation failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
 
+  if (rdma_create_id(comm->ec, &(comm->cm_id), NULL, RDMA_PS_TCP)) {
+    fprintf(stderr, "RDMA lib: ERROR: RDMA ID creation failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+
+  if (rdma_bind_addr(comm->cm_id, (struct sockaddr *)&addr)) {
+    fprintf(stderr, "RDMA lib: ERROR: RDMA address binding failede @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+
+  /* TODO: Determine appropriate backlog value */ 
+  /*       backlog=10 is arbitrary */
+  if (rdma_listen(comm->cm_id, 10)) {
+    fprintf(stderr, "RDMA lib: ERROR: RDMA address binding failede @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  };
+
+  port = ntohs(rdma_get_src_port(comm->cm_id));
   debug(printf("listening on port %d ...\n", port), 1);
 
   while (1) {
 
     int rc =0;
-
     debug(printf("Waiting for cm_event... "),1);
     if ((rc = rdma_get_cm_event(comm->ec, &event))){
       debug(printf("get event failed : %d\n", rc), 1);
@@ -119,71 +137,11 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
     debug(printf("\"%s\"\n", event_type_str(event->event)), 1);
     switch (event->event){
     case RDMA_CM_EVENT_CONNECT_REQUEST:
-
-      //      printf("%lu/%lu/%lu\n",(uintptr_t) event->id, (uintptr_t) comm->cm_id, (uintptr_t)comm->cm_id->verbs);
-      //      struct rdma_cm_id *id = event->id;
-      //      struct rdma_conn_param   conn_param;
-      //      debug(printf("Accepting connection on id == %p (total connections %d)\n", id, ++connections), 1);
-      /*build_connection(id);*/
-      //      struct connection *conn;
-      //      struct ibv_qp_init_attr qp_attr;
-      //      printf("event->id->verbs: %lu\n", (uintptr_t)id->verbs);
-      /*build_context(id->verbs);*/
-      //      struct ibv_context *verbs = id->verbs;
-      //      if (s_ctx) {
-      //	if (s_ctx->ctx != verbs) {
-      //	  die("cannot handle events in more than one context.");
-      //	}
-      //	//return;
-      //      } else {
-      //	s_ctx = (struct context *)malloc(sizeof(struct context));
-      //	s_ctx->ctx = verbs;
-      //	TEST_Z(s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
-      //	TEST_Z(s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx));
-      //	TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 100, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
-      //	TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
-      //	TEST_NZ(pthread_create(&poll_thread[poll_thread_count], NULL, poll_cq, NULL));
-      //	poll_thread_count++;
-      //      }
-      //      /**/
-      //      /*build_qp_attr(&qp_attr);*/
-      //      struct ibv_qp_init_attr *qp_attr1 = &qp_attr;
-      //      
-      //      memset(qp_attr1, 0, sizeof(*qp_attr1));
-      //      
-      //      qp_attr1->send_cq = s_ctx->cq;
-      //      qp_attr1->recv_cq = s_ctx->cq;
-      //      qp_attr1->qp_type = IBV_QPT_RC;
-      //      
-      //      qp_attr1->cap.max_send_wr = 10;
-      //      qp_attr1->cap.max_recv_wr = 10;
-      //      qp_attr1->cap.max_send_sge = 1;
-      //      qp_attr1->cap.max_recv_sge = 1;
-      //      /**/
-      //      TEST_NZ(rdma_create_qp(id, s_ctx->pd, &qp_attr));
-      //      id->context = conn = (struct connection *)malloc(sizeof(struct connection));
-      //      conn->id = id;
-      //      conn->qp = id->qp;
-      //      conn->connected = 0;
-      //            register_memory(conn);
-            /**/
-      /*build_params(&conn_param);*/
-      //      struct rdma_conn_param *params = &conn_param;
-      //      memset(params, 0, sizeof(*params));
-      //      params->initiator_depth = params->responder_resources = 1;
-      //      params->rnr_retry_count = 7; /* infinite retry */
-      /**/
-      //      TEST_NZ(rdma_accept(id, &conn_param));
-
-
-      //      post_receives(id->context);
-
-
       accept_connection(event->id);
-      //	    if (1 > 0) break;
       break;
     case RDMA_CM_EVENT_ESTABLISHED:
       debug(printf("Establish: host_id=%lu\n", (uintptr_t)event->id), 2);
+      write_log("Establish\n");
       break;
     case RDMA_CM_EVENT_DISCONNECTED:
       debug(printf("Disconnect from id : %p \n", event->id), 1);
@@ -208,37 +166,44 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
   struct control_msg cmsg;
   struct RDMA_message *rdma_msg;
 
-  //  char* buff = NULL;
-  //uint64_t buff_size;  
   int tag;
 
   uint64_t mr_size;
-  //  char* recv_base_addr;
-  //  uint64_t recv_size;
-   uint64_t conn_id;
+  //  uint64_t conn_id;
 
   struct hashtable ht;
   struct RDMA_buff *rdma_buff;
-  create_ht(&ht, RDMA_CLIENT_NUM_S);
 
-  //create_ht(&ht, 1000);
+  create_ht(&ht, RDMA_CLIENT_NUM_S);
   
   while (1) {
-    TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
+    
+    if ((ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx))) {
+      fprintf(stderr, "RDMA lib: ERROR: ibv get cq event failed @ %s:%d\n", __FILE__, __LINE__);
+      exit(1);
+    }
+
     ibv_ack_cq_events(cq, 1);
-    TEST_NZ(ibv_req_notify_cq(cq, 0));
+
+    if ((ibv_req_notify_cq(cq, 0))) {
+      fprintf(stderr, "RDMA lib: ERROR: ibv request notification failed @ %s:%d\n", __FILE__, __LINE__);
+      exit(1);
+    }
+
     while (ibv_poll_cq(cq, 1, &wc)) {
       conn = (struct connection *)(uintptr_t)wc.wr_id;
 
       if (wc.status != IBV_WC_SUCCESS) {
-	die("on_completion: status is not IBV_WC_SUCCESS.");
+	fprintf(stderr, "RDMA lib: ERROR: status is not IBV_WC_SUCCESS @ %s:%d\n", __FILE__, __LINE__);
+	exit(1);
       }
+
       if (wc.opcode == IBV_WC_RECV) {
 
 	switch (conn->recv_msg->type)
 	  {
 	  case MR_INIT:
-	    //	    debug(printf("Recieved: MR_INT: %lu: Type=%u, buff size=%lu\n", (uintptr_t)conn->id, conn->recv_msg->type, conn->recv_msg->data1.buff_size), 2);
+
 	    /*Allocat buffer for the client msg*/ 
 	    rdma_buff = (struct RDMA_buff *) malloc(sizeof(struct RDMA_buff));
 	    rdma_buff->buff = (char *)malloc(conn->recv_msg->data1.buff_size);
@@ -268,17 +233,29 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    //	    register_rdma_region(conn, recv_base_addr, conn->recv_msg->data1.mr_size);
 	    debug(fprintf(stderr,"rdma_buff:%p \n", rdma_buff), 1);
 	    if (rdma_buff->mr != NULL) {
-	      debug(fprintf(stderr,"Deregistering RDMA MR\n"), 1);
+	      debug(fprintf(stderr,"Deregistering RDMA MR: %lu\n", rdma_buff->mr_size), 1);
 	      ibv_dereg_mr(rdma_buff->mr);
-	    }  
-	    debug(fprintf(stderr, "Registering RDMA MR\n"), 1);
-	    TEST_Z(rdma_buff->mr = ibv_reg_mr(
+	      allocated_mr_size = allocated_mr_size - rdma_buff->mr_size;
+	    } else {
+	      debug(fprintf(stderr,"Not deregistering RDMA MR: %lu\n", rdma_buff->mr_size), 1);
+	    }
+	    debug(fprintf(stderr, "Registering RDMA MR: %lu\n", rdma_buff->mr_size), 1);
+	    if (!(rdma_buff->mr = ibv_reg_mr(
 					 s_ctx->pd,
 					 rdma_buff->recv_base_addr,
 					 mr_size,
 					 IBV_ACCESS_LOCAL_WRITE
-					 | IBV_ACCESS_REMOTE_READ
-					 | IBV_ACCESS_REMOTE_WRITE));
+					 )
+		  )
+		)
+	      {
+		fprintf(stderr, "RDMA lib: ERROR: memory region registration failed (allocated_mr_size: %d bytes) @ %s:%d\n", allocated_mr_size, __FILE__, __LINE__);
+		exit(1);
+	      }
+	    rdma_buff->mr_size = mr_size;
+	    allocated_mr_size += mr_size;
+	    //	    fprintf(stderr, "(allocated_mr_size: %d bytes) @ %s:%d\n", allocated_mr_size, __FILE__, __LINE__);
+
 	    debug(fprintf(stderr,"Preparing RDMA transfer\n"), 1);
 	    /* !! memset must be called !!*/
 	    memset(&wr, 0, sizeof(wr));
@@ -299,7 +276,10 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    sge.lkey = rdma_buff->mr->lkey;
 	    debug(printf("Preparing RDMA transfer: Done\n"), 1);
 
-	    TEST_NZ(ibv_post_send(conn->qp, &wr, &bad_wr));
+	    if ((ibv_post_send(conn->qp, &wr, &bad_wr))) {
+	      fprintf(stderr, "RDMA lib: ERROR: post send failed @ %s:%d", __FILE__, __LINE__);
+	      exit(1);
+	    }
 	    debug(printf("Post send: RDMA: id=%lu\n", wr.wr_id), 1);
 	    //	    printf("d\n");
 	    rdma_buff->recv_base_addr += mr_size;
@@ -314,6 +294,7 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    debug(printf("RDMA transfer finished: Tag=%d\n",tag), 1);
 	    cmsg.type=MR_FIN_ACK;
 	    send_control_msg(conn, &cmsg);
+
 	    /*Post reveived data*/
 	    rdma_buff = get_ht(&ht, (uintptr_t)wc.slid);
 	    rdma_msg = (struct RDMA_message*) malloc(sizeof(struct RDMA_message));
@@ -321,6 +302,12 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    rdma_msg->size = rdma_buff->buff_size;
 	    rdma_msg->tag = tag;
 	    append_rdma_msg(wc.slid, rdma_msg);
+	    /*Deregistering*/
+	    debug(fprintf(stderr,"Deregistering RDMA MR: %lu\n", rdma_buff->mr_size), 1);
+	    ibv_dereg_mr(rdma_buff->mr);
+	    allocated_mr_size = allocated_mr_size - rdma_buff->mr_size;
+	    //	    fprintf(stderr, "(allocated_mr_size: %d bytes) @ %s:%d\n", allocated_mr_size, __FILE__, __LINE__);
+	    free(rdma_buff);
 	    //	   del_ht(&ht, (uintptr_t)wc.slid);
 	    //	    show_ht(&ht);
 	    //	    printf("%s\n", rdma_msg->buff);

@@ -138,7 +138,7 @@ static int get_index(struct hashtable *ht, unsigned int id)
     index = (index + 1) % ht->len;
     i++;
   }
-  printf("Error:Hashtable: Enough size of hashtable needed\n");
+  printf("Error: Hashtable(size: %d): Enough size of hashtable needed\n", ht->len);
   exit(0);
 }
 

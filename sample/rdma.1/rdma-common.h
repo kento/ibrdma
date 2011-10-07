@@ -18,11 +18,11 @@
 #endif
 
 #ifndef RDMA_CLIENT_NUM_S
-#define RDMA_CLIENT_NUM_S (12)
+#define RDMA_CLIENT_NUM_S (36)
 #endif
 
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C ((6*1000*1000)/RDMA_CLIENT_NUM_S)
+#define RDMA_BUF_SIZE_C ((4*1000*1000)/RDMA_CLIENT_NUM_S)
 #endif
 
 
@@ -115,6 +115,9 @@ void die(const char *reason);
 const char *event_type_str(enum rdma_cm_event_type event);
 int send_control_msg (struct connection *conn, struct control_msg *cmsg);
 void post_receives(struct connection *conn);
+
+
+
 
 
 
