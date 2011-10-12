@@ -174,7 +174,7 @@ static int get_index(uint64_t id)
     index = (index + 1) % len;
     i++;
   }
-  printf("Error:Hashtable: Enough size of hashtable needed\n");
+  printf("Error: Hashtable: Enough size of hashtable needed\n");
   exit(0);
 }
 
@@ -239,6 +239,9 @@ void* get_current(void)
   free(tuples[current_idx].head);
   tuples[current_idx].head = nd;
   tuples[current_idx].get_count++;
+
+  /*To write ckpt files in parallel, we try to get different file's chunk*/
+  current_idx = (current_idx + 1) % len; 
 
   return data;
 }

@@ -22,12 +22,12 @@
 #endif
 
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C ((4*1000*1000)/RDMA_CLIENT_NUM_S)
+#define RDMA_BUF_SIZE_C ((6*1000*1000)/RDMA_CLIENT_NUM_S)
 #endif
 
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN RDMA_CLIENT_NUM_S
+#define HASH_TABLE_LEN (36)
 #endif
 
 #ifndef DEBUG_LEVEL

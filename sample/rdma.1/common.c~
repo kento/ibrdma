@@ -65,7 +65,7 @@ void write_log(char* log)
   ip = get_ip_addr("ib0");
   prefix = getenv("SCR_PREFIX");
   sprintf(logfile,"%s/transfer/%s.log", prefix, ip);
-  fd = open(logfile,  O_WRONLY | O_CREAT, 0660);
+  fd = open(logfile,  O_WRONLY |O_APPEND| O_CREAT, 0660);
   write(fd, log, strlen(log));
   close(fd);
 }

@@ -18,7 +18,7 @@
 #endif
 
 #ifndef RDMA_CLIENT_NUM_S
-#define RDMA_CLIENT_NUM_S (12)
+#define RDMA_CLIENT_NUM_S (36)
 #endif
 
 #ifndef RDMA_BUF_SIZE_C
@@ -27,7 +27,7 @@
 
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN RDMA_CLIENT_NUM_S
+#define HASH_TABLE_LEN (32)
 #endif
 
 #ifndef DEBUG_LEVEL
@@ -115,6 +115,9 @@ void die(const char *reason);
 const char *event_type_str(enum rdma_cm_event_type event);
 int send_control_msg (struct connection *conn, struct control_msg *cmsg);
 void post_receives(struct connection *conn);
+
+
+
 
 
 

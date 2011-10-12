@@ -67,6 +67,8 @@ int RDMA_transfer_init(void)
   return 0;
 }
 
+int file_send_count = 1;
+
 int RDMA_file_transfer(char* src, char* dst, int buf_size, int count) 
 {
   int i;
@@ -87,13 +89,17 @@ int RDMA_file_transfer(char* src, char* dst, int buf_size, int count)
     flags[i % count] = 1;
   }
 
-  fprintf(stderr, "ACT lib: SEND: src=%s dst=%s \n", src, dst);
+  fprintf(stderr, "ACT lib: SEND: %d: src=%s dst=%s \n", file_send_count, src, dst);
+
   /*send init*/
   tag=get_tag();
-  sprintf(ctl_msg, "%d\t%s\0\t", tag, dst);
+  sprintf(ctl_msg, "%d\t%s\t", tag, dst);
+  fprintf(stderr, "ACT lib: SEND: %d: ctlmsg=%s\n", file_send_count,  ctl_msg);
+  file_send_count++;
   //printf(ctl_msg);
   ctl_msg_size =  strlen(ctl_msg);
   RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_INIT, &rdma_comm);
+  fprintf(stderr, "ACT lib: SEND: %d: DONE ctlmsg=%s\n", file_send_count,  ctl_msg);
   /*---------*/
 
   /*send file*/
@@ -103,16 +109,21 @@ int RDMA_file_transfer(char* src, char* dst, int buf_size, int count)
 
   do {
     //    printf("sent fbuf_index=%d\n", fbuf_index);
-
+    fprintf(stderr, "ACT lib: SEND: Befor RDNA Isendr call: ctlmsg=%s\n", ctl_msg);
     RDMA_Isendr(fbufs[fbuf_index].buf, read_size, tag, &flags[fbuf_index], &rdma_comm);
+    fprintf(stderr, "ACT lib: SEND: After RDNA Isendr call: ctlmsg=%s\n", ctl_msg);
     //flags[fbuf_index] = 1;
     //    printf("... sent done\n");
     //    printf("read fbuf_index=%d\n", fbuf_index);
     s = get_dtime();
     read_size = buf_read(fd, fbufs[(fbuf_index + 1) % count].buf, buf_size);
     e = get_dtime();
-    printf("ACT lib: read time = %fsecs, read size = %d MB, throughput = %f MB/s\n", e - s, read_size/1000000, read_size/(e - s)/1000000.0);
+    fprintf(stderr, "ACT lib: SEND: read time = %f secs, read size = %f MB, throughput = %f MB/s: ctlmsg=%s\n", e - s, read_size/1000000.0, read_size/(e - s)/1000000.0, ctl_msg);
+    fprintf(stderr, "ACT lib: SEND: Before wait: ctlmsg=%s\n",  ctl_msg);
     RDMA_Wait (&flags[fbuf_index]);
+    fprintf(stderr, "ACT lib: SEND: After wait: ctlmsg=%s\n",  ctl_msg);
+
+
 
     fbuf_index = (fbuf_index + 1) % count;
 
@@ -264,12 +275,12 @@ ssize_t buf_read(int fd, void* buf, size_t size)
 	retries--;
 	if (retries) {
 	  /* print an error and try again */
-	  printf("Error reading: read(%d, %s, %ld)   @ %s:%d",
+	  printf("Error reading: read(%d, %s, %ld)   @ %s:%d\n",
 		  fd, (char*) buf + n, size - n,  __FILE__, __LINE__
 		  );
 	} else {
 	  /* too many failed retries, give up */
-	  printf("Giving up read: read(%d, %s, %ld)  @ %s:%d",
+	  printf("Giving up read: read(%d, %s, %ld)  @ %s:%d\n",
 		  fd, (char*) buf + n, size - n, __FILE__, __LINE__
 		  );
 	  exit(1);

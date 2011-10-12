@@ -184,7 +184,7 @@ static int hash(uint64_t id)
   unsigned int a    = 63689;
   unsigned int hash = 0;
   unsigned int i    = 0;
-  unsigned int l    = 10;
+  unsigned int l    = 3;
   for(i = 0; i < l; i++)
     {
       hash = hash * a + id;

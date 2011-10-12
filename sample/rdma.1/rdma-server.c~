@@ -118,7 +118,7 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
 
   /* TODO: Determine appropriate backlog value */ 
   /*       backlog=10 is arbitrary */
-  if (rdma_listen(comm->cm_id, 10)) {
+  if (rdma_listen(comm->cm_id, 100)) {
     fprintf(stderr, "RDMA lib: ERROR: RDMA address binding failede @ %s:%d", __FILE__, __LINE__);
     exit(1);
   };
@@ -339,7 +339,7 @@ static void append_rdma_msg(uint64_t slid, struct RDMA_message *msg)
 }
 
 void RDMA_show_buffer(void)
- {
+{
   show();
 };
 
@@ -429,10 +429,10 @@ static void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
   qp_attr->recv_cq = s_ctx->cq;
   qp_attr->qp_type = IBV_QPT_RC;
 
-  qp_attr->cap.max_send_wr = 10;
-  qp_attr->cap.max_recv_wr = 10;
-  qp_attr->cap.max_send_sge = 1;
-  qp_attr->cap.max_recv_sge = 1;
+  qp_attr->cap.max_send_wr = 50; //10
+  qp_attr->cap.max_recv_wr = 50; //10
+  qp_attr->cap.max_send_sge = 5; //5
+  qp_attr->cap.max_recv_sge = 5;//5
 }
 
 void register_memory(struct connection *conn)
@@ -464,7 +464,7 @@ void register_memory(struct connection *conn)
   //    IBV_ACCESS_LOCAL_WRITE | IBV_ACCESS_REMOTE_READ));
 
   //    IBV_ACCESS_LOCAL_WRITE | ((s_mode == M_WRITE) ? IBV_ACCESS_REMOTE_WRITE : IBV_ACCESS_REMOTE_READ)));
-
+  
   /*
     TEST_Z(conn->rdma_local_mr = ibv_reg_mr(
     s_ctx->pd, 

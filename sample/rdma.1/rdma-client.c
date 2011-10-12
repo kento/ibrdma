@@ -26,7 +26,9 @@ static struct context *s_ctx = NULL;
 struct ibv_mr *rdma_msg_mr[RDMA_BUF_NUM_C];
 
 int RDMA_Wait (int *flag) {
-  while (*flag == 0) {sleep(1); };
+  while (*flag == 0) {
+    sleep(1);
+  };
   return 0;
 }
 
@@ -53,7 +55,11 @@ int RDMA_Isendr(char *buff, uint64_t size, int tag, int *flag, struct RDMA_commu
   msg->size = size;
   msg->tag  = tag;
 
-  TEST_NZ(pthread_create(&s_ctx->cq_poller_thread, NULL,(void *)poll_cq, args));
+  if (pthread_create(&s_ctx->cq_poller_thread, NULL,(void *)poll_cq, args)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: pthread create failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+
   return 0;
 }
 
@@ -71,21 +77,53 @@ int RDMA_Active_Init(struct RDMA_communicator *comm, struct RDMA_param *param)
 
   sprintf(port, "%d", RDMA_PORT);
 
-  TEST_NZ(getaddrinfo(param->host, port, NULL, &addr));
+  if(getaddrinfo(param->host, port, NULL, &addr)){
+    fprintf(stderr, "RDMA lib: SEND: ERROR: getaddrinfo failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
 
-  TEST_Z(comm->ec = rdma_create_event_channel());
+  if(!(comm->ec = rdma_create_event_channel())){
+    fprintf(stderr, "RDMA lib: SEND: ERROR: rdma event channel create failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
 
-  TEST_NZ(rdma_create_id(comm->ec, &(comm->cm_id), NULL, RDMA_PS_TCP));
-  TEST_NZ(rdma_resolve_addr(comm->cm_id, NULL, addr->ai_addr, TIMEOUT_IN_MS));
-  TEST_NZ(wait_for_event(comm->ec, RDMA_CM_EVENT_ADDR_RESOLVED));
+  if (rdma_create_id(comm->ec, &(comm->cm_id), NULL, RDMA_PS_TCP)){
+    fprintf(stderr, "RDMA lib: SEND: ERROR: rdma id create failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+  if (rdma_resolve_addr(comm->cm_id, NULL, addr->ai_addr, TIMEOUT_IN_MS)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: rdma address resolve failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+
+  if (wait_for_event(comm->ec, RDMA_CM_EVENT_ADDR_RESOLVED)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: event wait failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
   freeaddrinfo(addr);
 
   build_connection(comm->cm_id);
-  TEST_NZ(rdma_resolve_route(comm->cm_id, TIMEOUT_IN_MS));
-  TEST_NZ(wait_for_event(comm->ec, RDMA_CM_EVENT_ROUTE_RESOLVED));
+
+  if (rdma_resolve_route(comm->cm_id, TIMEOUT_IN_MS)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: rdma route resolve failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+  if (wait_for_event(comm->ec, RDMA_CM_EVENT_ROUTE_RESOLVED)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: event wait failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+
   build_params(&cm_params);
-  TEST_NZ(rdma_connect(comm->cm_id, &cm_params));
-  TEST_NZ(wait_for_event(comm->ec, RDMA_CM_EVENT_ESTABLISHED));
+
+  if (rdma_connect(comm->cm_id, &cm_params)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: rdma connection failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
+
+  if (wait_for_event(comm->ec, RDMA_CM_EVENT_ESTABLISHED)) {
+    fprintf(stderr, "RDMA lib: SEND: ERROR: event wait failed @ %s:%d", __FILE__, __LINE__);
+    exit(1);
+  }
   //  on_connect(cm_id->context);
   int i ;
   for (i = 0; i < RDMA_BUF_NUM_C; i++){ rdma_msg_mr[i] = NULL;}
@@ -128,12 +166,19 @@ static void* poll_cq(struct poll_cq_args* args)
   cmsg.type=MR_INIT;
   cmsg.data1.buff_size=buff_size;
   send_control_msg(comm->cm_id->context, &cmsg);
+  fprintf(stderr, "RDMA lib: SEND: INIT: tag=%d\n", tag);
   post_receives(comm->cm_id->context);
   s = get_dtime();
   while (1) {
-    TEST_NZ(ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx));
+    if (ibv_get_cq_event(s_ctx->comp_channel, &cq, &ctx)) {
+      fprintf(stderr, "RDMA lib: SEND: ERROR: get cq event  failed @ %s:%d", __FILE__, __LINE__);
+      exit(1);
+    }
     ibv_ack_cq_events(cq, 1);
-    TEST_NZ(ibv_req_notify_cq(cq, 0));
+    if (ibv_req_notify_cq(cq, 0)) {
+      fprintf(stderr, "RDMA lib: SEND: ERROR: request notification failed @ %s:%d", __FILE__, __LINE__);
+      exit(1);
+    }
 
     while (ibv_poll_cq(cq, 1, &wc)){
       conn = (struct connection *)(uintptr_t)wc.wr_id;
@@ -153,7 +198,8 @@ static void* poll_cq(struct poll_cq_args* args)
 		cmsg.type=MR_FIN;
 		cmsg.data1.tag=tag;
 		send_control_msg(conn, &cmsg);
-		break;
+		//		fprintf(stderr,"Yahoooooooooo !!\n");
+		post_receives(conn);
 	      } else {
 		/*not sent all data yet*/
 		if (sent_size + RDMA_BUF_SIZE_C > buff_size) {
@@ -174,6 +220,7 @@ static void* poll_cq(struct poll_cq_args* args)
 		memcpy(&cmsg.data.mr, rdma_msg_mr[mr_index], sizeof(struct ibv_mr));
 		//	      cmsg.data.mr = conn->rdma_msg_mr;
 		send_control_msg(conn, &cmsg);
+		//		fprintf(stderr, "RDMA lib: SEND: CHUNK: tag=%d\n", tag);
 		post_receives(conn);
 	      }
 	    }
@@ -207,6 +254,7 @@ static void* poll_cq(struct poll_cq_args* args)
 	      //	      cmsg.data.mr = conn->rdma_msg_mr;
 	    }
 	    send_control_msg(conn, &cmsg);
+	    //	    fprintf(stderr, "RDMA lib: SEND: CHUNK2: tag=%d, slid=%lu\n", tag, (uintptr_t)wc.slid);
 	    post_receives(conn);
             break;
           case MR_FIN_ACK:
@@ -218,15 +266,16 @@ static void* poll_cq(struct poll_cq_args* args)
 	    e = get_dtime();
 	    free(args->msg);
 	    free(args);
+	    //	    fprintf(stderr, "RDMA lib: SEND: FIN_ACK: tag=%d\n", tag);
 	    printf("RDMA lib: send time= %f secs, send size= %lu MB, throughput = %f MB/s\n", e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
 	    return NULL;
           default:
             debug(printf("Unknown TYPE"), 1);
 	    return NULL;
           }
-
       } else if (wc.opcode == IBV_WC_SEND) {
-	  debug(printf("Sent: TYPE=%d\n", conn->send_msg->type),1);
+	//	fprintf(stderr, "RDMA lib: SENT: DONE: tag=%d\n", tag);
+	debug(printf("Sent: TYPE=%d\n", conn->send_msg->type),1);
       } else {
 	  die("unknow opecode.");
       }
@@ -321,7 +370,7 @@ static void build_context(struct ibv_context *verbs)
 
   TEST_Z(s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
   TEST_Z(s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx));
-  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 10, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
+  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 100, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
   TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
 
   //  TEST_NZ(pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL));
@@ -343,10 +392,10 @@ static void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
   qp_attr->recv_cq = s_ctx->cq;
   qp_attr->qp_type = IBV_QPT_RC;
 
-  qp_attr->cap.max_send_wr = 10;
-  qp_attr->cap.max_recv_wr = 10;
-  qp_attr->cap.max_send_sge = 1;
-  qp_attr->cap.max_recv_sge = 1;
+  qp_attr->cap.max_send_wr = 100;// 10
+  qp_attr->cap.max_recv_wr = 100;//10
+  qp_attr->cap.max_send_sge = 10;//1
+  qp_attr->cap.max_recv_sge = 10;//1
 }
 
 

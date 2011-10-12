@@ -55,6 +55,8 @@ int main(int argc, char **argv) {
 }
 
 
+int count = 1;
+
 void RDMA_transfer_recv(void)
 {
   struct RDMA_communicator comm;
@@ -65,7 +67,7 @@ void RDMA_transfer_recv(void)
   int file_tag;
   int id;
   int i;
-
+  char log[1024];
 
   RDMA_Passive_Init(&comm);
 
@@ -83,10 +85,13 @@ void RDMA_transfer_recv(void)
       a = 1;
     }
     if (ctl_tag == TRANSFER_INIT) {
+      sprintf(log, "ACT lib: RECV: INI: %s\n", data);
+      printf(log);
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
       fp[id].tag = file_tag;
       path = strtok(NULL, "\t");
+      //      write_log(log);
       sprintf(cpath[id],"%s",path);
       fp[id].fd = open(path, O_WRONLY | O_CREAT, 0660);
       fp[id].flag = 1;
@@ -100,9 +105,10 @@ void RDMA_transfer_recv(void)
       close(fp[id].fd);
       fp[id].flag = 0;
       end[id] = get_dtime();
-      char log[1024];
-      sprintf(log, "ACT lib: Recv: FIN: %s: Elapse_time=%f \n", cpath[id], end[id] - start[id]);
-      write_log(log);
+
+      sprintf(log, "ACT lib: RECV: FIN: %s: count=%d  Elapse_time=%f \n", cpath[id], count, end[id] - start[id]);
+      count++;
+      //write_log(log);
       printf(log);
       printf("ACT lib: Recv: FIN: Time stamp= %f\n",  get_dtime() - s);
       RDMA_show_buffer();
@@ -149,7 +155,7 @@ void *writer(void *args)
   ws = get_dtime();
   write(fd, data, size);
   we = get_dtime();
-  printf("ACT lib: %d : write time = %f secs, write size= %f MB , throughput= %f MB/s\n", fd, we - ws, size/1000000.0, size/(we - ws)/1000000.0);
+  //printf("ACT lib: RECV: CNK: %d : write time = %f secs, write size= %f MB , throughput= %f MB/s\n", fd, we - ws, size/1000000.0, size/(we - ws)/1000000.0);
   //  printf("%d:id %d: fd %d: size=%lu DONE\n", ctl_tag, id, (int)fp[id].fd, size);
   fp_flag[id] = 0;
   free(data);
