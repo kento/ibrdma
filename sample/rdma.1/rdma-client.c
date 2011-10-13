@@ -159,7 +159,7 @@ static void* poll_cq(struct poll_cq_args* args)
   
   comm = args->comm;
   buff = args->msg->buff;
-  send_base_addr = args->msg->buff;;
+  send_base_addr = args->msg->buff;
   buff_size= args->msg->size;
   tag= args->msg->tag;
 
@@ -184,13 +184,14 @@ static void* poll_cq(struct poll_cq_args* args)
       conn = (struct connection *)(uintptr_t)wc.wr_id;
       debug(printf("Control MSG from: %lu\n", (uintptr_t)conn->id), 1);
       if (wc.status != IBV_WC_SUCCESS) {
-        die("on_completion: status is not IBV_WC_SUCCESS.");
+        die("RDMA lib: SEND: ERROR: on_completion: status is not IBV_WC_SUCCESS.");
       }
 
       if (wc.opcode == IBV_WC_RECV) {
         switch (conn->recv_msg->type)
           {
           case MR_INIT_ACK:
+	    debug(printf("Recived: Type=%d\n",  conn->recv_msg->type), 1);
 	    for (mr_index = 0; mr_index < RDMA_BUF_NUM_C; mr_index++) {
 	      debug(printf("Recived: Type=%d\n",  conn->recv_msg->type), 1);
 	      if (sent_size == buff_size) {
@@ -200,7 +201,9 @@ static void* poll_cq(struct poll_cq_args* args)
 		send_control_msg(conn, &cmsg);
 		//		fprintf(stderr,"Yahoooooooooo !!\n");
 		post_receives(conn);
+		debug(printf("RDMA lib: SEND: Recieved MR_INIT_ACK: for tag=%d\n",  tag), 2);
 	      } else {
+		debug(printf("RDMA lib: SEND: Recieved MR_INIT_ACK: for tag=%d\n",  tag), 2);
 		/*not sent all data yet*/
 		if (sent_size + RDMA_BUF_SIZE_C > buff_size) {
 		  mr_size = buff_size - sent_size;
@@ -226,13 +229,15 @@ static void* poll_cq(struct poll_cq_args* args)
 	    }
             break;
           case MR_CHUNK_ACK:
-            debug(printf("Recived: Type=%d\n",  conn->recv_msg->type), 1);
+
 	    if (sent_size == buff_size) {
               /*sent all data*/
 	      cmsg.type=MR_FIN;
 	      cmsg.data1.tag=tag;
+	      debug(printf("RDMA lib: SEND: Recieved MR_CHUNK_ACK => FIN: for tag=%d\n",  tag), 2);
 	    } else {
               /*not sent all data yet*/
+	      debug(printf("RDMA lib: SEND: Recieved MR_CHUNK_ACK: for tag=%d\n",  tag), 2);
 	      if (sent_size + RDMA_BUF_SIZE_C > buff_size) {
 		mr_size = buff_size - sent_size;
 	      } else {
@@ -275,7 +280,7 @@ static void* poll_cq(struct poll_cq_args* args)
           }
       } else if (wc.opcode == IBV_WC_SEND) {
 	//	fprintf(stderr, "RDMA lib: SENT: DONE: tag=%d\n", tag);
-	debug(printf("Sent: TYPE=%d\n", conn->send_msg->type),1);
+	debug(printf("RDMA lib: SEND: Sent: TYPE=%d, tag=%d\n", conn->send_msg->type, tag),1);
       } else {
 	  die("unknow opecode.");
       }
@@ -370,7 +375,7 @@ static void build_context(struct ibv_context *verbs)
 
   TEST_Z(s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
   TEST_Z(s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx));
-  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 100, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
+  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 100, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary/ comp_vector:0 */
   TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
 
   //  TEST_NZ(pthread_create(&s_ctx->cq_poller_thread, NULL, poll_cq, NULL));
@@ -380,8 +385,10 @@ static void build_params(struct rdma_conn_param *params)
 {
   memset(params, 0, sizeof(*params));
 
-  params->initiator_depth = params->responder_resources = 1;
-  params->rnr_retry_count = 7; /* infinite retry */
+  params->initiator_depth = 1;
+  params->responder_resources = 1;
+  params->rnr_retry_count = 7; /*7= infinite retry */
+  params->retry_count = 7;
 }
 
 static void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
@@ -396,6 +403,8 @@ static void build_qp_attr(struct ibv_qp_init_attr *qp_attr)
   qp_attr->cap.max_recv_wr = 100;//10
   qp_attr->cap.max_send_sge = 10;//1
   qp_attr->cap.max_recv_sge = 10;//1
+
+
 }
 
 

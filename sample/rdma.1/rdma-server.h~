@@ -1,3 +1,8 @@
+#include "rdma-common.h"
+
+
+int alloc_size = 0;
+
 
 
 int RDMA_Passive_Init(struct RDMA_communicator *comm);

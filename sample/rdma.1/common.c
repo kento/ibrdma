@@ -64,10 +64,10 @@ void write_log(char* log)
 
   ip = get_ip_addr("ib0");
   prefix = getenv("SCR_PREFIX");
-  sprintf(logfile,"%s/transfer/%s.log", prefix, ip);
-  //  sprintf(logfile,"~/log", prefix, ip);
+  //sprintf(logfile,"%s/transfer/%s.log", prefix, ip);
+
   //sprintf(logfile,"/g/g90/sato5/log");
-  fd = open(logfile,  O_WRONLY |O_APPEND| O_CREAT, 0660);
+  fd = open("~/log",  O_WRONLY |O_APPEND| O_CREAT, 0660);
   write(fd, log, strlen(log));
   close(fd);
 }

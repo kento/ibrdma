@@ -99,7 +99,7 @@ int RDMA_file_transfer(char* src, char* dst, int buf_size, int count)
   //printf(ctl_msg);
   ctl_msg_size =  strlen(ctl_msg);
   RDMA_Sendr(ctl_msg, ctl_msg_size, TRANSFER_INIT, &rdma_comm);
-  fprintf(stderr, "ACT lib: SEND: %d: DONE ctlmsg=%s\n", file_send_count,  ctl_msg);
+  //  fprintf(stderr, "ACT lib: SEND: %d: DONE ctlmsg=%s\n", file_send_count,  ctl_msg);
   /*---------*/
 
   /*send file*/
@@ -109,26 +109,19 @@ int RDMA_file_transfer(char* src, char* dst, int buf_size, int count)
 
   do {
     //    printf("sent fbuf_index=%d\n", fbuf_index);
-    fprintf(stderr, "ACT lib: SEND: Befor RDNA Isendr call: ctlmsg=%s\n", ctl_msg);
+    //    fprintf(stderr, "ACT lib: SEND: Befor RDNA Isendr call: ctlmsg=%s\n", ctl_msg);
     RDMA_Isendr(fbufs[fbuf_index].buf, read_size, tag, &flags[fbuf_index], &rdma_comm);
     fprintf(stderr, "ACT lib: SEND: After RDNA Isendr call: ctlmsg=%s\n", ctl_msg);
     //flags[fbuf_index] = 1;
     //    printf("... sent done\n");
-    //    printf("read fbuf_index=%d\n", fbuf_index);
     s = get_dtime();
     read_size = buf_read(fd, fbufs[(fbuf_index + 1) % count].buf, buf_size);
     e = get_dtime();
-    fprintf(stderr, "ACT lib: SEND: read time = %f secs, read size = %f MB, throughput = %f MB/s: ctlmsg=%s\n", e - s, read_size/1000000.0, read_size/(e - s)/1000000.0, ctl_msg);
+    //    fprintf(stderr, "ACT lib: SEND: read time = %f secs, read size = %f MB, throughput = %f MB/s: ctlmsg=%s\n", e - s, read_size/1000000.0, read_size/(e - s)/1000000.0, ctl_msg);
     fprintf(stderr, "ACT lib: SEND: Before wait: ctlmsg=%s\n",  ctl_msg);
     RDMA_Wait (&flags[fbuf_index]);
     fprintf(stderr, "ACT lib: SEND: After wait: ctlmsg=%s\n",  ctl_msg);
-
-
-
     fbuf_index = (fbuf_index + 1) % count;
-
-
-
   } while (read_size > 0);
   /*---------*/
 

@@ -9,4 +9,4 @@ void* get_current (void);
 int free_hashtable(void);
 void show(void);
 int get_size (uint64_t id);
-
+uint64_t buff_usage(void);
