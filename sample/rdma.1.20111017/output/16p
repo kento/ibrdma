@@ -1,0 +1,1360 @@
+192.168.114.47
+RDMA lib: send time= 0.000117 secs, send size= 0 MB, throughput = 0.392949 MB/s
+ACT lib: read time = 0.051999secs, read size = 120 MB, throughput = 2307.732600 MB/s
+RDMA lib: send time= 1.920260 secs, send size= 200 MB, throughput = 104.152565 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.289710 secs, send size= 120 MB, throughput = 93.044169 MB/s
+RDMA lib: send time= 0.000572 secs, send size= 0 MB, throughput = 0.080424 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000472 secs, send size= 0 MB, throughput = 0.097493 MB/s
+ACT lib: read time = 0.059272secs, read size = 120 MB, throughput = 2024.562981 MB/s
+RDMA lib: send time= 0.258185 secs, send size= 200 MB, throughput = 774.638611 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.161506 secs, send size= 120 MB, throughput = 743.006739 MB/s
+RDMA lib: send time= 0.000570 secs, send size= 0 MB, throughput = 0.080727 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000482 secs, send size= 0 MB, throughput = 0.095419 MB/s
+ACT lib: read time = 0.049716secs, read size = 120 MB, throughput = 2413.710077 MB/s
+RDMA lib: send time= 0.498734 secs, send size= 200 MB, throughput = 401.015373 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.162373 secs, send size= 120 MB, throughput = 739.038826 MB/s
+RDMA lib: send time= 0.000367 secs, send size= 0 MB, throughput = 0.125366 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000201 secs, send size= 0 MB, throughput = 0.228871 MB/s
+ACT lib: read time = 0.049762secs, read size = 120 MB, throughput = 2411.478126 MB/s
+RDMA lib: send time= 0.359307 secs, send size= 200 MB, throughput = 556.626984 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.161529 secs, send size= 120 MB, throughput = 742.900360 MB/s
+RDMA lib: send time= 0.000285 secs, send size= 0 MB, throughput = 0.161454 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000175 secs, send size= 0 MB, throughput = 0.262858 MB/s
+ACT lib: read time = 0.054548secs, read size = 120 MB, throughput = 2199.896325 MB/s
+RDMA lib: send time= 0.264571 secs, send size= 200 MB, throughput = 755.940207 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.162136 secs, send size= 120 MB, throughput = 740.119050 MB/s
+RDMA lib: send time= 0.000605 secs, send size= 0 MB, throughput = 0.076050 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000350 secs, send size= 0 MB, throughput = 0.131429 MB/s
+ACT lib: read time = 0.050993secs, read size = 120 MB, throughput = 2353.254754 MB/s
+RDMA lib: send time= 0.479470 secs, send size= 200 MB, throughput = 417.127232 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.351045 secs, send size= 120 MB, throughput = 341.836388 MB/s
+RDMA lib: send time= 0.001230 secs, send size= 0 MB, throughput = 0.037398 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000546 secs, send size= 0 MB, throughput = 0.084252 MB/s
+ACT lib: read time = 0.053045secs, read size = 120 MB, throughput = 2262.238882 MB/s
+RDMA lib: send time= 0.386415 secs, send size= 200 MB, throughput = 517.578245 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.227155 secs, send size= 120 MB, throughput = 528.273715 MB/s
+RDMA lib: send time= 0.000292 secs, send size= 0 MB, throughput = 0.157500 MB/s
+192.168.114.47
+RDMA lib: send time= 0.000288 secs, send size= 0 MB, throughput = 0.159717 MB/s
+ACT lib: read time = 0.053124secs, read size = 120 MB, throughput = 2258.868135 MB/s
+RDMA lib: send time= 0.376322 secs, send size= 200 MB, throughput = 531.459717 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.241544 secs, send size= 120 MB, throughput = 496.803878 MB/s
+RDMA lib: send time= 0.000350 secs, send size= 0 MB, throughput = 0.131429 MB/s
+192.168.114.47
+192.168.114.48
+RDMA lib: send time= 0.000444 secs, send size= 0 MB, throughput = 0.103563 MB/s
+ACT lib: read time = 0.051380secs, read size = 120 MB, throughput = 2335.542800 MB/s
+RDMA lib: send time= 1.999555 secs, send size= 200 MB, throughput = 100.022249 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.222045 secs, send size= 120 MB, throughput = 98.196042 MB/s
+RDMA lib: send time= 0.000148 secs, send size= 0 MB, throughput = 0.310689 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000090 secs, send size= 0 MB, throughput = 0.511772 MB/s
+ACT lib: read time = 0.054870secs, read size = 120 MB, throughput = 2186.991801 MB/s
+RDMA lib: send time= 0.266903 secs, send size= 200 MB, throughput = 749.335446 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.152990 secs, send size= 120 MB, throughput = 784.365687 MB/s
+RDMA lib: send time= 0.000331 secs, send size= 0 MB, throughput = 0.139004 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000184 secs, send size= 0 MB, throughput = 0.249920 MB/s
+ACT lib: read time = 0.050521secs, read size = 120 MB, throughput = 2375.254743 MB/s
+RDMA lib: send time= 0.479321 secs, send size= 200 MB, throughput = 417.256909 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.162615 secs, send size= 120 MB, throughput = 737.939029 MB/s
+RDMA lib: send time= 0.000340 secs, send size= 0 MB, throughput = 0.135300 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000182 secs, send size= 0 MB, throughput = 0.252868 MB/s
+ACT lib: read time = 0.050322secs, read size = 120 MB, throughput = 2384.651553 MB/s
+RDMA lib: send time= 0.358418 secs, send size= 200 MB, throughput = 558.007708 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.161628 secs, send size= 120 MB, throughput = 742.445580 MB/s
+RDMA lib: send time= 0.000181 secs, send size= 0 MB, throughput = 0.254200 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000083 secs, send size= 0 MB, throughput = 0.554419 MB/s
+ACT lib: read time = 0.054612secs, read size = 120 MB, throughput = 2197.322437 MB/s
+RDMA lib: send time= 0.264831 secs, send size= 200 MB, throughput = 755.198410 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.162075 secs, send size= 120 MB, throughput = 740.397769 MB/s
+RDMA lib: send time= 0.000301 secs, send size= 0 MB, throughput = 0.152883 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000181 secs, send size= 0 MB, throughput = 0.254200 MB/s
+ACT lib: read time = 0.051055secs, read size = 120 MB, throughput = 2350.408518 MB/s
+RDMA lib: send time= 0.478124 secs, send size= 200 MB, throughput = 418.301405 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.350051 secs, send size= 120 MB, throughput = 342.807263 MB/s
+RDMA lib: send time= 0.000700 secs, send size= 0 MB, throughput = 0.065715 MB/s
+192.168.114.48
+RDMA lib: send time= 0.001222 secs, send size= 0 MB, throughput = 0.037639 MB/s
+ACT lib: read time = 0.053937secs, read size = 120 MB, throughput = 2224.819563 MB/s
+RDMA lib: send time= 0.385025 secs, send size= 200 MB, throughput = 519.446756 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.227248 secs, send size= 120 MB, throughput = 528.057561 MB/s
+RDMA lib: send time= 0.000974 secs, send size= 0 MB, throughput = 0.047219 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000364 secs, send size= 0 MB, throughput = 0.126351 MB/s
+ACT lib: read time = 0.053384secs, read size = 120 MB, throughput = 2247.871804 MB/s
+RDMA lib: send time= 0.376412 secs, send size= 200 MB, throughput = 531.332809 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.241655 secs, send size= 120 MB, throughput = 496.575468 MB/s
+RDMA lib: send time= 0.000939 secs, send size= 0 MB, throughput = 0.048981 MB/s
+192.168.114.48
+192.168.114.5
+RDMA lib: send time= 0.000111 secs, send size= 0 MB, throughput = 0.414920 MB/s
+ACT lib: read time = 0.058278secs, read size = 120 MB, throughput = 2059.101520 MB/s
+RDMA lib: send time= 2.126514 secs, send size= 200 MB, throughput = 94.050641 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.081841 secs, send size= 120 MB, throughput = 110.922031 MB/s
+RDMA lib: send time= 0.000264 secs, send size= 0 MB, throughput = 0.174289 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000506 secs, send size= 0 MB, throughput = 0.090923 MB/s
+ACT lib: read time = 0.061283secs, read size = 120 MB, throughput = 1958.132735 MB/s
+RDMA lib: send time= 0.269949 secs, send size= 200 MB, throughput = 740.880796 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.148416 secs, send size= 120 MB, throughput = 808.537932 MB/s
+RDMA lib: send time= 0.000132 secs, send size= 0 MB, throughput = 0.348264 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000127 secs, send size= 0 MB, throughput = 0.361985 MB/s
+ACT lib: read time = 0.058744secs, read size = 120 MB, throughput = 2042.763424 MB/s
+RDMA lib: send time= 0.464050 secs, send size= 200 MB, throughput = 430.987989 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.161903 secs, send size= 120 MB, throughput = 741.183882 MB/s
+RDMA lib: send time= 0.000313 secs, send size= 0 MB, throughput = 0.146944 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000104 secs, send size= 0 MB, throughput = 0.442518 MB/s
+ACT lib: read time = 0.057206secs, read size = 120 MB, throughput = 2097.685162 MB/s
+RDMA lib: send time= 0.346485 secs, send size= 200 MB, throughput = 577.225733 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.161627 secs, send size= 120 MB, throughput = 742.451056 MB/s
+RDMA lib: send time= 0.000142 secs, send size= 0 MB, throughput = 0.323721 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000140 secs, send size= 0 MB, throughput = 0.328685 MB/s
+ACT lib: read time = 0.061259secs, read size = 120 MB, throughput = 1958.894835 MB/s
+RDMA lib: send time= 0.270596 secs, send size= 200 MB, throughput = 739.109151 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.154842 secs, send size= 120 MB, throughput = 774.982839 MB/s
+RDMA lib: send time= 0.000132 secs, send size= 0 MB, throughput = 0.348264 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000094 secs, send size= 0 MB, throughput = 0.489690 MB/s
+ACT lib: read time = 0.058281secs, read size = 120 MB, throughput = 2058.992015 MB/s
+RDMA lib: send time= 0.457685 secs, send size= 200 MB, throughput = 436.981773 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.356300 secs, send size= 120 MB, throughput = 336.794952 MB/s
+RDMA lib: send time= 0.000307 secs, send size= 0 MB, throughput = 0.149913 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000178 secs, send size= 0 MB, throughput = 0.258284 MB/s
+ACT lib: read time = 0.059443secs, read size = 120 MB, throughput = 2018.740745 MB/s
+RDMA lib: send time= 0.417556 secs, send size= 200 MB, throughput = 478.977889 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.206395 secs, send size= 120 MB, throughput = 581.409013 MB/s
+RDMA lib: send time= 0.000399 secs, send size= 0 MB, throughput = 0.115256 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000280 secs, send size= 0 MB, throughput = 0.164342 MB/s
+ACT lib: read time = 0.059133secs, read size = 120 MB, throughput = 2029.321915 MB/s
+RDMA lib: send time= 0.389082 secs, send size= 200 MB, throughput = 514.030521 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.232733 secs, send size= 120 MB, throughput = 515.612286 MB/s
+RDMA lib: send time= 0.002526 secs, send size= 0 MB, throughput = 0.018210 MB/s
+192.168.114.5
+RDMA lib: send time= 0.002011 secs, send size= 0 MB, throughput = 0.022874 MB/s
+ACT lib: read time = 0.058231secs, read size = 120 MB, throughput = 2060.762371 MB/s
+RDMA lib: send time= 0.738258 secs, send size= 200 MB, throughput = 270.908045 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.152596 secs, send size= 120 MB, throughput = 786.390223 MB/s
+RDMA lib: send time= 0.000194 secs, send size= 0 MB, throughput = 0.237025 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000164 secs, send size= 0 MB, throughput = 0.280433 MB/s
+ACT lib: read time = 0.061395secs, read size = 120 MB, throughput = 1954.558792 MB/s
+RDMA lib: send time= 0.248389 secs, send size= 200 MB, throughput = 805.188617 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.197339 secs, send size= 120 MB, throughput = 608.091202 MB/s
+RDMA lib: send time= 0.000561 secs, send size= 0 MB, throughput = 0.081997 MB/s
+192.168.114.5
+RDMA lib: send time= 0.000993 secs, send size= 0 MB, throughput = 0.047331 MB/s
+ACT lib: read time = 0.058082secs, read size = 120 MB, throughput = 2066.049349 MB/s
+RDMA lib: send time= 0.818411 secs, send size= 200 MB, throughput = 244.376030 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.608808 secs, send size= 120 MB, throughput = 74.589384 MB/s
+RDMA lib: send time= 0.004427 secs, send size= 0 MB, throughput = 0.010617 MB/s
+192.168.114.5
+RDMA lib: send time= 0.004289 secs, send size= 0 MB, throughput = 0.010958 MB/s
+ACT lib: read time = 0.057138secs, read size = 120 MB, throughput = 2100.179759 MB/s
+RDMA lib: send time= 1.211674 secs, send size= 200 MB, throughput = 165.060903 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 4.432341 secs, send size= 120 MB, throughput = 27.073730 MB/s
+ACT: Total time= 17.858257
+RDMA lib: send time= 0.000839 secs, send size= 0 MB, throughput = 0.056019 MB/s
+RDMA lib: send time= 0.000783 secs, send size= 0 MB, throughput = 0.058751 MB/s
+ACT lib: read time = 0.053316secs, read size = 120 MB, throughput = 2250.736642 MB/s
+RDMA lib: send time= 0.674453 secs, send size= 200 MB, throughput = 296.536592 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.234466 secs, send size= 120 MB, throughput = 511.801639 MB/s
+RDMA lib: send time= 0.000321 secs, send size= 0 MB, throughput = 0.143342 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000262 secs, send size= 0 MB, throughput = 0.175558 MB/s
+ACT lib: read time = 0.055976secs, read size = 120 MB, throughput = 2143.770067 MB/s
+RDMA lib: send time= 0.220932 secs, send size= 200 MB, throughput = 905.255888 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.193353 secs, send size= 120 MB, throughput = 620.626722 MB/s
+RDMA lib: send time= 0.000745 secs, send size= 0 MB, throughput = 0.061740 MB/s
+192.168.114.48
+RDMA lib: send time= 0.000689 secs, send size= 0 MB, throughput = 0.068212 MB/s
+ACT lib: read time = 0.050124secs, read size = 120 MB, throughput = 2394.066069 MB/s
+RDMA lib: send time= 0.881981 secs, send size= 200 MB, throughput = 226.762281 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.020062 secs, send size= 120 MB, throughput = 117.639912 MB/s
+RDMA lib: send time= 0.003634 secs, send size= 0 MB, throughput = 0.012933 MB/s
+192.168.114.48
+RDMA lib: send time= 0.003584 secs, send size= 0 MB, throughput = 0.013113 MB/s
+ACT lib: read time = 0.050724secs, read size = 120 MB, throughput = 2365.742649 MB/s
+RDMA lib: send time= 1.882232 secs, send size= 200 MB, throughput = 106.256816 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 4.430043 secs, send size= 120 MB, throughput = 27.087773 MB/s
+RDMA lib: send time= 0.000785 secs, send size= 0 MB, throughput = 0.059864 MB/s
+ACT: Total time= 17.904420
+RDMA lib: send time= 0.000775 secs, send size= 0 MB, throughput = 0.059366 MB/s
+ACT lib: read time = 0.053368secs, read size = 120 MB, throughput = 2248.534591 MB/s
+RDMA lib: send time= 0.674610 secs, send size= 200 MB, throughput = 296.467528 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.994492 secs, send size= 120 MB, throughput = 120.664614 MB/s
+RDMA lib: send time= 0.003397 secs, send size= 0 MB, throughput = 0.013541 MB/s
+192.168.114.47
+RDMA lib: send time= 0.002688 secs, send size= 0 MB, throughput = 0.017114 MB/s
+ACT lib: read time = 0.051446secs, read size = 120 MB, throughput = 2332.544629 MB/s
+RDMA lib: send time= 1.116016 secs, send size= 200 MB, throughput = 179.208915 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.921464 secs, send size= 120 MB, throughput = 130.227556 MB/s
+RDMA lib: send time= 0.003966 secs, send size= 0 MB, throughput = 0.011599 MB/s
+192.168.114.47
+RDMA lib: send time= 0.004200 secs, send size= 0 MB, throughput = 0.011191 MB/s
+ACT lib: read time = 0.050043secs, read size = 120 MB, throughput = 2397.944115 MB/s
+RDMA lib: send time= 1.031135 secs, send size= 200 MB, throughput = 193.961008 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 4.813253 secs, send size= 120 MB, throughput = 24.931164 MB/s
+RDMA lib: send time= 0.001149 secs, send size= 0 MB, throughput = 0.040907 MB/s
+192.168.114.47
+RDMA lib: send time= 0.003389 secs, send size= 0 MB, throughput = 0.013869 MB/s
+ACT lib: read time = 0.053401secs, read size = 120 MB, throughput = 2247.149210 MB/s
+RDMA lib: send time= 1.088861 secs, send size= 200 MB, throughput = 183.678176 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 6.609668 secs, send size= 120 MB, throughput = 18.155223 MB/s
+RDMA lib: send time= 0.000730 secs, send size= 0 MB, throughput = 0.064380 MB/s
+ACT: Total time= 25.626956
+192.168.114.38
+RDMA lib: send time= 0.000178 secs, send size= 0 MB, throughput = 0.258284 MB/s
+ACT lib: read time = 0.051847secs, read size = 120 MB, throughput = 2314.503132 MB/s
+RDMA lib: send time= 1.974361 secs, send size= 200 MB, throughput = 101.298588 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.808968 secs, send size= 120 MB, throughput = 66.336171 MB/s
+RDMA lib: send time= 0.000536 secs, send size= 0 MB, throughput = 0.085827 MB/s
+192.168.114.38
+RDMA lib: send time= 0.000668 secs, send size= 0 MB, throughput = 0.068882 MB/s
+ACT lib: read time = 0.050841secs, read size = 120 MB, throughput = 2360.306506 MB/s
+RDMA lib: send time= 2.168204 secs, send size= 200 MB, throughput = 92.242240 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.498420 secs, send size= 120 MB, throughput = 240.760804 MB/s
+RDMA lib: send time= 0.000251 secs, send size= 0 MB, throughput = 0.183227 MB/s
+192.168.114.38
+RDMA lib: send time= 0.000226 secs, send size= 0 MB, throughput = 0.203736 MB/s
+ACT lib: read time = 0.055208secs, read size = 120 MB, throughput = 2173.599299 MB/s
+RDMA lib: send time= 0.280381 secs, send size= 200 MB, throughput = 713.315187 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.191313 secs, send size= 120 MB, throughput = 627.244266 MB/s
+RDMA lib: send time= 0.000815 secs, send size= 0 MB, throughput = 0.056431 MB/s
+192.168.114.38
+RDMA lib: send time= 0.000639 secs, send size= 0 MB, throughput = 0.071992 MB/s
+ACT lib: read time = 0.054557secs, read size = 120 MB, throughput = 2199.531004 MB/s
+RDMA lib: send time= 2.411214 secs, send size= 200 MB, throughput = 82.945765 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.757586 secs, send size= 120 MB, throughput = 158.397858 MB/s
+RDMA lib: send time= 0.004323 secs, send size= 0 MB, throughput = 0.010641 MB/s
+192.168.114.38
+RDMA lib: send time= 0.004091 secs, send size= 0 MB, throughput = 0.011244 MB/s
+ACT lib: read time = 0.051022secs, read size = 120 MB, throughput = 2351.935178 MB/s
+RDMA lib: send time= 1.452948 secs, send size= 200 MB, throughput = 137.651167 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.826903 secs, send size= 120 MB, throughput = 145.119784 MB/s
+RDMA lib: send time= 0.006772 secs, send size= 0 MB, throughput = 0.006793 MB/s
+192.168.114.38
+RDMA lib: send time= 0.002916 secs, send size= 0 MB, throughput = 0.015775 MB/s
+ACT lib: read time = 0.050527secs, read size = 120 MB, throughput = 2374.963336 MB/s
+RDMA lib: send time= 4.926811 secs, send size= 200 MB, throughput = 40.594210 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.536617 secs, send size= 120 MB, throughput = 223.623163 MB/s
+RDMA lib: send time= 0.000754 secs, send size= 0 MB, throughput = 0.060998 MB/s
+192.168.114.38
+RDMA lib: send time= 0.000753 secs, send size= 0 MB, throughput = 0.061095 MB/s
+ACT lib: read time = 0.049273secs, read size = 120 MB, throughput = 2435.410179 MB/s
+RDMA lib: send time= 0.837454 secs, send size= 200 MB, throughput = 238.819132 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.422191 secs, send size= 120 MB, throughput = 284.231448 MB/s
+RDMA lib: send time= 0.000447 secs, send size= 0 MB, throughput = 0.102900 MB/s
+192.168.114.38
+RDMA lib: send time= 0.001397 secs, send size= 0 MB, throughput = 0.032930 MB/s
+ACT lib: read time = 0.050097secs, read size = 120 MB, throughput = 2395.353557 MB/s
+RDMA lib: send time= 19.937123 secs, send size= 200 MB, throughput = 10.031538 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.758479 secs, send size= 120 MB, throughput = 158.211343 MB/s
+RDMA lib: send time= 0.002304 secs, send size= 0 MB, throughput = 0.019967 MB/s
+192.168.114.38
+192.168.113.247
+RDMA lib: send time= 0.663057 secs, send size= 0 MB, throughput = 0.000069 MB/s
+ACT lib: read time = 0.058495secs, read size = 120 MB, throughput = 2051.455822 MB/s
+RDMA lib: send time= 2.617017 secs, send size= 200 MB, throughput = 76.422888 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.845049 secs, send size= 120 MB, throughput = 65.038918 MB/s
+RDMA lib: send time= 0.000575 secs, send size= 0 MB, throughput = 0.079991 MB/s
+192.168.113.247
+RDMA lib: send time= 0.000454 secs, send size= 0 MB, throughput = 0.101333 MB/s
+ACT lib: read time = 0.057340secs, read size = 120 MB, throughput = 2092.783315 MB/s
+RDMA lib: send time= 1.251357 secs, send size= 200 MB, throughput = 159.826482 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.120309 secs, send size= 120 MB, throughput = 997.430665 MB/s
+RDMA lib: send time= 0.000157 secs, send size= 0 MB, throughput = 0.292774 MB/s
+192.168.113.247
+RDMA lib: send time= 0.000140 secs, send size= 0 MB, throughput = 0.328685 MB/s
+ACT lib: read time = 0.060867secs, read size = 120 MB, throughput = 1971.509352 MB/s
+RDMA lib: send time= 0.293670 secs, send size= 200 MB, throughput = 681.036126 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.145512 secs, send size= 120 MB, throughput = 824.673664 MB/s
+RDMA lib: send time= 0.000149 secs, send size= 0 MB, throughput = 0.308701 MB/s
+192.168.113.247
+RDMA lib: send time= 0.000141 secs, send size= 0 MB, throughput = 0.325909 MB/s
+ACT lib: read time = 0.059223secs, read size = 120 MB, throughput = 2026.233816 MB/s
+RDMA lib: send time= 2.652283 secs, send size= 200 MB, throughput = 75.406736 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.634105 secs, send size= 120 MB, throughput = 189.243116 MB/s
+RDMA lib: send time= 0.001348 secs, send size= 0 MB, throughput = 0.034124 MB/s
+192.168.113.247
+RDMA lib: send time= 0.003128 secs, send size= 0 MB, throughput = 0.014706 MB/s
+ACT lib: read time = 0.057791secs, read size = 120 MB, throughput = 2076.448082 MB/s
+RDMA lib: send time= 1.544573 secs, send size= 200 MB, throughput = 129.485619 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.654530 secs, send size= 120 MB, throughput = 183.337649 MB/s
+RDMA lib: send time= 0.003313 secs, send size= 0 MB, throughput = 0.013884 MB/s
+192.168.113.247
+RDMA lib: send time= 0.003343 secs, send size= 0 MB, throughput = 0.013760 MB/s
+ACT lib: read time = 0.057140secs, read size = 120 MB, throughput = 2100.109654 MB/s
+RDMA lib: send time= 4.879420 secs, send size= 200 MB, throughput = 40.988478 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.813708 secs, send size= 120 MB, throughput = 147.473037 MB/s
+RDMA lib: send time= 0.007263 secs, send size= 0 MB, throughput = 0.006334 MB/s
+192.168.113.247
+RDMA lib: send time= 0.063256 secs, send size= 0 MB, throughput = 0.000727 MB/s
+ACT lib: read time = 0.056994secs, read size = 120 MB, throughput = 2105.486216 MB/s
+RDMA lib: send time= 0.591407 secs, send size= 200 MB, throughput = 338.176551 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.665551 secs, send size= 120 MB, throughput = 180.301749 MB/s
+RDMA lib: send time= 0.005908 secs, send size= 0 MB, throughput = 0.007786 MB/s
+192.168.113.247
+RDMA lib: send time= 0.005667 secs, send size= 0 MB, throughput = 0.008117 MB/s
+ACT lib: read time = 0.056833secs, read size = 120 MB, throughput = 2111.448264 MB/s
+RDMA lib: send time= 19.578378 secs, send size= 200 MB, throughput = 10.215351 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.693860 secs, send size= 120 MB, throughput = 172.945538 MB/s
+RDMA lib: send time= 0.001037 secs, send size= 0 MB, throughput = 0.044364 MB/s
+192.168.113.247
+192.168.114.6
+RDMA lib: send time= 0.000088 secs, send size= 0 MB, throughput = 0.522867 MB/s
+ACT lib: read time = 0.058356secs, read size = 120 MB, throughput = 2056.342176 MB/s
+RDMA lib: send time= 2.682160 secs, send size= 200 MB, throughput = 74.566770 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.086371 secs, send size= 120 MB, throughput = 110.459484 MB/s
+RDMA lib: send time= 0.000584 secs, send size= 0 MB, throughput = 0.078782 MB/s
+192.168.114.6
+RDMA lib: send time= 0.000791 secs, send size= 0 MB, throughput = 0.058166 MB/s
+ACT lib: read time = 0.057603secs, read size = 120 MB, throughput = 2083.220463 MB/s
+RDMA lib: send time= 2.159107 secs, send size= 200 MB, throughput = 92.630880 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.499391 secs, send size= 120 MB, throughput = 240.292638 MB/s
+RDMA lib: send time= 0.000234 secs, send size= 0 MB, throughput = 0.196675 MB/s
+192.168.114.6
+RDMA lib: send time= 0.000251 secs, send size= 0 MB, throughput = 0.183227 MB/s
+ACT lib: read time = 0.063181secs, read size = 120 MB, throughput = 1899.307472 MB/s
+RDMA lib: send time= 0.290481 secs, send size= 200 MB, throughput = 688.512976 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.185066 secs, send size= 120 MB, throughput = 648.417375 MB/s
+RDMA lib: send time= 0.000414 secs, send size= 0 MB, throughput = 0.111075 MB/s
+192.168.114.6
+RDMA lib: send time= 0.000302 secs, send size= 0 MB, throughput = 0.152279 MB/s
+ACT lib: read time = 0.059772secs, read size = 120 MB, throughput = 2007.628499 MB/s
+RDMA lib: send time= 2.572729 secs, send size= 200 MB, throughput = 77.738468 MB/s
+ACT lib: read time = 0.000003secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.720811 secs, send size= 120 MB, throughput = 166.479117 MB/s
+RDMA lib: send time= 0.003787 secs, send size= 0 MB, throughput = 0.012147 MB/s
+192.168.114.6
+RDMA lib: send time= 0.002928 secs, send size= 0 MB, throughput = 0.015710 MB/s
+ACT lib: read time = 0.058006secs, read size = 120 MB, throughput = 2068.749789 MB/s
+RDMA lib: send time= 2.263273 secs, send size= 200 MB, throughput = 88.367599 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.778029 secs, send size= 120 MB, throughput = 43.196094 MB/s
+RDMA lib: send time= 0.003160 secs, send size= 0 MB, throughput = 0.014557 MB/s
+192.168.114.6
+RDMA lib: send time= 0.001922 secs, send size= 0 MB, throughput = 0.023935 MB/s
+ACT lib: read time = 0.056197secs, read size = 120 MB, throughput = 2135.348038 MB/s
+RDMA lib: send time= 2.954455 secs, send size= 200 MB, throughput = 67.694382 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.415547 secs, send size= 120 MB, throughput = 288.776072 MB/s
+RDMA lib: send time= 0.000769 secs, send size= 0 MB, throughput = 0.059826 MB/s
+192.168.114.6
+RDMA lib: send time= 0.000585 secs, send size= 0 MB, throughput = 0.078622 MB/s
+ACT lib: read time = 0.058120secs, read size = 120 MB, throughput = 2064.693301 MB/s
+RDMA lib: send time= 20.312941 secs, send size= 200 MB, throughput = 9.845940 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.593809 secs, send size= 120 MB, throughput = 202.085139 MB/s
+RDMA lib: send time= 0.001713 secs, send size= 0 MB, throughput = 0.026853 MB/s
+192.168.114.6
+RDMA lib: send time= 0.001437 secs, send size= 0 MB, throughput = 0.032012 MB/s
+ACT lib: read time = 0.056506secs, read size = 120 MB, throughput = 2123.662385 MB/s
+RDMA lib: send time= 0.737217 secs, send size= 200 MB, throughput = 271.290561 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.314292 secs, send size= 120 MB, throughput = 381.810601 MB/s
+RDMA lib: send time= 0.000617 secs, send size= 0 MB, throughput = 0.074580 MB/s
+192.168.114.6
+192.168.114.2
+RDMA lib: send time= 0.000126 secs, send size= 0 MB, throughput = 0.365413 MB/s
+ACT lib: read time = 0.051685secs, read size = 120 MB, throughput = 2321.763246 MB/s
+RDMA lib: send time= 1.926373 secs, send size= 200 MB, throughput = 103.822053 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.591031 secs, send size= 120 MB, throughput = 46.313609 MB/s
+RDMA lib: send time= 0.000735 secs, send size= 0 MB, throughput = 0.062581 MB/s
+192.168.114.2
+RDMA lib: send time= 0.000629 secs, send size= 0 MB, throughput = 0.073138 MB/s
+ACT lib: read time = 0.051217secs, read size = 120 MB, throughput = 2342.979345 MB/s
+RDMA lib: send time= 2.765019 secs, send size= 200 MB, throughput = 72.332235 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.200884 secs, send size= 120 MB, throughput = 597.360071 MB/s
+RDMA lib: send time= 0.000668 secs, send size= 0 MB, throughput = 0.068857 MB/s
+192.168.114.2
+RDMA lib: send time= 0.000863 secs, send size= 0 MB, throughput = 0.053313 MB/s
+ACT lib: read time = 0.055349secs, read size = 120 MB, throughput = 2168.065820 MB/s
+RDMA lib: send time= 0.316883 secs, send size= 200 MB, throughput = 631.147600 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.155603 secs, send size= 120 MB, throughput = 103.841896 MB/s
+RDMA lib: send time= 0.000393 secs, send size= 0 MB, throughput = 0.117003 MB/s
+192.168.114.2
+RDMA lib: send time= 0.000576 secs, send size= 0 MB, throughput = 0.079858 MB/s
+ACT lib: read time = 0.054567secs, read size = 120 MB, throughput = 2199.127369 MB/s
+RDMA lib: send time= 0.264447 secs, send size= 200 MB, throughput = 756.295287 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.623830 secs, send size= 120 MB, throughput = 192.360147 MB/s
+RDMA lib: send time= 0.001775 secs, send size= 0 MB, throughput = 0.025915 MB/s
+192.168.114.2
+RDMA lib: send time= 0.001465 secs, send size= 0 MB, throughput = 0.031398 MB/s
+ACT lib: read time = 0.051574secs, read size = 120 MB, throughput = 2326.754162 MB/s
+RDMA lib: send time= 1.569535 secs, send size= 200 MB, throughput = 127.426275 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.820991 secs, send size= 120 MB, throughput = 146.164811 MB/s
+RDMA lib: send time= 0.001188 secs, send size= 0 MB, throughput = 0.038719 MB/s
+192.168.114.2
+RDMA lib: send time= 0.001560 secs, send size= 0 MB, throughput = 0.029488 MB/s
+ACT lib: read time = 0.051466secs, read size = 120 MB, throughput = 2331.636957 MB/s
+RDMA lib: send time= 5.107224 secs, send size= 200 MB, throughput = 39.160217 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.129797 secs, send size= 120 MB, throughput = 106.213773 MB/s
+RDMA lib: send time= 0.002026 secs, send size= 0 MB, throughput = 0.022704 MB/s
+192.168.114.2
+RDMA lib: send time= 0.001220 secs, send size= 0 MB, throughput = 0.037705 MB/s
+ACT lib: read time = 0.051771secs, read size = 120 MB, throughput = 2317.892643 MB/s
+RDMA lib: send time= 20.576574 secs, send size= 200 MB, throughput = 9.719791 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.580758 secs, send size= 120 MB, throughput = 206.626563 MB/s
+RDMA lib: send time= 0.003241 secs, send size= 0 MB, throughput = 0.014193 MB/s
+192.168.114.2
+RDMA lib: send time= 0.003290 secs, send size= 0 MB, throughput = 0.013982 MB/s
+ACT lib: read time = 0.050141secs, read size = 120 MB, throughput = 2393.246444 MB/s
+RDMA lib: send time= 1.620507 secs, send size= 200 MB, throughput = 123.418165 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.779953 secs, send size= 120 MB, throughput = 67.417510 MB/s
+RDMA lib: send time= 0.001067 secs, send size= 0 MB, throughput = 0.043115 MB/s
+192.168.114.2
+192.168.114.49
+RDMA lib: send time= 0.000091 secs, send size= 0 MB, throughput = 0.505073 MB/s
+ACT lib: read time = 0.058444secs, read size = 120 MB, throughput = 2053.246741 MB/s
+RDMA lib: send time= 2.826459 secs, send size= 200 MB, throughput = 70.759917 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.757200 secs, send size= 120 MB, throughput = 68.290462 MB/s
+RDMA lib: send time= 0.020894 secs, send size= 0 MB, throughput = 0.002202 MB/s
+192.168.114.49
+RDMA lib: send time= 0.006625 secs, send size= 0 MB, throughput = 0.006943 MB/s
+ACT lib: read time = 0.057379secs, read size = 120 MB, throughput = 2091.357198 MB/s
+RDMA lib: send time= 2.657650 secs, send size= 200 MB, throughput = 75.254454 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.281685 secs, send size= 120 MB, throughput = 426.007602 MB/s
+RDMA lib: send time= 0.000264 secs, send size= 0 MB, throughput = 0.174289 MB/s
+192.168.114.49
+RDMA lib: send time= 0.000410 secs, send size= 0 MB, throughput = 0.112239 MB/s
+ACT lib: read time = 0.060399secs, read size = 120 MB, throughput = 1986.786036 MB/s
+RDMA lib: send time= 0.661548 secs, send size= 200 MB, throughput = 302.321159 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.907544 secs, send size= 120 MB, throughput = 132.224974 MB/s
+RDMA lib: send time= 0.001033 secs, send size= 0 MB, throughput = 0.044528 MB/s
+192.168.114.49
+RDMA lib: send time= 0.000685 secs, send size= 0 MB, throughput = 0.067156 MB/s
+ACT lib: read time = 0.060903secs, read size = 120 MB, throughput = 1970.351661 MB/s
+RDMA lib: send time= 0.845734 secs, send size= 200 MB, throughput = 236.480941 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.065637 secs, send size= 120 MB, throughput = 112.608716 MB/s
+RDMA lib: send time= 0.004298 secs, send size= 0 MB, throughput = 0.010703 MB/s
+192.168.114.49
+RDMA lib: send time= 0.004270 secs, send size= 0 MB, throughput = 0.010773 MB/s
+ACT lib: read time = 0.058042secs, read size = 120 MB, throughput = 2067.466625 MB/s
+RDMA lib: send time= 1.301313 secs, send size= 200 MB, throughput = 153.690935 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.199455 secs, send size= 120 MB, throughput = 100.045455 MB/s
+RDMA lib: send time= 0.051513 secs, send size= 0 MB, throughput = 0.000893 MB/s
+192.168.114.49
+RDMA lib: send time= 0.006862 secs, send size= 0 MB, throughput = 0.006704 MB/s
+ACT lib: read time = 0.056609secs, read size = 120 MB, throughput = 2119.807442 MB/s
+RDMA lib: send time= 4.880952 secs, send size= 200 MB, throughput = 40.975612 MB/s
+ACT lib: read time = 0.000003secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 8.547482 secs, send size= 120 MB, throughput = 14.039222 MB/s
+RDMA lib: send time= 0.007456 secs, send size= 0 MB, throughput = 0.006170 MB/s
+192.168.114.49
+RDMA lib: send time= 0.004737 secs, send size= 0 MB, throughput = 0.009711 MB/s
+ACT lib: read time = 0.057392secs, read size = 120 MB, throughput = 2090.888048 MB/s
+RDMA lib: send time= 12.518317 secs, send size= 200 MB, throughput = 15.976589 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.434671 secs, send size= 120 MB, throughput = 276.070764 MB/s
+RDMA lib: send time= 0.136771 secs, send size= 0 MB, throughput = 0.000336 MB/s
+192.168.114.49
+RDMA lib: send time= 0.001818 secs, send size= 0 MB, throughput = 0.025303 MB/s
+ACT lib: read time = 0.058399secs, read size = 120 MB, throughput = 2054.831042 MB/s
+RDMA lib: send time= 2.842034 secs, send size= 200 MB, throughput = 70.372132 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.425916 secs, send size= 120 MB, throughput = 281.745725 MB/s
+RDMA lib: send time= 0.001745 secs, send size= 0 MB, throughput = 0.026361 MB/s
+192.168.114.49
+192.168.114.39
+RDMA lib: send time= 0.000282 secs, send size= 0 MB, throughput = 0.163092 MB/s
+ACT lib: read time = 0.058830secs, read size = 120 MB, throughput = 2039.774834 MB/s
+RDMA lib: send time= 2.141816 secs, send size= 200 MB, throughput = 93.378707 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.388488 secs, send size= 120 MB, throughput = 50.240988 MB/s
+RDMA lib: send time= 0.000574 secs, send size= 0 MB, throughput = 0.080124 MB/s
+192.168.114.39
+RDMA lib: send time= 0.000253 secs, send size= 0 MB, throughput = 0.181845 MB/s
+ACT lib: read time = 0.057740secs, read size = 120 MB, throughput = 2078.282923 MB/s
+RDMA lib: send time= 2.739406 secs, send size= 200 MB, throughput = 73.008525 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.199393 secs, send size= 120 MB, throughput = 601.826441 MB/s
+RDMA lib: send time= 0.000293 secs, send size= 0 MB, throughput = 0.156988 MB/s
+192.168.114.39
+RDMA lib: send time= 0.000559 secs, send size= 0 MB, throughput = 0.082276 MB/s
+ACT lib: read time = 0.062099secs, read size = 120 MB, throughput = 1932.398891 MB/s
+RDMA lib: send time= 0.354446 secs, send size= 200 MB, throughput = 564.260951 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.188161 secs, send size= 120 MB, throughput = 100.996423 MB/s
+RDMA lib: send time= 0.000699 secs, send size= 0 MB, throughput = 0.065827 MB/s
+192.168.114.39
+RDMA lib: send time= 0.000637 secs, send size= 0 MB, throughput = 0.072207 MB/s
+ACT lib: read time = 0.062139secs, read size = 120 MB, throughput = 1931.153282 MB/s
+RDMA lib: send time= 0.470007 secs, send size= 200 MB, throughput = 425.525413 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.661655 secs, send size= 120 MB, throughput = 181.363413 MB/s
+RDMA lib: send time= 0.005384 secs, send size= 0 MB, throughput = 0.008544 MB/s
+192.168.114.39
+RDMA lib: send time= 0.004639 secs, send size= 0 MB, throughput = 0.009916 MB/s
+ACT lib: read time = 0.058441secs, read size = 120 MB, throughput = 2053.355635 MB/s
+RDMA lib: send time= 2.159969 secs, send size= 200 MB, throughput = 92.593928 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.096321 secs, send size= 120 MB, throughput = 109.457006 MB/s
+RDMA lib: send time= 0.013602 secs, send size= 0 MB, throughput = 0.003382 MB/s
+192.168.114.39
+RDMA lib: send time= 0.007924 secs, send size= 0 MB, throughput = 0.005805 MB/s
+ACT lib: read time = 0.057311secs, read size = 120 MB, throughput = 2093.836758 MB/s
+RDMA lib: send time= 4.979538 secs, send size= 200 MB, throughput = 40.164367 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 7.558755 secs, send size= 120 MB, throughput = 15.875630 MB/s
+RDMA lib: send time= 0.006395 secs, send size= 0 MB, throughput = 0.007193 MB/s
+192.168.114.39
+RDMA lib: send time= 0.009177 secs, send size= 0 MB, throughput = 0.005013 MB/s
+ACT lib: read time = 0.056857secs, read size = 120 MB, throughput = 2110.562868 MB/s
+RDMA lib: send time= 13.600214 secs, send size= 200 MB, throughput = 14.705651 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.557964 secs, send size= 120 MB, throughput = 215.067605 MB/s
+RDMA lib: send time= 0.000520 secs, send size= 0 MB, throughput = 0.088463 MB/s
+192.168.114.39
+RDMA lib: send time= 0.000671 secs, send size= 0 MB, throughput = 0.068564 MB/s
+ACT lib: read time = 0.058625secs, read size = 120 MB, throughput = 2046.908915 MB/s
+RDMA lib: send time= 2.827745 secs, send size= 200 MB, throughput = 70.727736 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.426574 secs, send size= 120 MB, throughput = 281.311103 MB/s
+RDMA lib: send time= 0.001381 secs, send size= 0 MB, throughput = 0.033305 MB/s
+192.168.114.39
+RDMA lib: send time= 0.000906 secs, send size= 0 MB, throughput = 0.050773 MB/s
+ACT lib: read time = 0.058390secs, read size = 120 MB, throughput = 2055.149874 MB/s
+RDMA lib: send time= 0.705563 secs, send size= 200 MB, throughput = 283.461549 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.150107 secs, send size= 120 MB, throughput = 799.428966 MB/s
+RDMA lib: send time= 0.000507 secs, send size= 0 MB, throughput = 0.090752 MB/s
+192.168.113.247
+RDMA lib: send time= 0.000460 secs, send size= 0 MB, throughput = 0.100020 MB/s
+ACT lib: read time = 0.057669secs, read size = 120 MB, throughput = 2080.843390 MB/s
+RDMA lib: send time= 2.136999 secs, send size= 200 MB, throughput = 93.589182 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.464212 secs, send size= 120 MB, throughput = 258.502614 MB/s
+RDMA lib: send time= 0.001018 secs, send size= 0 MB, throughput = 0.045185 MB/s
+192.168.113.247
+RDMA lib: send time= 0.001509 secs, send size= 0 MB, throughput = 0.031147 MB/s
+ACT lib: read time = 0.056503secs, read size = 120 MB, throughput = 2123.787839 MB/s
+RDMA lib: send time= 1.537622 secs, send size= 200 MB, throughput = 130.070982 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 8.031122 secs, send size= 120 MB, throughput = 14.941872 MB/s
+RDMA lib: send time= 0.000642 secs, send size= 0 MB, throughput = 0.073202 MB/s
+192.168.113.247
+RDMA lib: send time= 0.001001 secs, send size= 0 MB, throughput = 0.046959 MB/s
+ACT lib: read time = 0.057244secs, read size = 120 MB, throughput = 2096.287281 MB/s
+RDMA lib: send time= 27.353843 secs, send size= 200 MB, throughput = 7.311587 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 7.182068 secs, send size= 120 MB, throughput = 16.708279 MB/s
+RDMA lib: send time= 0.003058 secs, send size= 0 MB, throughput = 0.015370 MB/s
+ACT: Total time= 88.512584
+RDMA lib: send time= 0.000485 secs, send size= 0 MB, throughput = 0.094810 MB/s
+ACT lib: read time = 0.058572secs, read size = 120 MB, throughput = 2048.766954 MB/s
+RDMA lib: send time= 2.228267 secs, send size= 200 MB, throughput = 89.755852 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.342981 secs, send size= 120 MB, throughput = 349.873506 MB/s
+RDMA lib: send time= 0.002829 secs, send size= 0 MB, throughput = 0.016260 MB/s
+192.168.114.6
+RDMA lib: send time= 0.001047 secs, send size= 0 MB, throughput = 0.043939 MB/s
+ACT lib: read time = 0.057248secs, read size = 120 MB, throughput = 2096.138866 MB/s
+RDMA lib: send time= 1.535639 secs, send size= 200 MB, throughput = 130.238939 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.153244 secs, send size= 120 MB, throughput = 104.054301 MB/s
+RDMA lib: send time= 0.000604 secs, send size= 0 MB, throughput = 0.076140 MB/s
+192.168.114.6
+RDMA lib: send time= 0.000576 secs, send size= 0 MB, throughput = 0.081594 MB/s
+ACT lib: read time = 0.056166secs, read size = 120 MB, throughput = 2136.526401 MB/s
+RDMA lib: send time= 30.216201 secs, send size= 200 MB, throughput = 6.618966 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.077886 secs, send size= 120 MB, throughput = 23.631881 MB/s
+RDMA lib: send time= 0.006460 secs, send size= 0 MB, throughput = 0.007276 MB/s
+192.168.114.6
+RDMA lib: send time= 0.004234 secs, send size= 0 MB, throughput = 0.011101 MB/s
+ACT lib: read time = 0.056781secs, read size = 120 MB, throughput = 2113.389879 MB/s
+RDMA lib: send time= 27.522097 secs, send size= 200 MB, throughput = 7.266888 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.047447 secs, send size= 120 MB, throughput = 39.377223 MB/s
+RDMA lib: send time= 0.000251 secs, send size= 0 MB, throughput = 0.187210 MB/s
+ACT: Total time= 112.912063
+RDMA lib: send time= 0.002312 secs, send size= 0 MB, throughput = 0.019897 MB/s
+ACT lib: read time = 0.051339secs, read size = 120 MB, throughput = 2337.408362 MB/s
+RDMA lib: send time= 0.717879 secs, send size= 200 MB, throughput = 278.598553 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.148365 secs, send size= 120 MB, throughput = 808.815982 MB/s
+RDMA lib: send time= 0.000765 secs, send size= 0 MB, throughput = 0.060124 MB/s
+192.168.114.38
+RDMA lib: send time= 0.000944 secs, send size= 0 MB, throughput = 0.048734 MB/s
+ACT lib: read time = 0.049394secs, read size = 120 MB, throughput = 2429.438443 MB/s
+RDMA lib: send time= 3.318916 secs, send size= 200 MB, throughput = 60.260642 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.027165 secs, send size= 120 MB, throughput = 116.826418 MB/s
+RDMA lib: send time= 0.003173 secs, send size= 0 MB, throughput = 0.014498 MB/s
+192.168.114.38
+RDMA lib: send time= 0.002687 secs, send size= 0 MB, throughput = 0.017492 MB/s
+ACT lib: read time = 0.049315secs, read size = 120 MB, throughput = 2433.337910 MB/s
+RDMA lib: send time= 30.919508 secs, send size= 200 MB, throughput = 6.468408 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 4.401003 secs, send size= 120 MB, throughput = 27.266512 MB/s
+RDMA lib: send time= 0.001062 secs, send size= 0 MB, throughput = 0.044260 MB/s
+192.168.114.38
+RDMA lib: send time= 0.000964 secs, send size= 0 MB, throughput = 0.048759 MB/s
+ACT lib: read time = 0.050327secs, read size = 120 MB, throughput = 2384.414315 MB/s
+RDMA lib: send time= 28.412603 secs, send size= 200 MB, throughput = 7.039130 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.795403 secs, send size= 120 MB, throughput = 31.617196 MB/s
+RDMA lib: send time= 0.012688 secs, send size= 0 MB, throughput = 0.003704 MB/s
+ACT: Total time= 113.637330
+RDMA lib: send time= 0.001009 secs, send size= 0 MB, throughput = 0.045590 MB/s
+ACT lib: read time = 0.052889secs, read size = 120 MB, throughput = 2268.908363 MB/s
+RDMA lib: send time= 1.099801 secs, send size= 200 MB, throughput = 181.851070 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.928190 secs, send size= 120 MB, throughput = 129.283876 MB/s
+RDMA lib: send time= 0.002754 secs, send size= 0 MB, throughput = 0.016703 MB/s
+192.168.114.2
+RDMA lib: send time= 0.003119 secs, send size= 0 MB, throughput = 0.014748 MB/s
+ACT lib: read time = 0.051571secs, read size = 120 MB, throughput = 2326.883244 MB/s
+RDMA lib: send time= 30.890212 secs, send size= 200 MB, throughput = 6.474543 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 4.052758 secs, send size= 120 MB, throughput = 29.609464 MB/s
+RDMA lib: send time= 0.003864 secs, send size= 0 MB, throughput = 0.011905 MB/s
+192.168.114.2
+RDMA lib: send time= 0.003872 secs, send size= 0 MB, throughput = 0.012139 MB/s
+ACT lib: read time = 0.050227secs, read size = 120 MB, throughput = 2389.145385 MB/s
+RDMA lib: send time= 3.773094 secs, send size= 200 MB, throughput = 53.006897 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 24.416028 secs, send size= 120 MB, throughput = 4.914804 MB/s
+RDMA lib: send time= 0.001542 secs, send size= 0 MB, throughput = 0.030478 MB/s
+192.168.114.2
+RDMA lib: send time= 0.001505 secs, send size= 0 MB, throughput = 0.031226 MB/s
+ACT lib: read time = 0.049825secs, read size = 120 MB, throughput = 2408.431771 MB/s
+RDMA lib: send time= 3.813447 secs, send size= 200 MB, throughput = 52.445989 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.560677 secs, send size= 120 MB, throughput = 214.027042 MB/s
+ACT: Total time= 113.674497
+RDMA lib: send time= 0.005886 secs, send size= 0 MB, throughput = 0.007985 MB/s
+RDMA lib: send time= 0.001147 secs, send size= 0 MB, throughput = 0.040104 MB/s
+ACT lib: read time = 0.057100secs, read size = 120 MB, throughput = 2101.574062 MB/s
+RDMA lib: send time= 1.600041 secs, send size= 200 MB, throughput = 124.996804 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 17.684825 secs, send size= 120 MB, throughput = 6.785479 MB/s
+RDMA lib: send time= 2.337171 secs, send size= 0 MB, throughput = 0.000020 MB/s
+192.168.114.39
+RDMA lib: send time= 3.424843 secs, send size= 0 MB, throughput = 0.000013 MB/s
+ACT lib: read time = 0.057219secs, read size = 120 MB, throughput = 2097.204430 MB/s
+RDMA lib: send time= 10.788242 secs, send size= 200 MB, throughput = 18.538702 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.589770 secs, send size= 120 MB, throughput = 75.482613 MB/s
+RDMA lib: send time= 0.002420 secs, send size= 0 MB, throughput = 0.019009 MB/s
+192.168.114.39
+RDMA lib: send time= 0.005234 secs, send size= 0 MB, throughput = 0.008980 MB/s
+ACT lib: read time = 0.058430secs, read size = 120 MB, throughput = 2053.732669 MB/s
+RDMA lib: send time= 27.206722 secs, send size= 200 MB, throughput = 7.351124 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.609000 secs, send size= 120 MB, throughput = 74.580486 MB/s
+RDMA lib: send time= 0.173017 secs, send size= 0 MB, throughput = 0.000272 MB/s
+192.168.114.39
+RDMA lib: send time= 1.055071 secs, send size= 0 MB, throughput = 0.000045 MB/s
+ACT lib: read time = 0.057275secs, read size = 120 MB, throughput = 2095.152875 MB/s
+RDMA lib: send time= 1.312607 secs, send size= 200 MB, throughput = 152.368525 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.544806 secs, send size= 120 MB, throughput = 220.261890 MB/s
+RDMA lib: send time= 0.000443 secs, send size= 0 MB, throughput = 0.106099 MB/s
+ACT: Total time= 113.942259
+RDMA lib: send time= 0.000798 secs, send size= 0 MB, throughput = 0.057645 MB/s
+ACT lib: read time = 0.056688secs, read size = 120 MB, throughput = 2116.847502 MB/s
+RDMA lib: send time= 1.599107 secs, send size= 200 MB, throughput = 125.069802 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 17.357254 secs, send size= 120 MB, throughput = 6.913536 MB/s
+RDMA lib: send time= 0.002559 secs, send size= 0 MB, throughput = 0.017974 MB/s
+192.168.114.49
+RDMA lib: send time= 0.002370 secs, send size= 0 MB, throughput = 0.019408 MB/s
+ACT lib: read time = 0.056473secs, read size = 120 MB, throughput = 2124.908619 MB/s
+RDMA lib: send time= 16.884223 secs, send size= 200 MB, throughput = 11.845378 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.591890 secs, send size= 120 MB, throughput = 75.382088 MB/s
+RDMA lib: send time= 0.005224 secs, send size= 0 MB, throughput = 0.008806 MB/s
+192.168.114.49
+RDMA lib: send time= 0.004447 secs, send size= 0 MB, throughput = 0.010569 MB/s
+ACT lib: read time = 0.057039secs, read size = 120 MB, throughput = 2103.822872 MB/s
+RDMA lib: send time= 27.227062 secs, send size= 200 MB, throughput = 7.345633 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.266605 secs, send size= 120 MB, throughput = 36.735386 MB/s
+RDMA lib: send time= 0.012065 secs, send size= 0 MB, throughput = 0.003896 MB/s
+192.168.114.49
+RDMA lib: send time= 0.001367 secs, send size= 0 MB, throughput = 0.034380 MB/s
+ACT lib: read time = 0.056479secs, read size = 120 MB, throughput = 2124.684368 MB/s
+RDMA lib: send time= 1.793486 secs, send size= 200 MB, throughput = 111.514663 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 10.517966 secs, send size= 120 MB, throughput = 11.409050 MB/s
+RDMA lib: send time= 0.000733 secs, send size= 0 MB, throughput = 0.064108 MB/s
+ACT: Total time= 124.863963
+192.168.114.15
+RDMA lib: send time= 0.000095 secs, send size= 0 MB, throughput = 0.484769 MB/s
+ACT lib: read time = 0.051284secs, read size = 120 MB, throughput = 2339.907671 MB/s
+RDMA lib: send time= 2.023284 secs, send size= 200 MB, throughput = 98.849200 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 6.075906 secs, send size= 120 MB, throughput = 19.750142 MB/s
+RDMA lib: send time= 0.020323 secs, send size= 0 MB, throughput = 0.002263 MB/s
+192.168.114.15
+RDMA lib: send time= 0.015356 secs, send size= 0 MB, throughput = 0.002996 MB/s
+ACT lib: read time = 0.050919secs, read size = 120 MB, throughput = 2356.681556 MB/s
+RDMA lib: send time= 4.899461 secs, send size= 200 MB, throughput = 40.820817 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 4.917521 secs, send size= 120 MB, throughput = 24.402539 MB/s
+RDMA lib: send time= 0.005646 secs, send size= 0 MB, throughput = 0.008147 MB/s
+192.168.114.15
+RDMA lib: send time= 0.006215 secs, send size= 0 MB, throughput = 0.007402 MB/s
+ACT lib: read time = 0.050192secs, read size = 120 MB, throughput = 2390.825005 MB/s
+RDMA lib: send time= 9.689801 secs, send size= 200 MB, throughput = 20.640259 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 16.327266 secs, send size= 120 MB, throughput = 7.349669 MB/s
+RDMA lib: send time= 0.003530 secs, send size= 0 MB, throughput = 0.013031 MB/s
+192.168.114.15
+RDMA lib: send time= 0.003468 secs, send size= 0 MB, throughput = 0.013264 MB/s
+ACT lib: read time = 0.049994secs, read size = 120 MB, throughput = 2400.288426 MB/s
+RDMA lib: send time= 37.482915 secs, send size= 200 MB, throughput = 5.335764 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 10.897522 secs, send size= 120 MB, throughput = 11.011678 MB/s
+RDMA lib: send time= 0.757591 secs, send size= 0 MB, throughput = 0.000061 MB/s
+192.168.114.15
+RDMA lib: send time= 0.618239 secs, send size= 0 MB, throughput = 0.000074 MB/s
+ACT lib: read time = 0.049342secs, read size = 120 MB, throughput = 2432.009277 MB/s
+RDMA lib: send time= 19.976031 secs, send size= 200 MB, throughput = 10.011999 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 11.143949 secs, send size= 120 MB, throughput = 10.768176 MB/s
+RDMA lib: send time= 0.002143 secs, send size= 0 MB, throughput = 0.021466 MB/s
+192.168.114.15
+RDMA lib: send time= 0.002905 secs, send size= 0 MB, throughput = 0.015834 MB/s
+ACT lib: read time = 0.049225secs, read size = 120 MB, throughput = 2437.781125 MB/s
+RDMA lib: send time= 15.190081 secs, send size= 200 MB, throughput = 13.166487 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.248521 secs, send size= 120 MB, throughput = 482.856869 MB/s
+RDMA lib: send time= 0.002499 secs, send size= 0 MB, throughput = 0.018407 MB/s
+192.168.114.15
+RDMA lib: send time= 0.003440 secs, send size= 0 MB, throughput = 0.013372 MB/s
+ACT lib: read time = 0.050103secs, read size = 120 MB, throughput = 2395.068595 MB/s
+RDMA lib: send time= 1.775892 secs, send size= 200 MB, throughput = 112.619460 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.722747 secs, send size= 120 MB, throughput = 20.968950 MB/s
+RDMA lib: send time= 0.000095 secs, send size= 0 MB, throughput = 0.483554 MB/s
+192.168.114.15
+RDMA lib: send time= 0.000080 secs, send size= 0 MB, throughput = 0.575934 MB/s
+ACT lib: read time = 0.054914secs, read size = 120 MB, throughput = 2185.235188 MB/s
+RDMA lib: send time= 0.186714 secs, send size= 200 MB, throughput = 1071.157336 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.138812 secs, send size= 120 MB, throughput = 864.478170 MB/s
+RDMA lib: send time= 0.000144 secs, send size= 0 MB, throughput = 0.319434 MB/s
+192.168.114.15
+192.168.114.14
+RDMA lib: send time= 0.000115 secs, send size= 0 MB, throughput = 0.400286 MB/s
+ACT lib: read time = 0.058684secs, read size = 120 MB, throughput = 2044.846530 MB/s
+RDMA lib: send time= 2.613001 secs, send size= 200 MB, throughput = 76.540350 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.542147 secs, send size= 120 MB, throughput = 33.877759 MB/s
+RDMA lib: send time= 0.007442 secs, send size= 0 MB, throughput = 0.006181 MB/s
+192.168.114.14
+RDMA lib: send time= 0.011285 secs, send size= 0 MB, throughput = 0.004076 MB/s
+ACT lib: read time = 0.057361secs, read size = 120 MB, throughput = 2092.009144 MB/s
+RDMA lib: send time= 4.910080 secs, send size= 200 MB, throughput = 40.732534 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.032661 secs, send size= 120 MB, throughput = 59.035908 MB/s
+RDMA lib: send time= 0.010326 secs, send size= 0 MB, throughput = 0.004455 MB/s
+192.168.114.14
+RDMA lib: send time= 0.007320 secs, send size= 0 MB, throughput = 0.006284 MB/s
+ACT lib: read time = 0.057715secs, read size = 120 MB, throughput = 2079.184382 MB/s
+RDMA lib: send time= 6.429076 secs, send size= 200 MB, throughput = 31.108670 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 20.326615 secs, send size= 120 MB, throughput = 5.903590 MB/s
+RDMA lib: send time= 0.014154 secs, send size= 0 MB, throughput = 0.003250 MB/s
+192.168.114.14
+RDMA lib: send time= 0.012916 secs, send size= 0 MB, throughput = 0.003561 MB/s
+ACT lib: read time = 0.056130secs, read size = 120 MB, throughput = 2137.887668 MB/s
+RDMA lib: send time= 33.297034 secs, send size= 200 MB, throughput = 6.006541 MB/s
+ACT lib: read time = 0.000003secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 8.310480 secs, send size= 120 MB, throughput = 14.439599 MB/s
+RDMA lib: send time= 0.004973 secs, send size= 0 MB, throughput = 0.009250 MB/s
+192.168.114.14
+RDMA lib: send time= 0.004660 secs, send size= 0 MB, throughput = 0.009871 MB/s
+ACT lib: read time = 0.057124secs, read size = 120 MB, throughput = 2100.696926 MB/s
+RDMA lib: send time= 31.641179 secs, send size= 200 MB, throughput = 6.320877 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.400767 secs, send size= 120 MB, throughput = 35.286157 MB/s
+RDMA lib: send time= 0.004766 secs, send size= 0 MB, throughput = 0.009652 MB/s
+192.168.114.14
+RDMA lib: send time= 0.004120 secs, send size= 0 MB, throughput = 0.011165 MB/s
+ACT lib: read time = 0.055843secs, read size = 120 MB, throughput = 2148.886441 MB/s
+RDMA lib: send time= 15.810205 secs, send size= 200 MB, throughput = 12.650057 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 7.934940 secs, send size= 120 MB, throughput = 15.122988 MB/s
+RDMA lib: send time= 0.001824 secs, send size= 0 MB, throughput = 0.025217 MB/s
+192.168.114.14
+RDMA lib: send time= 0.001827 secs, send size= 0 MB, throughput = 0.025178 MB/s
+ACT lib: read time = 0.056215secs, read size = 120 MB, throughput = 2134.659751 MB/s
+RDMA lib: send time= 7.706153 secs, send size= 200 MB, throughput = 25.953287 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.127671 secs, send size= 120 MB, throughput = 939.915853 MB/s
+RDMA lib: send time= 0.000101 secs, send size= 0 MB, throughput = 0.455042 MB/s
+192.168.114.14
+RDMA lib: send time= 0.000083 secs, send size= 0 MB, throughput = 0.554419 MB/s
+ACT lib: read time = 0.058711secs, read size = 120 MB, throughput = 2043.908192 MB/s
+RDMA lib: send time= 0.572285 secs, send size= 200 MB, throughput = 349.476115 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.261359 secs, send size= 120 MB, throughput = 459.138621 MB/s
+RDMA lib: send time= 0.000950 secs, send size= 0 MB, throughput = 0.048416 MB/s
+192.168.114.14
+192.168.114.7
+RDMA lib: send time= 0.000418 secs, send size= 0 MB, throughput = 0.110062 MB/s
+ACT lib: read time = 0.058437secs, read size = 120 MB, throughput = 2053.498054 MB/s
+RDMA lib: send time= 2.141570 secs, send size= 200 MB, throughput = 93.389436 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.311765 secs, send size= 120 MB, throughput = 384.905352 MB/s
+RDMA lib: send time= 0.000120 secs, send size= 0 MB, throughput = 0.383575 MB/s
+192.168.114.7
+RDMA lib: send time= 0.000083 secs, send size= 0 MB, throughput = 0.554419 MB/s
+ACT lib: read time = 0.057839secs, read size = 120 MB, throughput = 2074.727652 MB/s
+RDMA lib: send time= 5.881798 secs, send size= 200 MB, throughput = 34.003208 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.227851 secs, send size= 120 MB, throughput = 37.176435 MB/s
+RDMA lib: send time= 0.001860 secs, send size= 0 MB, throughput = 0.024732 MB/s
+192.168.114.7
+RDMA lib: send time= 0.001731 secs, send size= 0 MB, throughput = 0.026575 MB/s
+ACT lib: read time = 0.058024secs, read size = 120 MB, throughput = 2068.112257 MB/s
+RDMA lib: send time= 7.527903 secs, send size= 200 MB, throughput = 26.567823 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 7.186231 secs, send size= 120 MB, throughput = 16.698600 MB/s
+RDMA lib: send time= 0.009188 secs, send size= 0 MB, throughput = 0.005007 MB/s
+192.168.114.7
+RDMA lib: send time= 0.296884 secs, send size= 0 MB, throughput = 0.000155 MB/s
+ACT lib: read time = 0.056643secs, read size = 120 MB, throughput = 2118.531514 MB/s
+RDMA lib: send time= 18.832490 secs, send size= 200 MB, throughput = 10.619945 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 34.493863 secs, send size= 120 MB, throughput = 3.478880 MB/s
+RDMA lib: send time= 0.575175 secs, send size= 0 MB, throughput = 0.000080 MB/s
+192.168.114.7
+RDMA lib: send time= 0.008430 secs, send size= 0 MB, throughput = 0.005457 MB/s
+ACT lib: read time = 0.056809secs, read size = 120 MB, throughput = 2112.343269 MB/s
+RDMA lib: send time= 29.567699 secs, send size= 200 MB, throughput = 6.764138 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.312186 secs, send size= 120 MB, throughput = 36.229849 MB/s
+RDMA lib: send time= 0.002944 secs, send size= 0 MB, throughput = 0.015625 MB/s
+192.168.114.7
+RDMA lib: send time= 0.002807 secs, send size= 0 MB, throughput = 0.016388 MB/s
+ACT lib: read time = 0.056942secs, read size = 120 MB, throughput = 2107.408053 MB/s
+RDMA lib: send time= 18.730032 secs, send size= 200 MB, throughput = 10.678038 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 7.838278 secs, send size= 120 MB, throughput = 15.309485 MB/s
+RDMA lib: send time= 0.000625 secs, send size= 0 MB, throughput = 0.073612 MB/s
+192.168.114.7
+RDMA lib: send time= 0.000686 secs, send size= 0 MB, throughput = 0.067039 MB/s
+ACT lib: read time = 0.059818secs, read size = 120 MB, throughput = 2006.092135 MB/s
+RDMA lib: send time= 8.461516 secs, send size= 200 MB, throughput = 23.636427 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.364021 secs, send size= 120 MB, throughput = 329.651254 MB/s
+RDMA lib: send time= 0.002420 secs, send size= 0 MB, throughput = 0.019007 MB/s
+192.168.114.7
+RDMA lib: send time= 0.002273 secs, send size= 0 MB, throughput = 0.020239 MB/s
+ACT lib: read time = 0.059993secs, read size = 120 MB, throughput = 2000.232406 MB/s
+RDMA lib: send time= 0.448283 secs, send size= 200 MB, throughput = 446.146785 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.360655 secs, send size= 120 MB, throughput = 332.728109 MB/s
+RDMA lib: send time= 0.002445 secs, send size= 0 MB, throughput = 0.018812 MB/s
+192.168.114.7
+192.168.114.46
+RDMA lib: send time= 0.000101 secs, send size= 0 MB, throughput = 0.455042 MB/s
+ACT lib: read time = 0.057889secs, read size = 120 MB, throughput = 2072.933230 MB/s
+RDMA lib: send time= 2.146624 secs, send size= 200 MB, throughput = 93.169560 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 6.216980 secs, send size= 120 MB, throughput = 19.301976 MB/s
+RDMA lib: send time= 0.009417 secs, send size= 0 MB, throughput = 0.004885 MB/s
+192.168.114.46
+RDMA lib: send time= 0.010635 secs, send size= 0 MB, throughput = 0.004325 MB/s
+ACT lib: read time = 0.057372secs, read size = 120 MB, throughput = 2091.609236 MB/s
+RDMA lib: send time= 3.273471 secs, send size= 200 MB, throughput = 61.097225 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.138509 secs, send size= 120 MB, throughput = 105.401008 MB/s
+RDMA lib: send time= 0.008716 secs, send size= 0 MB, throughput = 0.005278 MB/s
+192.168.114.46
+RDMA lib: send time= 0.007699 secs, send size= 0 MB, throughput = 0.005975 MB/s
+ACT lib: read time = 0.056959secs, read size = 120 MB, throughput = 2106.781748 MB/s
+RDMA lib: send time= 6.627121 secs, send size= 200 MB, throughput = 30.179018 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 19.937262 secs, send size= 120 MB, throughput = 6.018881 MB/s
+RDMA lib: send time= 0.013443 secs, send size= 0 MB, throughput = 0.003422 MB/s
+192.168.114.46
+RDMA lib: send time= 0.012987 secs, send size= 0 MB, throughput = 0.003542 MB/s
+ACT lib: read time = 0.056117secs, read size = 120 MB, throughput = 2138.387234 MB/s
+RDMA lib: send time= 24.135871 secs, send size= 200 MB, throughput = 8.286422 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 17.900447 secs, send size= 120 MB, throughput = 6.703743 MB/s
+RDMA lib: send time= 0.006751 secs, send size= 0 MB, throughput = 0.006814 MB/s
+192.168.114.46
+RDMA lib: send time= 0.004887 secs, send size= 0 MB, throughput = 0.009413 MB/s
+ACT lib: read time = 0.057785secs, read size = 120 MB, throughput = 2076.662266 MB/s
+RDMA lib: send time= 31.528138 secs, send size= 200 MB, throughput = 6.343540 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.233847 secs, send size= 120 MB, throughput = 97.256799 MB/s
+RDMA lib: send time= 0.002897 secs, send size= 0 MB, throughput = 0.015878 MB/s
+192.168.114.46
+RDMA lib: send time= 0.003213 secs, send size= 0 MB, throughput = 0.014316 MB/s
+ACT lib: read time = 0.055989secs, read size = 120 MB, throughput = 2143.277109 MB/s
+RDMA lib: send time= 25.154810 secs, send size= 200 MB, throughput = 7.950766 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.815007 secs, send size= 120 MB, throughput = 66.115449 MB/s
+RDMA lib: send time= 0.002645 secs, send size= 0 MB, throughput = 0.017391 MB/s
+192.168.114.46
+RDMA lib: send time= 0.002217 secs, send size= 0 MB, throughput = 0.020748 MB/s
+ACT lib: read time = 0.059923secs, read size = 120 MB, throughput = 2002.564217 MB/s
+RDMA lib: send time= 7.347912 secs, send size= 200 MB, throughput = 27.218617 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.343585 secs, send size= 120 MB, throughput = 349.258539 MB/s
+RDMA lib: send time= 0.001934 secs, send size= 0 MB, throughput = 0.023784 MB/s
+192.168.114.46
+RDMA lib: send time= 0.001773 secs, send size= 0 MB, throughput = 0.025943 MB/s
+ACT lib: read time = 0.057906secs, read size = 120 MB, throughput = 2072.327247 MB/s
+RDMA lib: send time= 0.477703 secs, send size= 200 MB, throughput = 418.670095 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.401891 secs, send size= 120 MB, throughput = 298.588428 MB/s
+RDMA lib: send time= 0.002365 secs, send size= 0 MB, throughput = 0.019451 MB/s
+192.168.114.46
+192.168.114.8
+RDMA lib: send time= 0.000170 secs, send size= 0 MB, throughput = 0.270600 MB/s
+ACT lib: read time = 0.058582secs, read size = 120 MB, throughput = 2048.416751 MB/s
+RDMA lib: send time= 2.091194 secs, send size= 200 MB, throughput = 95.639146 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 6.351287 secs, send size= 120 MB, throughput = 18.893809 MB/s
+RDMA lib: send time= 0.013870 secs, send size= 0 MB, throughput = 0.003317 MB/s
+192.168.114.8
+RDMA lib: send time= 0.026407 secs, send size= 0 MB, throughput = 0.001742 MB/s
+ACT lib: read time = 0.057790secs, read size = 120 MB, throughput = 2076.482349 MB/s
+RDMA lib: send time= 3.208295 secs, send size= 200 MB, throughput = 62.338410 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.225747 secs, send size= 120 MB, throughput = 97.899495 MB/s
+RDMA lib: send time= 0.012713 secs, send size= 0 MB, throughput = 0.003618 MB/s
+192.168.114.8
+RDMA lib: send time= 0.054425 secs, send size= 0 MB, throughput = 0.000845 MB/s
+ACT lib: read time = 0.057890secs, read size = 120 MB, throughput = 2072.899081 MB/s
+RDMA lib: send time= 6.812099 secs, send size= 200 MB, throughput = 29.359526 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 20.998195 secs, send size= 120 MB, throughput = 5.714777 MB/s
+RDMA lib: send time= 0.007139 secs, send size= 0 MB, throughput = 0.006444 MB/s
+192.168.114.8
+RDMA lib: send time= 0.005050 secs, send size= 0 MB, throughput = 0.009109 MB/s
+ACT lib: read time = 0.056271secs, read size = 120 MB, throughput = 2132.534298 MB/s
+RDMA lib: send time= 39.115743 secs, send size= 200 MB, throughput = 5.113031 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.961417 secs, send size= 120 MB, throughput = 61.180260 MB/s
+RDMA lib: send time= 0.007481 secs, send size= 0 MB, throughput = 0.006149 MB/s
+192.168.114.8
+RDMA lib: send time= 0.004470 secs, send size= 0 MB, throughput = 0.010291 MB/s
+ACT lib: read time = 0.056806secs, read size = 120 MB, throughput = 2112.449656 MB/s
+RDMA lib: send time= 31.492888 secs, send size= 200 MB, throughput = 6.350640 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 11.003396 secs, send size= 120 MB, throughput = 10.905724 MB/s
+RDMA lib: send time= 0.002934 secs, send size= 0 MB, throughput = 0.015678 MB/s
+192.168.114.8
+RDMA lib: send time= 0.002376 secs, send size= 0 MB, throughput = 0.019360 MB/s
+ACT lib: read time = 0.056599secs, read size = 120 MB, throughput = 2120.182482 MB/s
+RDMA lib: send time= 15.047483 secs, send size= 200 MB, throughput = 13.291259 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.777343 secs, send size= 120 MB, throughput = 67.516511 MB/s
+RDMA lib: send time= 0.000127 secs, send size= 0 MB, throughput = 0.361985 MB/s
+192.168.114.8
+RDMA lib: send time= 0.000237 secs, send size= 0 MB, throughput = 0.194103 MB/s
+ACT lib: read time = 0.061325secs, read size = 120 MB, throughput = 1956.785270 MB/s
+RDMA lib: send time= 7.387033 secs, send size= 200 MB, throughput = 27.074470 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.330615 secs, send size= 120 MB, throughput = 362.960152 MB/s
+RDMA lib: send time= 0.001873 secs, send size= 0 MB, throughput = 0.024559 MB/s
+192.168.114.8
+RDMA lib: send time= 0.001936 secs, send size= 0 MB, throughput = 0.023761 MB/s
+ACT lib: read time = 0.060287secs, read size = 120 MB, throughput = 1990.478917 MB/s
+RDMA lib: send time= 0.491911 secs, send size= 200 MB, throughput = 406.577667 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.443270 secs, send size= 120 MB, throughput = 270.715385 MB/s
+RDMA lib: send time= 0.004010 secs, send size= 0 MB, throughput = 0.011471 MB/s
+192.168.114.8
+192.168.114.1
+RDMA lib: send time= 0.000105 secs, send size= 0 MB, throughput = 0.438495 MB/s
+ACT lib: read time = 0.051781secs, read size = 120 MB, throughput = 2317.455073 MB/s
+RDMA lib: send time= 1.926260 secs, send size= 200 MB, throughput = 103.828144 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 6.375801 secs, send size= 120 MB, throughput = 18.821164 MB/s
+RDMA lib: send time= 0.010579 secs, send size= 0 MB, throughput = 0.004348 MB/s
+192.168.114.1
+RDMA lib: send time= 0.011446 secs, send size= 0 MB, throughput = 0.004019 MB/s
+ACT lib: read time = 0.050972secs, read size = 120 MB, throughput = 2354.223384 MB/s
+RDMA lib: send time= 4.977840 secs, send size= 200 MB, throughput = 40.178070 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.869811 secs, send size= 120 MB, throughput = 20.443588 MB/s
+RDMA lib: send time= 0.005146 secs, send size= 0 MB, throughput = 0.008939 MB/s
+192.168.114.1
+RDMA lib: send time= 0.006174 secs, send size= 0 MB, throughput = 0.007450 MB/s
+ACT lib: read time = 0.050835secs, read size = 120 MB, throughput = 2360.572184 MB/s
+RDMA lib: send time= 24.785197 secs, send size= 200 MB, throughput = 8.069333 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 30.435757 secs, send size= 120 MB, throughput = 3.942731 MB/s
+RDMA lib: send time= 0.032578 secs, send size= 0 MB, throughput = 0.001412 MB/s
+192.168.114.1
+RDMA lib: send time= 0.012400 secs, send size= 0 MB, throughput = 0.003710 MB/s
+ACT lib: read time = 0.049632secs, read size = 120 MB, throughput = 2417.791442 MB/s
+RDMA lib: send time= 38.450867 secs, send size= 200 MB, throughput = 5.201443 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 11.990713 secs, send size= 120 MB, throughput = 10.007745 MB/s
+RDMA lib: send time= 0.002536 secs, send size= 0 MB, throughput = 0.018138 MB/s
+192.168.114.1
+RDMA lib: send time= 0.002764 secs, send size= 0 MB, throughput = 0.016643 MB/s
+ACT lib: read time = 0.051011secs, read size = 120 MB, throughput = 2352.429845 MB/s
+RDMA lib: send time= 15.245996 secs, send size= 200 MB, throughput = 13.118198 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.205910 secs, send size= 120 MB, throughput = 582.778976 MB/s
+RDMA lib: send time= 0.003809 secs, send size= 0 MB, throughput = 0.012077 MB/s
+192.168.114.1
+RDMA lib: send time= 0.002870 secs, send size= 0 MB, throughput = 0.016027 MB/s
+ACT lib: read time = 0.051100secs, read size = 120 MB, throughput = 2348.335876 MB/s
+RDMA lib: send time= 7.828937 secs, send size= 200 MB, throughput = 25.546253 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.138793 secs, send size= 120 MB, throughput = 864.596970 MB/s
+RDMA lib: send time= 0.000333 secs, send size= 0 MB, throughput = 0.138208 MB/s
+192.168.114.1
+RDMA lib: send time= 0.000176 secs, send size= 0 MB, throughput = 0.261434 MB/s
+ACT lib: read time = 0.054813secs, read size = 120 MB, throughput = 2189.255817 MB/s
+RDMA lib: send time= 0.509999 secs, send size= 200 MB, throughput = 392.157787 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.296072 secs, send size= 120 MB, throughput = 405.306809 MB/s
+RDMA lib: send time= 0.001509 secs, send size= 0 MB, throughput = 0.030485 MB/s
+192.168.114.1
+RDMA lib: send time= 0.001328 secs, send size= 0 MB, throughput = 0.034639 MB/s
+ACT lib: read time = 0.051631secs, read size = 120 MB, throughput = 2324.186261 MB/s
+RDMA lib: send time= 0.580206 secs, send size= 200 MB, throughput = 344.705206 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.632872 secs, send size= 120 MB, throughput = 189.611842 MB/s
+RDMA lib: send time= 0.003165 secs, send size= 0 MB, throughput = 0.014534 MB/s
+192.168.114.1
+192.168.114.37
+RDMA lib: send time= 0.000458 secs, send size= 0 MB, throughput = 0.100436 MB/s
+ACT lib: read time = 0.058540secs, read size = 120 MB, throughput = 2049.885067 MB/s
+RDMA lib: send time= 2.614527 secs, send size= 200 MB, throughput = 76.495672 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 3.540851 secs, send size= 120 MB, throughput = 33.890157 MB/s
+RDMA lib: send time= 0.007337 secs, send size= 0 MB, throughput = 0.006270 MB/s
+192.168.114.37
+RDMA lib: send time= 0.009769 secs, send size= 0 MB, throughput = 0.004709 MB/s
+ACT lib: read time = 0.056894secs, read size = 120 MB, throughput = 2109.183132 MB/s
+RDMA lib: send time= 4.913211 secs, send size= 200 MB, throughput = 40.706576 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.063241 secs, send size= 120 MB, throughput = 112.862464 MB/s
+RDMA lib: send time= 0.084747 secs, send size= 0 MB, throughput = 0.000543 MB/s
+192.168.114.37
+RDMA lib: send time= 0.005404 secs, send size= 0 MB, throughput = 0.008512 MB/s
+ACT lib: read time = 0.057115secs, read size = 120 MB, throughput = 2101.021381 MB/s
+RDMA lib: send time= 6.604024 secs, send size= 200 MB, throughput = 30.284566 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.670079 secs, send size= 120 MB, throughput = 71.852889 MB/s
+RDMA lib: send time= 0.653367 secs, send size= 0 MB, throughput = 0.000070 MB/s
+192.168.114.37
+RDMA lib: send time= 0.590700 secs, send size= 0 MB, throughput = 0.000078 MB/s
+ACT lib: read time = 0.056593secs, read size = 120 MB, throughput = 2120.405783 MB/s
+RDMA lib: send time= 22.939315 secs, send size= 200 MB, throughput = 8.718656 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 31.878591 secs, send size= 120 MB, throughput = 3.764282 MB/s
+RDMA lib: send time= 0.163324 secs, send size= 0 MB, throughput = 0.000282 MB/s
+192.168.114.37
+RDMA lib: send time= 0.143996 secs, send size= 0 MB, throughput = 0.000319 MB/s
+ACT lib: read time = 0.065161secs, read size = 120 MB, throughput = 1841.592653 MB/s
+RDMA lib: send time= 30.865863 secs, send size= 200 MB, throughput = 6.479650 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 8.865150 secs, send size= 120 MB, throughput = 13.536150 MB/s
+RDMA lib: send time= 0.000973 secs, send size= 0 MB, throughput = 0.047277 MB/s
+192.168.114.37
+RDMA lib: send time= 0.885345 secs, send size= 0 MB, throughput = 0.000052 MB/s
+ACT lib: read time = 0.056061secs, read size = 120 MB, throughput = 2140.533478 MB/s
+RDMA lib: send time= 14.900447 secs, send size= 200 MB, throughput = 13.422416 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 7.937350 secs, send size= 120 MB, throughput = 15.118396 MB/s
+RDMA lib: send time= 0.001827 secs, send size= 0 MB, throughput = 0.025178 MB/s
+192.168.114.37
+RDMA lib: send time= 0.002014 secs, send size= 0 MB, throughput = 0.022841 MB/s
+ACT lib: read time = 0.055911secs, read size = 120 MB, throughput = 2146.265714 MB/s
+RDMA lib: send time= 8.394171 secs, send size= 200 MB, throughput = 23.826057 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.302715 secs, send size= 120 MB, throughput = 396.412697 MB/s
+RDMA lib: send time= 0.001976 secs, send size= 0 MB, throughput = 0.023279 MB/s
+192.168.114.37
+RDMA lib: send time= 0.001977 secs, send size= 0 MB, throughput = 0.023268 MB/s
+ACT lib: read time = 0.058006secs, read size = 120 MB, throughput = 2068.749789 MB/s
+RDMA lib: send time= 0.581722 secs, send size= 200 MB, throughput = 343.806823 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.633433 secs, send size= 120 MB, throughput = 189.443841 MB/s
+RDMA lib: send time= 0.001623 secs, send size= 0 MB, throughput = 0.028344 MB/s
+192.168.114.37
+RDMA lib: send time= 0.000190 secs, send size= 0 MB, throughput = 0.242080 MB/s
+ACT lib: read time = 0.054434secs, read size = 120 MB, throughput = 2204.502065 MB/s
+RDMA lib: send time= 0.508162 secs, send size= 200 MB, throughput = 393.575260 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.297468 secs, send size= 120 MB, throughput = 403.404808 MB/s
+RDMA lib: send time= 0.001777 secs, send size= 0 MB, throughput = 0.025887 MB/s
+192.168.114.15
+RDMA lib: send time= 0.001340 secs, send size= 0 MB, throughput = 0.034324 MB/s
+ACT lib: read time = 0.051560secs, read size = 120 MB, throughput = 2327.388952 MB/s
+RDMA lib: send time= 0.578801 secs, send size= 200 MB, throughput = 345.541954 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.630613 secs, send size= 120 MB, throughput = 190.291079 MB/s
+RDMA lib: send time= 0.003882 secs, send size= 0 MB, throughput = 0.011849 MB/s
+192.168.114.15
+RDMA lib: send time= 0.658611 secs, send size= 0 MB, throughput = 0.000071 MB/s
+ACT lib: read time = 0.050969secs, read size = 120 MB, throughput = 2354.366545 MB/s
+RDMA lib: send time= 10.117868 secs, send size= 200 MB, throughput = 19.767010 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 10.928796 secs, send size= 120 MB, throughput = 10.980167 MB/s
+RDMA lib: send time= 0.002320 secs, send size= 0 MB, throughput = 0.020258 MB/s
+192.168.114.15
+RDMA lib: send time= 0.001524 secs, send size= 0 MB, throughput = 0.030840 MB/s
+ACT lib: read time = 0.050121secs, read size = 120 MB, throughput = 2394.202728 MB/s
+RDMA lib: send time= 13.841460 secs, send size= 200 MB, throughput = 14.449343 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.491373 secs, send size= 120 MB, throughput = 48.166211 MB/s
+ACT: Total time= 189.255649
+RDMA lib: send time= 0.003045 secs, send size= 0 MB, throughput = 0.015435 MB/s
+RDMA lib: send time= 0.000861 secs, send size= 0 MB, throughput = 0.053431 MB/s
+ACT lib: read time = 0.058070secs, read size = 120 MB, throughput = 2066.464995 MB/s
+RDMA lib: send time= 0.634009 secs, send size= 200 MB, throughput = 315.452993 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.566855 secs, send size= 120 MB, throughput = 211.694277 MB/s
+RDMA lib: send time= 0.000986 secs, send size= 0 MB, throughput = 0.046660 MB/s
+192.168.114.14
+RDMA lib: send time= 0.001010 secs, send size= 0 MB, throughput = 0.045536 MB/s
+ACT lib: read time = 0.058236secs, read size = 120 MB, throughput = 2060.576762 MB/s
+RDMA lib: send time= 0.528036 secs, send size= 200 MB, throughput = 378.761970 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.390712 secs, send size= 120 MB, throughput = 307.131578 MB/s
+RDMA lib: send time= 0.003750 secs, send size= 0 MB, throughput = 0.012267 MB/s
+192.168.114.14
+RDMA lib: send time= 0.002219 secs, send size= 0 MB, throughput = 0.021181 MB/s
+ACT lib: read time = 0.056822secs, read size = 120 MB, throughput = 2111.855796 MB/s
+RDMA lib: send time= 20.616967 secs, send size= 200 MB, throughput = 9.700748 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.016026 secs, send size= 120 MB, throughput = 23.923321 MB/s
+RDMA lib: send time= 0.003848 secs, send size= 0 MB, throughput = 0.012214 MB/s
+192.168.114.14
+RDMA lib: send time= 0.004934 secs, send size= 0 MB, throughput = 0.009526 MB/s
+ACT lib: read time = 0.056332secs, read size = 120 MB, throughput = 2130.223723 MB/s
+RDMA lib: send time= 11.345867 secs, send size= 200 MB, throughput = 17.627564 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 14.963689 secs, send size= 120 MB, throughput = 8.019413 MB/s
+RDMA lib: send time= 0.003624 secs, send size= 0 MB, throughput = 0.012968 MB/s
+ACT: Total time= 204.271467
+RDMA lib: send time= 0.004024 secs, send size= 0 MB, throughput = 0.011431 MB/s
+ACT lib: read time = 0.058180secs, read size = 120 MB, throughput = 2062.569583 MB/s
+RDMA lib: send time= 0.623605 secs, send size= 200 MB, throughput = 320.715831 MB/s
+ACT lib: read time = 0.000000secs, read size = 0 MB, throughput = nan MB/s
+RDMA lib: send time= 0.310030 secs, send size= 120 MB, throughput = 387.059040 MB/s
+RDMA lib: send time= 0.001477 secs, send size= 0 MB, throughput = 0.031144 MB/s
+192.168.114.8
+RDMA lib: send time= 0.001852 secs, send size= 0 MB, throughput = 0.024841 MB/s
+ACT lib: read time = 0.058490secs, read size = 120 MB, throughput = 2051.631428 MB/s
+RDMA lib: send time= 10.093991 secs, send size= 200 MB, throughput = 19.813768 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 10.929496 secs, send size= 120 MB, throughput = 10.979463 MB/s
+RDMA lib: send time= 0.002019 secs, send size= 0 MB, throughput = 0.022784 MB/s
+192.168.114.8
+RDMA lib: send time= 0.003399 secs, send size= 0 MB, throughput = 0.013827 MB/s
+ACT lib: read time = 0.057978secs, read size = 120 MB, throughput = 2069.753636 MB/s
+RDMA lib: send time= 13.864366 secs, send size= 200 MB, throughput = 14.425470 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.489179 secs, send size= 120 MB, throughput = 48.208668 MB/s
+RDMA lib: send time= 0.002293 secs, send size= 0 MB, throughput = 0.020498 MB/s
+192.168.114.8
+RDMA lib: send time= 0.003175 secs, send size= 0 MB, throughput = 0.014803 MB/s
+ACT lib: read time = 0.056101secs, read size = 120 MB, throughput = 2139.005202 MB/s
+RDMA lib: send time= 15.215306 secs, send size= 200 MB, throughput = 13.144658 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.231823 secs, send size= 120 MB, throughput = 517.636373 MB/s
+ACT: Total time= 204.849653
+RDMA lib: send time= 0.001020 secs, send size= 0 MB, throughput = 0.046080 MB/s
+RDMA lib: send time= 0.001461 secs, send size= 0 MB, throughput = 0.031485 MB/s
+ACT lib: read time = 0.058532secs, read size = 120 MB, throughput = 2050.160610 MB/s
+RDMA lib: send time= 0.534279 secs, send size= 200 MB, throughput = 374.336346 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.368147 secs, send size= 120 MB, throughput = 325.956843 MB/s
+RDMA lib: send time= 0.002711 secs, send size= 0 MB, throughput = 0.016969 MB/s
+192.168.114.37
+RDMA lib: send time= 0.002600 secs, send size= 0 MB, throughput = 0.017691 MB/s
+ACT lib: read time = 0.057485secs, read size = 120 MB, throughput = 2087.505983 MB/s
+RDMA lib: send time= 19.947300 secs, send size= 200 MB, throughput = 10.026420 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.635598 secs, send size= 120 MB, throughput = 21.293214 MB/s
+RDMA lib: send time= 0.005440 secs, send size= 0 MB, throughput = 0.008456 MB/s
+192.168.114.37
+RDMA lib: send time= 0.004553 secs, send size= 0 MB, throughput = 0.010323 MB/s
+ACT lib: read time = 0.057841secs, read size = 120 MB, throughput = 2074.650684 MB/s
+RDMA lib: send time= 11.242239 secs, send size= 200 MB, throughput = 17.790051 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.923212 secs, send size= 120 MB, throughput = 20.259278 MB/s
+RDMA lib: send time= 0.001533 secs, send size= 0 MB, throughput = 0.030658 MB/s
+192.168.114.37
+RDMA lib: send time= 0.000488 secs, send size= 0 MB, throughput = 0.096303 MB/s
+ACT lib: read time = 0.056657secs, read size = 120 MB, throughput = 2118.005529 MB/s
+RDMA lib: send time= 9.594267 secs, send size= 200 MB, throughput = 20.845782 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.159798 secs, send size= 120 MB, throughput = 55.560748 MB/s
+ACT: Total time= 206.872272
+RDMA lib: send time= 0.009068 secs, send size= 0 MB, throughput = 0.005183 MB/s
+RDMA lib: send time= 0.001555 secs, send size= 0 MB, throughput = 0.029583 MB/s
+ACT lib: read time = 0.052005secs, read size = 120 MB, throughput = 2307.478682 MB/s
+RDMA lib: send time= 0.532841 secs, send size= 200 MB, throughput = 375.346515 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.354369 secs, send size= 120 MB, throughput = 338.630144 MB/s
+RDMA lib: send time= 0.003077 secs, send size= 0 MB, throughput = 0.014949 MB/s
+192.168.114.1
+RDMA lib: send time= 0.003459 secs, send size= 0 MB, throughput = 0.013298 MB/s
+ACT lib: read time = 0.051061secs, read size = 120 MB, throughput = 2350.134149 MB/s
+RDMA lib: send time= 20.329372 secs, send size= 200 MB, throughput = 9.837982 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.342130 secs, send size= 120 MB, throughput = 22.462950 MB/s
+RDMA lib: send time= 0.005119 secs, send size= 0 MB, throughput = 0.008986 MB/s
+192.168.114.1
+RDMA lib: send time= 0.002638 secs, send size= 0 MB, throughput = 0.017816 MB/s
+ACT lib: read time = 0.050561secs, read size = 120 MB, throughput = 2373.373069 MB/s
+RDMA lib: send time= 11.359680 secs, send size= 200 MB, throughput = 17.606130 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 12.361220 secs, send size= 120 MB, throughput = 9.707780 MB/s
+RDMA lib: send time= 0.276388 secs, send size= 0 MB, throughput = 0.000170 MB/s
+192.168.114.1
+RDMA lib: send time= 0.268194 secs, send size= 0 MB, throughput = 0.000175 MB/s
+ACT lib: read time = 0.049258secs, read size = 120 MB, throughput = 2436.152815 MB/s
+RDMA lib: send time= 2.532807 secs, send size= 200 MB, throughput = 78.963778 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.158281 secs, send size= 120 MB, throughput = 55.599808 MB/s
+ACT: Total time= 206.930336
+RDMA lib: send time= 0.002160 secs, send size= 0 MB, throughput = 0.021761 MB/s
+RDMA lib: send time= 0.002182 secs, send size= 0 MB, throughput = 0.021082 MB/s
+ACT lib: read time = 0.057890secs, read size = 120 MB, throughput = 2072.899081 MB/s
+RDMA lib: send time= 0.764155 secs, send size= 200 MB, throughput = 261.727036 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.338312 secs, send size= 120 MB, throughput = 354.702262 MB/s
+RDMA lib: send time= 0.001975 secs, send size= 0 MB, throughput = 0.023293 MB/s
+192.168.114.7
+RDMA lib: send time= 0.001985 secs, send size= 0 MB, throughput = 0.023173 MB/s
+ACT lib: read time = 0.059104secs, read size = 120 MB, throughput = 2030.320613 MB/s
+RDMA lib: send time= 7.136879 secs, send size= 200 MB, throughput = 28.023454 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 13.255812 secs, send size= 120 MB, throughput = 9.052633 MB/s
+RDMA lib: send time= 0.002935 secs, send size= 0 MB, throughput = 0.015672 MB/s
+192.168.114.7
+RDMA lib: send time= 0.003408 secs, send size= 0 MB, throughput = 0.013790 MB/s
+ACT lib: read time = 0.056655secs, read size = 120 MB, throughput = 2118.076834 MB/s
+RDMA lib: send time= 11.174388 secs, send size= 200 MB, throughput = 17.898072 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 5.759299 secs, send size= 120 MB, throughput = 20.835869 MB/s
+RDMA lib: send time= 0.002897 secs, send size= 0 MB, throughput = 0.016224 MB/s
+192.168.114.7
+RDMA lib: send time= 0.002696 secs, send size= 0 MB, throughput = 0.017433 MB/s
+ACT lib: read time = 0.058623secs, read size = 120 MB, throughput = 2046.983838 MB/s
+RDMA lib: send time= 15.284919 secs, send size= 200 MB, throughput = 13.084793 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 2.434387 secs, send size= 120 MB, throughput = 49.293719 MB/s
+RDMA lib: send time= 0.000445 secs, send size= 0 MB, throughput = 0.105588 MB/s
+ACT: Total time= 206.950217
+RDMA lib: send time= 0.002521 secs, send size= 0 MB, throughput = 0.018248 MB/s
+ACT lib: read time = 0.057064secs, read size = 120 MB, throughput = 2102.908713 MB/s
+RDMA lib: send time= 0.689951 secs, send size= 200 MB, throughput = 289.875682 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 0.323947 secs, send size= 120 MB, throughput = 370.431020 MB/s
+RDMA lib: send time= 0.001552 secs, send size= 0 MB, throughput = 0.029642 MB/s
+192.168.114.46
+RDMA lib: send time= 0.001525 secs, send size= 0 MB, throughput = 0.030165 MB/s
+ACT lib: read time = 0.057942secs, read size = 120 MB, throughput = 2071.031120 MB/s
+RDMA lib: send time= 10.127725 secs, send size= 200 MB, throughput = 19.747772 MB/s
+ACT lib: read time = 0.000001secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 10.930126 secs, send size= 120 MB, throughput = 10.978830 MB/s
+RDMA lib: send time= 0.003542 secs, send size= 0 MB, throughput = 0.012986 MB/s
+192.168.114.46
+RDMA lib: send time= 0.002737 secs, send size= 0 MB, throughput = 0.017173 MB/s
+ACT lib: read time = 0.057534secs, read size = 120 MB, throughput = 2085.715328 MB/s
+RDMA lib: send time= 15.149147 secs, send size= 200 MB, throughput = 13.202063 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.223964 secs, send size= 120 MB, throughput = 98.042101 MB/s
+RDMA lib: send time= 0.002837 secs, send size= 0 MB, throughput = 0.016566 MB/s
+192.168.114.46
+RDMA lib: send time= 0.001645 secs, send size= 0 MB, throughput = 0.028570 MB/s
+ACT lib: read time = 0.056618secs, read size = 120 MB, throughput = 2119.468234 MB/s
+RDMA lib: send time= 15.863478 secs, send size= 200 MB, throughput = 12.607576 MB/s
+ACT lib: read time = 0.000002secs, read size = 0 MB, throughput = 0.000000 MB/s
+RDMA lib: send time= 1.771154 secs, send size= 120 MB, throughput = 67.752440 MB/s
+RDMA lib: send time= 0.000142 secs, send size= 0 MB, throughput = 0.330759 MB/s
+ACT: Total time= 207.042331

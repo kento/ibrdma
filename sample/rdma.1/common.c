@@ -52,6 +52,7 @@ char* get_ip_addr (char* interface)
   ioctl(fd, SIOCGIFADDR, &ifr);
   //  printf("%s\n", inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr));
   ip = inet_ntoa(((struct sockaddr_in *)&ifr.ifr_addr)->sin_addr);
+  close(fd);
   return ip;
 }
 

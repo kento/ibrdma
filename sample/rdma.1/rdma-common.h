@@ -18,7 +18,7 @@
 #endif
 
 #ifndef RDMA_CLIENT_NUM_S
-#define RDMA_CLIENT_NUM_S (64)
+#define RDMA_CLIENT_NUM_S (32)
 #endif
 
 #ifndef RDMA_BUF_SIZE_C
@@ -27,7 +27,7 @@
 
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN (64)
+#define HASH_TABLE_LEN RDMA_CLIENT_NUM_S
 #endif
 
 #ifndef DEBUG_LEVEL

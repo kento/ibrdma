@@ -31,7 +31,7 @@ static struct context *s_ctx = NULL;
 static int connections = 0;
 pthread_t listen_thread;
 static int allocated_mr_size = 0;
-
+static  int client_num = 0;
 
 //pthread_t poll_thread[RDMA_THREAD_NUM_S];
 //int poll_thread_count = 0;
@@ -98,7 +98,17 @@ static void* passive_init(void * arg /*(struct RDMA_communicator *comm)*/)
   uint16_t port = 0;
   
   comm = (struct RDMA_communicator *) arg;
-  create_hashtable(HASH_TABLE_LEN);
+
+
+  char *value;
+  value = getenv("RDMA_CLIENT_NUM_S");
+  if (value == NULL) {
+    client_num = RDMA_CLIENT_NUM_S;
+  } else {
+    client_num = atoi(value);
+  }
+  fprintf(stderr, "client num: %d\n", client_num);
+  create_hashtable(client_num);
 
   memset(&addr, 0, sizeof(addr));
   addr.sin_family = AF_INET;
@@ -184,12 +194,15 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
   char log[256];
 
   double b_usage;
+  double data_in_count = 0;
+  char *ip;
   int retry=0;
+  
+
+  create_ht(&ht, client_num);
 
 
-  create_ht(&ht, RDMA_CLIENT_NUM_S);
 
-  fprintf(stderr, "IBV_WC_RETRY_EXC_ERR: %d\n",IBV_WC_RETRY_EXC_ERR);
   
   while (1) {
     
@@ -227,6 +240,8 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	      usleep(1000 * 1000);
 	      retry++;
 	    }
+	    data_in_count += conn->recv_msg->data1.buff_size / 1000.0;
+            debug(fprintf(stderr, "RDMA lib: RECV: %s: Time= %f , in_count= %f \n", get_ip_addr("ib0"), get_dtime(), data_in_count), 2);
 	    //	    fprintf(stderr, "Memory Usage: %f \n", b_usage);
 	    retry=0;
 	    while ((rdma_buff = (struct RDMA_buff *) malloc(sizeof(struct RDMA_buff))) == NULL) {
@@ -357,6 +372,7 @@ static void * poll_cq(void *ctx /*ctx == NULL*/)
 	    //	    printf("%s\n", rdma_msg->buff);
 	    //	    rdma_disconnect(conn->id);
 	    debug(printf("RDMA lib: RECV: Recieved MR_FIN DONE: Tag=%d for wc.slid=%lu\n", tag, (uintptr_t)wc.slid), 1);
+	    /*Log*/
 	    break;
 	  default:
 	    debug(printf("Unknown TYPE"), 1);
@@ -451,7 +467,7 @@ static void build_context(struct ibv_context *verbs)
 
   TEST_Z(s_ctx->pd = ibv_alloc_pd(s_ctx->ctx));
   TEST_Z(s_ctx->comp_channel = ibv_create_comp_channel(s_ctx->ctx));
-  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 200, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary */
+  TEST_Z(s_ctx->cq = ibv_create_cq(s_ctx->ctx, 1000, NULL, s_ctx->comp_channel, 0)); /* cqe=10 is arbitrary up to 131071 (36 nodes =>200 cq) */
   TEST_NZ(ibv_req_notify_cq(s_ctx->cq, 0));
 
   //  TEST_NZ(pthread_create(&poll_thread[poll_thread_count], NULL, poll_cq, NULL));

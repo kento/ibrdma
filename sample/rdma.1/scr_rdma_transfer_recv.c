@@ -77,8 +77,8 @@ void RDMA_transfer_recv(void)
   int i;
   char log[1024];
 
-  RDMA_Passive_Init(&comm);
 
+  RDMA_Passive_Init(&comm);
   for (i = 0; i < TABLE_LEN; i++) {
     fp[i].flag = 0;
     fp_flag[i] = 0;
@@ -86,8 +86,13 @@ void RDMA_transfer_recv(void)
   
   int a = 0;
   double s;
+  double data_out_count = 0;
+
   while (1) {
+    int retry = 1000;
     RDMA_Recvr(&data, &size, &ctl_tag, &comm);
+    data_out_count += size;
+    debug(fprintf(stderr, "RDMA lib: RECV: %s: Time= %f , out_count= %f \n", get_ip_addr("ib0"), get_dtime(), data_out_count), 2);
     if (a == 0) {
       s = get_dtime();
       a = 1;
@@ -101,7 +106,17 @@ void RDMA_transfer_recv(void)
       path = strtok(NULL, "\t");
       //      write_log(log);
       sprintf(cpath[id],"%s",path);
-      fp[id].fd = open(path, O_WRONLY | O_CREAT, 0660);
+      
+      while ((fp[id].fd = open(path, O_WRONLY | O_CREAT, 0660)) < 0) {
+	if (retry < 0) {
+	  fprintf(stderr, "ACT lib: RECV: ERROR: failed to open file= %s\n", cpath[id]);
+	  exit(1);
+	}
+        fprintf(stderr, "ACT lib: RECV: failed to open file= %s: retry=%d\n", cpath[id], retry);
+	usleep(1 * 1000 * 1000);
+	retry--;
+      }
+      //      printf("ACT lib: RECV: fd= %d opened: file= %s \n", fp[id].fd, cpath[id]);
       fp[id].flag = 1;
       start[id] = get_dtime();
     } else if (ctl_tag == TRANSFER_FIN) {
@@ -110,14 +125,19 @@ void RDMA_transfer_recv(void)
       file_tag = atoi(strtok(data, "\t"));
       id = get_index(file_tag);
       while (fp_flag[id] != 0) {
-	usleep(1);
+	usleep(1 * 1000);
       }
-      fp[id].tag = -1;
-      close(fp[id].fd);
-      fp[id].flag = 0;
+      //      fp[id].tag = -1;
+      while (close(fp[id].fd) < 0) {
+      	fprintf(stderr, "ACT lib: RECV: ERROR: failed to close file= %d\n", fp[id].fd);
+      	exit(1);
+      }
+      //      printf("ACT lib: RECV: fd= %d closed\n", fp[id].fd);
+      //fp[id].fd= -1;
+      //      fp[id].flag = 0;
       end[id] = get_dtime();
 
-      sprintf(log, "ACT lib: RECV: FIN: %s: count=%d  Elapse_time=%f \n", cpath[id], count, end[id] - start[id]);
+      //      sprintf(log, "ACT lib: RECV: FIN: %s: count=%d  Elapse_time=%f \n", cpath[id], count, end[id] - start[id]);
       count++;
       //write_log(log);
       //      printf(log);
@@ -126,15 +146,16 @@ void RDMA_transfer_recv(void)
     } else {
       id = get_index(ctl_tag);
       while (fp_flag[id] != 0) {
-	usleep(1);
+	usleep(1);//	usleep(1 * 1000);
       }
       fp_flag[id] = 1;
       writer_args[id].id = id;
       writer_args[id].fd = fp[id].fd;
+      //      printf("ACT lib: RECV: fd= %d write\n", fp[id].fd);
       writer_args[id].data = data;
       writer_args[id].size = size;
       while (thread_count >= MAX_WRITER) {
-	usleep(10);
+	usleep(10); //	usleep(1 * 1000);
       }
       pthread_mutex_lock(&fastmutex);
       thread_count++;
@@ -182,7 +203,8 @@ void *writer(void *args)
 
       if(n_write < 0)
 	{
-	  perror("ACT lib: ERROR: RECV: write error\n");
+	  perror("ACT lib: RECV: ERROR: Write error");
+	  fprintf(stderr, "ACT lib: RECV: ERROR: Write error: fd=%d\n", fd);
 	  exit(EXIT_FAILURE);
 	}
 
