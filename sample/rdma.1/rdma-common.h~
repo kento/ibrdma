@@ -27,7 +27,7 @@
 
 
 #ifndef HASH_TABLE_LEN
-#define HASH_TABLE_LEN (32)
+#define HASH_TABLE_LEN RDMA_CLIENT_NUM_S
 #endif
 
 #ifndef DEBUG_LEVEL

@@ -25,6 +25,8 @@ static void register_rdma_msg_mr(int mr_index, void* addr, uint64_t size);
 static struct context *s_ctx = NULL;
 struct ibv_mr *rdma_msg_mr[RDMA_BUF_NUM_C];
 
+static rdma_buf_size = 0;
+
 int RDMA_Wait (int *flag) {
   //  int count = 0;
   while (*flag == 0) {
@@ -127,12 +129,21 @@ int RDMA_Active_Init(struct RDMA_communicator *comm, struct RDMA_param *param)
   }
 
   if (wait_for_event(comm->ec, RDMA_CM_EVENT_ESTABLISHED)) {
-    fprintf(stderr, "RDMA lib: SEND: ERROR: event wait failed @ %s:%d", __FILE__, __LINE__);
+    fprintf(stderr, "RDMA lib: SEND: ERROR: event wait failed @ %s:%d\n", __FILE__, __LINE__);
     exit(1);
   }
   //  on_connect(cm_id->context);
   int i ;
   for (i = 0; i < RDMA_BUF_NUM_C; i++){ rdma_msg_mr[i] = NULL;}
+
+  char *value;
+  value = getenv("RDMA_CLIENT_NUM_S");
+  if (value == NULL) {
+    rdma_buf_size = RDMA_BUF_SIZE_C;
+  } else {
+    rdma_buf_size  =  MAX_RDMA_BUF_SIZE_C / atoi(value);
+  }
+  fprintf(stderr, "rdma_buf_size: %d\n", rdma_buf_size);
 
   return 0;
 }
@@ -212,10 +223,10 @@ static void* poll_cq(struct poll_cq_args* args)
 	      } else {
 		debug(printf("RDMA lib: SEND: Recieved MR_INIT_ACK: for tag=%d\n",  tag), 1);
 		/*not sent all data yet*/
-		if (sent_size + RDMA_BUF_SIZE_C > buff_size) {
+		if (sent_size + rdma_buf_size > buff_size) {
 		  mr_size = buff_size - sent_size;
 		} else {
-		  mr_size = RDMA_BUF_SIZE_C;
+		  mr_size = rdma_buf_size;
 		}
 		debug(printf("mr_size=%lu\n", mr_size),1);
 		//	      printf("%s\n", send_base_addr);
@@ -245,10 +256,10 @@ static void* poll_cq(struct poll_cq_args* args)
 	    } else {
               /*not sent all data yet*/
 	      debug(printf("RDMA lib: SEND: Recieved MR_CHUNK_ACK: for tag=%d\n",  tag), 1);
-	      if (sent_size + RDMA_BUF_SIZE_C > buff_size) {
+	      if (sent_size + rdma_buf_size > buff_size) {
 		mr_size = buff_size - sent_size;
 	      } else {
-		mr_size = RDMA_BUF_SIZE_C;
+		mr_size = rdma_buf_size;
 	      }
 	      debug(printf("mr_size=%lu\n", mr_size),1);
 	      //	      printf("%s\n", send_base_addr);

@@ -279,8 +279,8 @@ static void* poll_cq(struct poll_cq_args* args)
 	    free(args->msg);
 	    free(args);
 	    //	    fprintf(stderr, "RDMA lib: SEND: FIN_ACK: tag=%d\n", tag);
-	    ip = get_ip_addr("ib0");
-	    printf("RDMA lib: SEND: %s: send time= %f secs, send size= %lu MB, throughput = %f MB/s\n", ip, e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
+	    //ip = get_ip_addr("ib0");
+	    //	    printf("RDMA lib: SEND: %s: send time= %f secs, send size= %lu MB, throughput = %f MB/s\n", ip, e - s, buff_size/1000000, buff_size/(e - s)/1000000.0);
 	    return NULL;
           default:
             debug(printf("Unknown TYPE"), 1);

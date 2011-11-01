@@ -21,8 +21,12 @@
 #define RDMA_CLIENT_NUM_S (32)
 #endif
 
+#ifndef MAX_RDMA_BUF_SIZE_C
+#define MAX_RDMA_BUF_SIZE_C (6*1000*1000)
+#endif
+
 #ifndef RDMA_BUF_SIZE_C
-#define RDMA_BUF_SIZE_C ((6*1000*1000)/RDMA_CLIENT_NUM_S)
+#define RDMA_BUF_SIZE_C ((MAX_RDMA_BUF_SIZE_C)/(RDMA_CLIENT_NUM_S))
 #endif
 
 
