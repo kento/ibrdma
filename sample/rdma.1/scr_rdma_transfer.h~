@@ -1,3 +1,0 @@
-
-int MSG_INIT = -1;
-int MSG_FIN = -2;

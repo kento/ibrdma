@@ -1,5 +1,0 @@
-
-struct RDMA_tf {
-  char* src;
-  char* dst;
-};
